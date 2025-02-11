@@ -18,6 +18,7 @@ public class Producto {
     private double precio_venta;
     private double precio_mayoreo;
     private double utilidad;
+    private double impuesto;
     private Timestamp fecha_registro;
     private int Proveedor_idProveedor;
     private int Categoria_idCategoria;
