@@ -10,4 +10,12 @@
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.luisjuarez.sistemavu.SistemaVU</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
