@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Carrito {
     private ArrayList<CarritoProducto> items;
-
+    
     public Carrito() {
         this.items = new ArrayList<>();
     }

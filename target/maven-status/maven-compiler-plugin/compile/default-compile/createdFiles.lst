@@ -1,2 +1,17 @@
+com\luisjuarez\sistemavu\model\Permiso.class
+com\luisjuarez\sistemavu\model\EmpleadoHasPermiso.class
+com\luisjuarez\sistemavu\model\Inventario.class
+com\luisjuarez\sistemavu\persistence\ConexionBDDMysql.class
+com\luisjuarez\sistemavu\model\CarritoProducto.class
+com\luisjuarez\sistemavu\model\Empleado.class
+com\luisjuarez\sistemavu\model\ContactoProveedor.class
+com\luisjuarez\sistemavu\model\Proveedor.class
+com\luisjuarez\sistemavu\model\Compra.class
+com\luisjuarez\sistemavu\model\DetalleCompra.class
 com\luisjuarez\sistemavu\model\Cliente.class
+com\luisjuarez\sistemavu\model\DetalleFactura.class
+com\luisjuarez\sistemavu\model\Producto.class
+com\luisjuarez\sistemavu\model\Categoria.class
+com\luisjuarez\sistemavu\model\Carrito.class
+com\luisjuarez\sistemavu\model\Factura.class
 com\luisjuarez\sistemavu\SistemaVU.class
