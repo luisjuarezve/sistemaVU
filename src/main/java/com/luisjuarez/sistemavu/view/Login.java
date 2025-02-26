@@ -96,7 +96,7 @@ public class Login extends javax.swing.JFrame {
         body.setLayout(new java.awt.GridBagLayout());
 
         btn_close.setForeground(new java.awt.Color(255, 255, 255));
-        btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
+        btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         btn_close.setBorder(null);
         btn_close.setBorderPainted(false);
         btn_close.setContentAreaFilled(false);
