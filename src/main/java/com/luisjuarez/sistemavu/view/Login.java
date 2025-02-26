@@ -113,7 +113,7 @@ public class Login extends javax.swing.JFrame {
         body.add(btn_close, gridBagConstraints);
 
         lbl_userImg.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_userImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png.png"))); // NOI18N
+        lbl_userImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;

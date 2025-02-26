@@ -1,3 +1,4 @@
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\config\ConfigProperties.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\model\Carrito.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\model\CarritoProducto.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\model\Categoria.java
@@ -40,9 +41,14 @@ C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\PermisoDAO.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\ProductoDAO.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\ProveedorDAO.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\service\CategoriaService.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\service\ClienteService.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\SistemaVU.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\utils\PDFboxUtils.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\utils\StringUtil.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\view\components\RoundedButton.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\view\components\RoundedPanel.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\view\Login.java
-C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\view\MenuPrincipal.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\view\SistemaPrincipal.java

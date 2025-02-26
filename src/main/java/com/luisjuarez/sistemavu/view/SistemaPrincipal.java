@@ -8,7 +8,21 @@ import com.luisjuarez.sistemavu.model.Empleado;
  */
 public class SistemaPrincipal extends javax.swing.JFrame {
 
-    public static Empleado empleado = null;
+    private static Empleado empleado = new Empleado(1, "Juan", "Pérez", "juan.perez@example.com", "juanperez", "contraseñaSegura123");
+    //public static InventarioService inventarioService = new InventarioServiceImpl(new InventarioDAOSqlite3(), new ProductosDAOSqlite3());
+    //public static ClienteService clienteService = new ClienteServiceImpl(new ClienteDAOSqlite3());
+    //public static ProductoService productoService = new ProductoServiceImpl(new ProductosDAOSqlite3());
+    //public static ProveedorService proveedorService = new ProveedorServiceImpl(new ProveedorDAOSqlite3());
+    //public static CategoriaService categoriaService = new CategoriaServiceImpl(new CategoriasDAOSqlite3());
+    //public static ProductoProveedorService productoProveedorService = new ProductoProveedorServiceImpl(new ProductoProveedorDAOSqlite3());
+
+    public static Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public static void setEmpleado(Empleado empleado) {
+        SistemaPrincipal.empleado = empleado;
+    }
     
     /**
      * Creates new form SistemaVU
