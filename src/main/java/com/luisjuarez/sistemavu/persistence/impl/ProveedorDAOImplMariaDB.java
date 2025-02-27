@@ -2,22 +2,19 @@ package com.luisjuarez.sistemavu.persistence.impl;
 
 import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.ProveedorDAO;
+import com.luisjuarez.sistemavu.persistence.ConexionBDDMysql;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProveedorDAOImplMariaDB implements ProveedorDAO {
 
-    private Connection connection;
-
-    public ProveedorDAOImplMariaDB(Connection connection) {
-        this.connection = connection;
-    }
-
     @Override
     public void registrar(Proveedor proveedor) {
         String sql = "INSERT INTO proveedor (tipo_doc, nro_doc, nombre, apellido, telefono, correo_electronico, direccion, notas, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, proveedor.getTipo_doc());
             ps.setString(2, proveedor.getNro_doc());
             ps.setString(3, proveedor.getNombre());
@@ -36,7 +33,8 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
     @Override
     public Proveedor buscarPorDocumento(String tipo_doc, String nro_doc) {
         String sql = "SELECT * FROM proveedor WHERE tipo_doc = ? AND nro_doc = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, tipo_doc);
             ps.setString(2, nro_doc);
             try (ResultSet rs = ps.executeQuery()) {
@@ -53,7 +51,8 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
     @Override
     public Proveedor buscarPorId(int id) {
         String sql = "SELECT * FROM proveedor WHERE idProveedor = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -70,7 +69,8 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
     public List<Proveedor> buscarPorPalabraClave(String palabraClave) {
         List<Proveedor> proveedores = new ArrayList<>();
         String sql = "SELECT * FROM proveedor WHERE tipo_doc LIKE ? OR nro_doc LIKE ? OR nombre LIKE ? OR apellido LIKE ? OR correo_electronico LIKE ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, "%" + palabraClave + "%");
             ps.setString(2, "%" + palabraClave + "%");
             ps.setString(3, "%" + palabraClave + "%");
@@ -91,7 +91,9 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
     public List<Proveedor> mostrarLista() {
         List<Proveedor> proveedores = new ArrayList<>();
         String sql = "SELECT * FROM proveedor";
-        try (Statement st = connection.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 proveedores.add(obtenerProveedor(rs));
             }
@@ -104,7 +106,8 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
     @Override
     public void modificar(Proveedor proveedor) {
         String sql = "UPDATE proveedor SET tipo_doc = ?, nro_doc = ?, nombre = ?, apellido = ?, telefono = ?, correo_electronico = ?, direccion = ?, notas = ?, fecha_registro = ? WHERE idProveedor = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, proveedor.getTipo_doc());
             ps.setString(2, proveedor.getNro_doc());
             ps.setString(3, proveedor.getNombre());
@@ -124,7 +127,8 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
     @Override
     public void eliminar(int id) {
         String sql = "DELETE FROM proveedor WHERE idProveedor = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {

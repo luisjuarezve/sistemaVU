@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.Proveedor;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ProveedorService {
@@ -11,4 +12,5 @@ public interface ProveedorService {
     List<Proveedor> mostrarListaProveedores();
     void modificarProveedor(Proveedor proveedor);
     void eliminarProveedor(int id);
+    void reporteProveedorPDF(String destino) throws SQLException;
 }

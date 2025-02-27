@@ -152,7 +152,7 @@ public class ClienteServiceImpl implements ClienteService {
                 String[] rows = {
                     cliente.getTipo_doc(),
                     cliente.getNro_doc(),
-                    cliente.getNombre()+" "+cliente.getApellido(),
+                    cliente.getNombre()+(cliente.getApellido() != null ? " " + cliente.getApellido() : ""),
                     cliente.getTelefono(),
                     cliente.getDireccion(),
                     cliente.getCorreo_electronico(),

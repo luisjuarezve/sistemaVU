@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.Empleado;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface EmpleadoService {
@@ -12,4 +13,5 @@ public interface EmpleadoService {
     Empleado inicioSesion(String usuario, String contrasena);
     Empleado buscarEmpleadoPorCorreo(String correo);
     List<Empleado> buscarEmpleadosPorPalabraClave(String palabraClave);
+    void reporteEmpleadosPDF(String destino) throws SQLException;
 }

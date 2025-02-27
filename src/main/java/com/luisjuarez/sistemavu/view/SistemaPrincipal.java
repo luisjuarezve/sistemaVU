@@ -1,6 +1,24 @@
 package com.luisjuarez.sistemavu.view;
 
 import com.luisjuarez.sistemavu.model.Empleado;
+import com.luisjuarez.sistemavu.persistence.impl.CategoriaDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.ClienteDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.EmpleadoDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.InventarioDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.ProductoDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.ProveedorDAOImplMariaDB;
+import com.luisjuarez.sistemavu.service.CategoriaService;
+import com.luisjuarez.sistemavu.service.ClienteService;
+import com.luisjuarez.sistemavu.service.EmpleadoService;
+import com.luisjuarez.sistemavu.service.InventarioService;
+import com.luisjuarez.sistemavu.service.ProductoService;
+import com.luisjuarez.sistemavu.service.ProveedorService;
+import com.luisjuarez.sistemavu.service.impl.CategoriaServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.ClienteServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.EmpleadoServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.InventarioServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.ProductoServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.ProveedorServiceImpl;
 
 /**
  *
@@ -9,13 +27,13 @@ import com.luisjuarez.sistemavu.model.Empleado;
 public class SistemaPrincipal extends javax.swing.JFrame {
 
     private static Empleado empleado = new Empleado(1, "Juan", "Pérez", "juan.perez@example.com", "juanperez", "contraseñaSegura123");
-    //public static InventarioService inventarioService = new InventarioServiceImpl(new InventarioDAOSqlite3(), new ProductosDAOSqlite3());
-    //public static ClienteService clienteService = new ClienteServiceImpl(new ClienteDAOSqlite3());
-    //public static ProductoService productoService = new ProductoServiceImpl(new ProductosDAOSqlite3());
-    //public static ProveedorService proveedorService = new ProveedorServiceImpl(new ProveedorDAOSqlite3());
-    //public static CategoriaService categoriaService = new CategoriaServiceImpl(new CategoriasDAOSqlite3());
-    //public static ProductoProveedorService productoProveedorService = new ProductoProveedorServiceImpl(new ProductoProveedorDAOSqlite3());
-
+    public static InventarioService inventarioService = new InventarioServiceImpl(new InventarioDAOImplMariaDB());
+    public static ClienteService clienteService = new ClienteServiceImpl(new ClienteDAOImplMariaDB());
+    public static ProductoService productoService = new ProductoServiceImpl(new ProductoDAOImplMariaDB());
+    public static ProveedorService proveedorService = new ProveedorServiceImpl(new ProveedorDAOImplMariaDB());
+    public static CategoriaService categoriaService = new CategoriaServiceImpl(new CategoriaDAOImplMariaDB());
+    public static EmpleadoService empleadoService = new EmpleadoServiceImpl(new EmpleadoDAOImplMariaDB());
+    
     public static Empleado getEmpleado() {
         return empleado;
     }
@@ -23,6 +41,56 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     public static void setEmpleado(Empleado empleado) {
         SistemaPrincipal.empleado = empleado;
     }
+
+    public static ClienteService getClienteService() {
+        return clienteService;
+    }
+
+    public static void setClienteService(ClienteService clienteService) {
+        SistemaPrincipal.clienteService = clienteService;
+    }
+
+    public static ProductoService getProductoService() {
+        return productoService;
+    }
+
+    public static void setProductoService(ProductoService productoService) {
+        SistemaPrincipal.productoService = productoService;
+    }
+
+    public static ProveedorService getProveedorService() {
+        return proveedorService;
+    }
+
+    public static void setProveedorService(ProveedorService proveedorService) {
+        SistemaPrincipal.proveedorService = proveedorService;
+    }
+
+    public static CategoriaService getCategoriaService() {
+        return categoriaService;
+    }
+
+    public static void setCategoriaService(CategoriaService categoriaService) {
+        SistemaPrincipal.categoriaService = categoriaService;
+    }
+
+    public static InventarioService getInventarioService() {
+        return inventarioService;
+    }
+
+    public static void setInventarioService(InventarioService inventarioService) {
+        SistemaPrincipal.inventarioService = inventarioService;
+    }
+
+    public static EmpleadoService getEmpleadoService() {
+        return empleadoService;
+    }
+
+    public static void setEmpleadoService(EmpleadoService empleadoService) {
+        SistemaPrincipal.empleadoService = empleadoService;
+    }
+    
+    
     
     /**
      * Creates new form SistemaVU
