@@ -13,6 +13,5 @@ public class Compra {
     private int idCompra;
     private Timestamp fechaCompra;
     private double totalCompra;
-    private int Producto_idProducto;
-    private int Producto_Proveedor_idProveedor;
+    private int idProveedor;
 }

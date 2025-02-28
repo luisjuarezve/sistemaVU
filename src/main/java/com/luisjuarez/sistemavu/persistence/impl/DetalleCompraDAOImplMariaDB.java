@@ -12,9 +12,8 @@ public class DetalleCompraDAOImplMariaDB implements DetalleCompraDAO {
 
     @Override
     public void registrar(DetalleCompra detalleCompra) {
-        String sql = "INSERT INTO detalle_compra (cantidad, precio_unitario, subtotal, Compra_idCompra, Compra_Producto_idProducto, Compra_Producto_Proveedor_idProveedor) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "INSERT INTO detallecompra (cantidad, precio_unitario, subtotal, Compra_idCompra, producto_idProducto, Producto_Proveedor_idProveedor) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDouble(1, detalleCompra.getCantidad());
             stmt.setDouble(2, detalleCompra.getPrecio_unitario());
             stmt.setDouble(3, detalleCompra.getSubtotal());
@@ -28,46 +27,46 @@ public class DetalleCompraDAOImplMariaDB implements DetalleCompraDAO {
     }
 
     @Override
-    public DetalleCompra buscarPorId(int id) {
-        String sql = "SELECT * FROM detalle_compra WHERE idDetalleCompra = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
+    public List<DetalleCompra> buscarPorIdCompra(int idCompra) {
+        List<DetalleCompra> listaDetalles = new ArrayList<>();
+        String sql = "SELECT * FROM detallecompra WHERE Compra_idCompra = ?";
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idCompra);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new DetalleCompra(
-                    rs.getInt("idDetalleCompra"),
-                    rs.getDouble("cantidad"),
-                    rs.getDouble("precio_unitario"),
-                    rs.getDouble("subtotal"),
-                    rs.getInt("Compra_idCompra"),
-                    rs.getInt("Compra_Producto_idProducto"),
-                    rs.getInt("Compra_Producto_Proveedor_idProveedor")
+            while (rs.next()) {
+                DetalleCompra detalle = new DetalleCompra(
+                        rs.getInt("idDetalleCompra"),
+                        rs.getDouble("cantidad"),
+                        rs.getDouble("precio_unitario"),
+                        rs.getDouble("subtotal"),
+                        rs.getInt("Compra_idCompra"),
+                        rs.getInt("producto_idProducto"),
+                        rs.getInt("Producto_Proveedor_idProveedor")
                 );
+                listaDetalles.add(detalle);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return listaDetalles;
     }
 
     @Override
     public List<DetalleCompra> buscarPorProveedorId(int proveedorId) {
         List<DetalleCompra> detalles = new ArrayList<>();
-        String sql = "SELECT * FROM detalle_compra WHERE Compra_Producto_Proveedor_idProveedor = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "SELECT * FROM detallecompra WHERE Producto_Proveedor_idProveedor = ?";
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, proveedorId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 detalles.add(new DetalleCompra(
-                    rs.getInt("idDetalleCompra"),
-                    rs.getDouble("cantidad"),
-                    rs.getDouble("precio_unitario"),
-                    rs.getDouble("subtotal"),
-                    rs.getInt("Compra_idCompra"),
-                    rs.getInt("Compra_Producto_idProducto"),
-                    rs.getInt("Compra_Producto_Proveedor_idProveedor")
+                        rs.getInt("idDetalleCompra"),
+                        rs.getDouble("cantidad"),
+                        rs.getDouble("precio_unitario"),
+                        rs.getDouble("subtotal"),
+                        rs.getInt("Compra_idCompra"),
+                        rs.getInt("producto_idProducto"),
+                        rs.getInt("Producto_Proveedor_idProveedor")
                 ));
             }
         } catch (SQLException e) {
@@ -79,20 +78,19 @@ public class DetalleCompraDAOImplMariaDB implements DetalleCompraDAO {
     @Override
     public List<DetalleCompra> buscarPorProductoId(int productoId) {
         List<DetalleCompra> detalles = new ArrayList<>();
-        String sql = "SELECT * FROM detalle_compra WHERE Compra_Producto_idProducto = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "SELECT * FROM detallecompra WHERE producto_idProducto = ?";
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, productoId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 detalles.add(new DetalleCompra(
-                    rs.getInt("idDetalleCompra"),
-                    rs.getDouble("cantidad"),
-                    rs.getDouble("precio_unitario"),
-                    rs.getDouble("subtotal"),
-                    rs.getInt("Compra_idCompra"),
-                    rs.getInt("Compra_Producto_idProducto"),
-                    rs.getInt("Compra_Producto_Proveedor_idProveedor")
+                        rs.getInt("idDetalleCompra"),
+                        rs.getDouble("cantidad"),
+                        rs.getDouble("precio_unitario"),
+                        rs.getDouble("subtotal"),
+                        rs.getInt("Compra_idCompra"),
+                        rs.getInt("producto_idProducto"),
+                        rs.getInt("Producto_Proveedor_idProveedor")
                 ));
             }
         } catch (SQLException e) {
@@ -104,19 +102,17 @@ public class DetalleCompraDAOImplMariaDB implements DetalleCompraDAO {
     @Override
     public List<DetalleCompra> mostrarLista() {
         List<DetalleCompra> detalles = new ArrayList<>();
-        String sql = "SELECT * FROM detalle_compra";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        String sql = "SELECT * FROM detallecompra";
+        try (Connection conn = ConexionBDDMysql.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 detalles.add(new DetalleCompra(
-                    rs.getInt("idDetalleCompra"),
-                    rs.getDouble("cantidad"),
-                    rs.getDouble("precio_unitario"),
-                    rs.getDouble("subtotal"),
-                    rs.getInt("Compra_idCompra"),
-                    rs.getInt("Compra_Producto_idProducto"),
-                    rs.getInt("Compra_Producto_Proveedor_idProveedor")
+                        rs.getInt("idDetalleCompra"),
+                        rs.getDouble("cantidad"),
+                        rs.getDouble("precio_unitario"),
+                        rs.getDouble("subtotal"),
+                        rs.getInt("Compra_idCompra"),
+                        rs.getInt("producto_idProducto"),
+                        rs.getInt("Producto_Proveedor_idProveedor")
                 ));
             }
         } catch (SQLException e) {
@@ -127,9 +123,8 @@ public class DetalleCompraDAOImplMariaDB implements DetalleCompraDAO {
 
     @Override
     public void modificar(DetalleCompra detalleCompra) {
-        String sql = "UPDATE detalle_compra SET cantidad = ?, precio_unitario = ?, subtotal = ?, Compra_idCompra = ?, Compra_Producto_idProducto = ?, Compra_Producto_Proveedor_idProveedor = ? WHERE idDetalleCompra = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "UPDATE detallecompra SET cantidad = ?, precio_unitario = ?, subtotal = ?, Compra_idCompra = ?, producto_idProducto = ?, Producto_Proveedor_idProveedor = ? WHERE idDetalleCompra = ?";
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDouble(1, detalleCompra.getCantidad());
             stmt.setDouble(2, detalleCompra.getPrecio_unitario());
             stmt.setDouble(3, detalleCompra.getSubtotal());
@@ -145,9 +140,8 @@ public class DetalleCompraDAOImplMariaDB implements DetalleCompraDAO {
 
     @Override
     public void eliminar(int id) {
-        String sql = "DELETE FROM detalle_compra WHERE idDetalleCompra = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        String sql = "DELETE FROM detallecompra WHERE idDetalleCompra = ?";
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {

@@ -5,7 +5,7 @@
 
     public interface DetalleCompraDAO {
         void registrar(DetalleCompra detalleCompra);
-        DetalleCompra buscarPorId(int id);
+        List<DetalleCompra> buscarPorIdCompra(int idCompra);
         List<DetalleCompra> buscarPorProveedorId(int proveedorId);
         List<DetalleCompra> buscarPorProductoId(int productoId);
         List<DetalleCompra> mostrarLista();

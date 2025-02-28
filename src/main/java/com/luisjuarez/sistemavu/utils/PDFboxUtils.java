@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu.utils;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -111,5 +112,7 @@ public class PDFboxUtils {
         }
         return cumulativeWidth;
     }
+    
+   
     
 }

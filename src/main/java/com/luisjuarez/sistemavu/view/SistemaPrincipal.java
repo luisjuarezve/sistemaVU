@@ -3,18 +3,21 @@ package com.luisjuarez.sistemavu.view;
 import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.persistence.impl.CategoriaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ClienteDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.CompraDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.EmpleadoDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.InventarioDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ProductoDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ProveedorDAOImplMariaDB;
 import com.luisjuarez.sistemavu.service.CategoriaService;
 import com.luisjuarez.sistemavu.service.ClienteService;
+import com.luisjuarez.sistemavu.service.CompraService;
 import com.luisjuarez.sistemavu.service.EmpleadoService;
 import com.luisjuarez.sistemavu.service.InventarioService;
 import com.luisjuarez.sistemavu.service.ProductoService;
 import com.luisjuarez.sistemavu.service.ProveedorService;
 import com.luisjuarez.sistemavu.service.impl.CategoriaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ClienteServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.CompraServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.EmpleadoServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.InventarioServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ProductoServiceImpl;
@@ -33,6 +36,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     public static ProveedorService proveedorService = new ProveedorServiceImpl(new ProveedorDAOImplMariaDB());
     public static CategoriaService categoriaService = new CategoriaServiceImpl(new CategoriaDAOImplMariaDB());
     public static EmpleadoService empleadoService = new EmpleadoServiceImpl(new EmpleadoDAOImplMariaDB());
+    public static CompraService compraService = new CompraServiceImpl(new CompraDAOImplMariaDB());
     
     public static Empleado getEmpleado() {
         return empleado;
@@ -89,8 +93,14 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     public static void setEmpleadoService(EmpleadoService empleadoService) {
         SistemaPrincipal.empleadoService = empleadoService;
     }
-    
-    
+
+    public static CompraService getCompraService() {
+        return compraService;
+    }
+
+    public static void setCompraService(CompraService compraService) {
+        SistemaPrincipal.compraService = compraService;
+    }
     
     /**
      * Creates new form SistemaVU
