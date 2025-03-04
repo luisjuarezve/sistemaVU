@@ -1,10 +1,12 @@
 package com.luisjuarez.sistemavu.view;
 
+import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.persistence.impl.CategoriaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ClienteDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.CompraDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.EmpleadoDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.FacturaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.InventarioDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ProductoDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ProveedorDAOImplMariaDB;
@@ -12,6 +14,7 @@ import com.luisjuarez.sistemavu.service.CategoriaService;
 import com.luisjuarez.sistemavu.service.ClienteService;
 import com.luisjuarez.sistemavu.service.CompraService;
 import com.luisjuarez.sistemavu.service.EmpleadoService;
+import com.luisjuarez.sistemavu.service.FacturaService;
 import com.luisjuarez.sistemavu.service.InventarioService;
 import com.luisjuarez.sistemavu.service.ProductoService;
 import com.luisjuarez.sistemavu.service.ProveedorService;
@@ -19,9 +22,11 @@ import com.luisjuarez.sistemavu.service.impl.CategoriaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ClienteServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.CompraServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.EmpleadoServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.FacturaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.InventarioServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ProductoServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ProveedorServiceImpl;
+import java.sql.Timestamp;
 
 /**
  *
@@ -30,6 +35,20 @@ import com.luisjuarez.sistemavu.service.impl.ProveedorServiceImpl;
 public class SistemaPrincipal extends javax.swing.JFrame {
 
     private static Empleado empleado = new Empleado(1, "Juan", "Pérez", "juan.perez@example.com", "juanperez", "contraseñaSegura123");
+
+    private static Cliente cliente = new Cliente(
+        1, // idCliente
+        "V", // tipo_doc: 'V' para venezolano, 'E' para extranjero
+        "12345678", // nro_doc
+        "Luis", // nombre
+        "Gómez", // apellido
+        "04141234567", // telefono
+        "Calle Principal #123, Ciudad", // direccion
+        "lgomez@example.com", // correo_electronico
+        new Timestamp(System.currentTimeMillis()), // fecha_registro
+        "Cliente preferencial" // notas
+    );
+
     public static InventarioService inventarioService = new InventarioServiceImpl(new InventarioDAOImplMariaDB());
     public static ClienteService clienteService = new ClienteServiceImpl(new ClienteDAOImplMariaDB());
     public static ProductoService productoService = new ProductoServiceImpl(new ProductoDAOImplMariaDB());
@@ -37,6 +56,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     public static CategoriaService categoriaService = new CategoriaServiceImpl(new CategoriaDAOImplMariaDB());
     public static EmpleadoService empleadoService = new EmpleadoServiceImpl(new EmpleadoDAOImplMariaDB());
     public static CompraService compraService = new CompraServiceImpl(new CompraDAOImplMariaDB());
+    public static FacturaService facturaService = new FacturaServiceImpl(new FacturaDAOImplMariaDB());
     
     public static Empleado getEmpleado() {
         return empleado;
@@ -46,6 +66,22 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         SistemaPrincipal.empleado = empleado;
     }
 
+    public static Cliente getCliente() {
+        return cliente;
+    }
+
+    public static void setCliente(Cliente cliente) {
+        SistemaPrincipal.cliente = cliente;
+    }
+
+    public static FacturaService getFacturaService() {
+        return facturaService;
+    }
+
+    public static void setFacturaService(FacturaService facturaService) {
+        SistemaPrincipal.facturaService = facturaService;
+    }
+    
     public static ClienteService getClienteService() {
         return clienteService;
     }

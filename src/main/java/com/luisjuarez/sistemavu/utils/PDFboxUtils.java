@@ -45,9 +45,37 @@ public class PDFboxUtils {
         }
     }
 
+    public static void drawTableFactura(PDPageContentStream contentStream, PDType0Font font, int fontSize, String[] headers, float[] columnWidths, float margin, float yPosition, Color headerColor, Color textColor, float rowHeight) throws IOException {
+        float headerXPosition = margin; // Inicializar headerXPosition con margin
+        Color random;
+        for (int i = 0; i < headers.length; i++) {
+            if (i>=1) {
+                contentStream.setNonStrokingColor(headerColor); // Color del encabezado
+                contentStream.addRect(headerXPosition, yPosition - rowHeight, columnWidths[i], rowHeight); // Dibujar el rectángulo de fondo
+                contentStream.fill();
+                contentStream.setNonStrokingColor(textColor); // Color del texto
+                if (i>=3) {
+                    addTextStart(contentStream, font, headers[i], fontSize, headerXPosition, yPosition - rowHeight + (rowHeight - fontSize) / 2, columnWidths[i]); // Agregar texto centrado y ajustar posición vertical
+                }else{
+                    addTextCenter(contentStream, font, headers[i], fontSize, headerXPosition, yPosition - rowHeight + (rowHeight - fontSize) / 2, columnWidths[i]);
+                }
+            }
+            headerXPosition += columnWidths[i]; // Actualizar headerXPosition para la siguiente columna
+        }
+    }
+
     public static void drawTableRows(PDPageContentStream contentStream, PDType0Font font, String text, int fontSize, float xPosition, float yPosition, float columnWidth, Color cellColor, Color textColor, float rowHeight) throws IOException {
         contentStream.setNonStrokingColor(textColor); // Color del texto
         addTextCenter(contentStream, font, text, fontSize, xPosition, yPosition - rowHeight + (rowHeight - fontSize) / 2, columnWidth); // Agregar texto centrado y ajustar posición vertical
+    }
+
+    public static void drawTableRows(PDPageContentStream contentStream, PDType0Font font, String text, int fontSize, float xPosition, float yPosition, float columnWidth, Color cellColor, Color textColor, float rowHeight, int iteracion) throws IOException {
+        contentStream.setNonStrokingColor(textColor); // Color del texto
+        if (iteracion > 2) {
+            addTextStart(contentStream, font, text, fontSize, xPosition, yPosition - rowHeight + (rowHeight - fontSize) / 2, columnWidth);
+        } else {
+            addTextCenter(contentStream, font, text, fontSize, xPosition, yPosition - rowHeight + (rowHeight - fontSize) / 2, columnWidth); // Agregar texto centrado y ajustar posición vertical
+        }
     }
 
     public static void drawTableRowsStart(PDPageContentStream contentStream, PDType0Font font, String text, int fontSize, float xPosition, float yPosition, float columnWidth, Color cellColor, Color textColor, float rowHeight) throws IOException {
@@ -114,5 +142,5 @@ public class PDFboxUtils {
     }
     
    
-    
+
 }

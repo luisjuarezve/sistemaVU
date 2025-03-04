@@ -4,8 +4,6 @@ import com.luisjuarez.sistemavu.config.ConfigProperties;
 import com.luisjuarez.sistemavu.model.Compra;
 import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.CompraDAO;
-import com.luisjuarez.sistemavu.persistence.ProveedorDAO;
-import com.luisjuarez.sistemavu.persistence.impl.ProveedorDAOImplMariaDB;
 import com.luisjuarez.sistemavu.service.CompraService;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;

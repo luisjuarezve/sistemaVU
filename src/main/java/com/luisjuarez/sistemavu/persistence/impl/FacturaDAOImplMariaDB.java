@@ -12,15 +12,17 @@ public class FacturaDAOImplMariaDB implements FacturaDAO {
 
     @Override
     public void registrar(Factura factura) {
-        String sql = "INSERT INTO factura (subtotal, impuesto, totalFactura, fecha, Cliente_idCliente, Empleado_idEmpleado) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO factura (subtotal, impuesto, tasa, totalFactura, cantidad, fecha, Cliente_idCliente, Empleado_idEmpleado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDouble(1, factura.getSubtotal());
             stmt.setDouble(2, factura.getImpuesto());
-            stmt.setDouble(3, factura.getTotalFactura());
-            stmt.setTimestamp(4, factura.getFecha());
-            stmt.setInt(5, factura.getCliente_idCliente());
-            stmt.setInt(6, factura.getEmpleado_idEmpleado());
+            stmt.setDouble(3, factura.getTasa());
+            stmt.setDouble(4, factura.getTotalFactura());
+            stmt.setDouble(5, factura.getCantidad()); // Nuevo campo
+            stmt.setTimestamp(6, factura.getFecha());
+            stmt.setInt(7, factura.getCliente_idCliente());
+            stmt.setInt(8, factura.getEmpleado_idEmpleado());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,7 +41,9 @@ public class FacturaDAOImplMariaDB implements FacturaDAO {
                     rs.getInt("idFactura"),
                     rs.getDouble("subtotal"),
                     rs.getDouble("impuesto"),
+                    rs.getDouble("tasa"), // Nuevo campo
                     rs.getDouble("totalFactura"),
+                    rs.getDouble("cantidad"), // Nuevo campo
                     rs.getTimestamp("fecha"),
                     rs.getInt("Cliente_idCliente"),
                     rs.getInt("Empleado_idEmpleado")
@@ -64,7 +68,9 @@ public class FacturaDAOImplMariaDB implements FacturaDAO {
                     rs.getInt("idFactura"),
                     rs.getDouble("subtotal"),
                     rs.getDouble("impuesto"),
+                    rs.getDouble("tasa"), // Nuevo campo
                     rs.getDouble("totalFactura"),
+                    rs.getDouble("cantidad"), // Nuevo campo
                     rs.getTimestamp("fecha"),
                     rs.getInt("Cliente_idCliente"),
                     rs.getInt("Empleado_idEmpleado")
@@ -89,7 +95,9 @@ public class FacturaDAOImplMariaDB implements FacturaDAO {
                     rs.getInt("idFactura"),
                     rs.getDouble("subtotal"),
                     rs.getDouble("impuesto"),
+                    rs.getDouble("tasa"), // Nuevo campo
                     rs.getDouble("totalFactura"),
+                    rs.getDouble("cantidad"), // Nuevo campo
                     rs.getTimestamp("fecha"),
                     rs.getInt("Cliente_idCliente"),
                     rs.getInt("Empleado_idEmpleado")
@@ -119,7 +127,9 @@ public class FacturaDAOImplMariaDB implements FacturaDAO {
                     rs.getInt("idFactura"),
                     rs.getDouble("subtotal"),
                     rs.getDouble("impuesto"),
+                    rs.getDouble("tasa"), // Nuevo campo
                     rs.getDouble("totalFactura"),
+                    rs.getDouble("cantidad"), // Nuevo campo
                     rs.getTimestamp("fecha"),
                     rs.getInt("Cliente_idCliente"),
                     rs.getInt("Empleado_idEmpleado")
@@ -143,7 +153,9 @@ public class FacturaDAOImplMariaDB implements FacturaDAO {
                     rs.getInt("idFactura"),
                     rs.getDouble("subtotal"),
                     rs.getDouble("impuesto"),
+                    rs.getDouble("tasa"), // Nuevo campo
                     rs.getDouble("totalFactura"),
+                    rs.getDouble("cantidad"), // Nuevo campo
                     rs.getTimestamp("fecha"),
                     rs.getInt("Cliente_idCliente"),
                     rs.getInt("Empleado_idEmpleado")
@@ -157,16 +169,18 @@ public class FacturaDAOImplMariaDB implements FacturaDAO {
 
     @Override
     public void modificar(Factura factura) {
-        String sql = "UPDATE factura SET subtotal = ?, impuesto = ?, totalFactura = ?, fecha = ?, Cliente_idCliente = ?, Empleado_idEmpleado = ? WHERE idFactura = ?";
+        String sql = "UPDATE factura SET subtotal = ?, impuesto = ?, tasa = ?, totalFactura = ?, cantidad = ?, fecha = ?, Cliente_idCliente = ?, Empleado_idEmpleado = ? WHERE idFactura = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDouble(1, factura.getSubtotal());
             stmt.setDouble(2, factura.getImpuesto());
-            stmt.setDouble(3, factura.getTotalFactura());
-            stmt.setTimestamp(4, factura.getFecha());
-            stmt.setInt(5, factura.getCliente_idCliente());
-            stmt.setInt(6, factura.getEmpleado_idEmpleado());
-            stmt.setInt(7, factura.getIdFactura());
+            stmt.setDouble(3, factura.getTasa());
+            stmt.setDouble(4, factura.getTotalFactura());
+            stmt.setDouble(5, factura.getCantidad()); // Nuevo campo
+            stmt.setTimestamp(6, factura.getFecha());
+            stmt.setInt(7, factura.getCliente_idCliente());
+            stmt.setInt(8, factura.getEmpleado_idEmpleado());
+            stmt.setInt(9, factura.getIdFactura());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.Factura;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface FacturaService {
     List<Factura> mostrarListaFacturas();
     void modificarFactura(Factura factura);
     void eliminarFactura(int id);
+    void reporteFacturasPDF(String destino) throws SQLException;
 }

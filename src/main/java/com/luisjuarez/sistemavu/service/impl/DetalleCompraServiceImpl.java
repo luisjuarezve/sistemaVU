@@ -1,7 +1,6 @@
 package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
-import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.DetalleCompra;
 import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.persistence.DetalleCompraDAO;
@@ -71,7 +70,7 @@ public class DetalleCompraServiceImpl implements DetalleCompraService {
     }
 
     @Override
-    public void reporteDetallesCompraPDF(String destino,int idCompra) throws SQLException {
+    public void reporteDetallesCompraPDF(String destino, int idCompra) throws SQLException {
         ConfigProperties config = new ConfigProperties();
         String logoPath = config.getProperty("empresa.logo");
         PDDocument document = new PDDocument();

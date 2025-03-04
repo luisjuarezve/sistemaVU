@@ -12,7 +12,7 @@ public class DetalleFacturaDAOImplMariaDB implements DetalleFacturaDAO {
 
     @Override
     public void registrar(DetalleFactura detalleFactura) {
-        String sql = "INSERT INTO detalle_factura (cantidad, precioUnitario, subtotal, Factura_idFactura, Producto_idProducto) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO DetalleFactura (cantidad, precioUnitario, subtotal, Factura_idFactura, Producto_idProducto) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDouble(1, detalleFactura.getCantidad());
@@ -28,7 +28,7 @@ public class DetalleFacturaDAOImplMariaDB implements DetalleFacturaDAO {
 
     @Override
     public DetalleFactura buscarPorId(int id) {
-        String sql = "SELECT * FROM detalle_factura WHERE idDetalleFactura = ?";
+        String sql = "SELECT * FROM DetalleFactura WHERE idDetalleFactura = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -52,7 +52,7 @@ public class DetalleFacturaDAOImplMariaDB implements DetalleFacturaDAO {
     @Override
     public List<DetalleFactura> buscarPorFacturaId(int facturaId) {
         List<DetalleFactura> detalles = new ArrayList<>();
-        String sql = "SELECT * FROM detalle_factura WHERE Factura_idFactura = ?";
+        String sql = "SELECT * FROM DetalleFactura WHERE Factura_idFactura = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, facturaId);
@@ -76,7 +76,7 @@ public class DetalleFacturaDAOImplMariaDB implements DetalleFacturaDAO {
     @Override
     public List<DetalleFactura> mostrarLista() {
         List<DetalleFactura> detalles = new ArrayList<>();
-        String sql = "SELECT * FROM detalle_factura";
+        String sql = "SELECT * FROM DetalleFactura";
         try (Connection conn = ConexionBDDMysql.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -98,7 +98,7 @@ public class DetalleFacturaDAOImplMariaDB implements DetalleFacturaDAO {
 
     @Override
     public void modificar(DetalleFactura detalleFactura) {
-        String sql = "UPDATE detalle_factura SET cantidad = ?, precioUnitario = ?, subtotal = ?, Factura_idFactura = ?, Producto_idProducto = ? WHERE idDetalleFactura = ?";
+        String sql = "UPDATE DetalleFactura SET cantidad = ?, precioUnitario = ?, subtotal = ?, Factura_idFactura = ?, Producto_idProducto = ? WHERE idDetalleFactura = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDouble(1, detalleFactura.getCantidad());
@@ -115,7 +115,7 @@ public class DetalleFacturaDAOImplMariaDB implements DetalleFacturaDAO {
 
     @Override
     public void eliminar(int id) {
-        String sql = "DELETE FROM detalle_factura WHERE idDetalleFactura = ?";
+        String sql = "DELETE FROM DetalleFactura WHERE idDetalleFactura = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
