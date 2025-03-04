@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.Inventario;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface InventarioService {
@@ -12,4 +13,5 @@ public interface InventarioService {
     void eliminarInventario(int id);
     void aumentarInventario(int id, double cantidad);
     void disminuirInventario(int id, double cantidad);
+    void reporteInventarioPDF(String destino) throws SQLException;
 }

@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.Producto;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductoService {
@@ -13,4 +14,5 @@ public interface ProductoService {
     List<Producto> mostrarListaProductos();
     void modificarProducto(Producto producto);
     void eliminarProducto(int id);
+    void reporteProductosPDF(String destino) throws SQLException;
 }

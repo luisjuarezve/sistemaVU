@@ -2,9 +2,7 @@ package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
 import com.luisjuarez.sistemavu.model.Cliente;
-import com.luisjuarez.sistemavu.model.Compra;
 import com.luisjuarez.sistemavu.model.Factura;
-import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.FacturaDAO;
 import com.luisjuarez.sistemavu.service.FacturaService;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;

@@ -12,20 +12,21 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
 
     @Override
     public void registrar(Producto producto) {
-        String sql = "INSERT INTO producto (codigo, nombre, descripcion, imagen_producto, precio_venta, precio_mayoreo, utilidad, impuesto, fecha_registro, Proveedor_idProveedor, Categoria_idCategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto (codigo, nombre, descripcion, imagen_producto, precio_compra, precio_venta, precio_mayoreo, utilidad, impuesto, fecha_registro, Proveedor_idProveedor, Categoria_idCategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, producto.getCodigo());
             stmt.setString(2, producto.getNombre());
             stmt.setString(3, producto.getDescripcion());
             stmt.setString(4, producto.getImagen_producto());
-            stmt.setDouble(5, producto.getPrecio_venta());
-            stmt.setDouble(6, producto.getPrecio_mayoreo());
-            stmt.setDouble(7, producto.getUtilidad());
-            stmt.setDouble(8, producto.getImpuesto());
-            stmt.setTimestamp(9, producto.getFecha_registro());
-            stmt.setInt(10, producto.getProveedor_idProveedor());
-            stmt.setInt(11, producto.getCategoria_idCategoria());
+            stmt.setDouble(5, producto.getPrecio_compra());
+            stmt.setDouble(6, producto.getPrecio_venta());
+            stmt.setDouble(7, producto.getPrecio_mayoreo());
+            stmt.setDouble(8, producto.getUtilidad());
+            stmt.setDouble(9, producto.getImpuesto());
+            stmt.setTimestamp(10, producto.getFecha_registro());
+            stmt.setInt(11, producto.getProveedor_idProveedor());
+            stmt.setInt(12, producto.getCategoria_idCategoria());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,6 +47,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
                     rs.getString("nombre"),
                     rs.getString("descripcion"),
                     rs.getString("imagen_producto"),
+                    rs.getDouble("precio_compra"),
                     rs.getDouble("precio_venta"),
                     rs.getDouble("precio_mayoreo"),
                     rs.getDouble("utilidad"),
@@ -76,6 +78,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
                     rs.getString("nombre"),
                     rs.getString("descripcion"),
                     rs.getString("imagen_producto"),
+                    rs.getDouble("precio_compra"),
                     rs.getDouble("precio_venta"),
                     rs.getDouble("precio_mayoreo"),
                     rs.getDouble("utilidad"),
@@ -106,6 +109,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
                     rs.getString("nombre"),
                     rs.getString("descripcion"),
                     rs.getString("imagen_producto"),
+                    rs.getDouble("precio_compra"),
                     rs.getDouble("precio_venta"),
                     rs.getDouble("precio_mayoreo"),
                     rs.getDouble("utilidad"),
@@ -135,6 +139,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
                     rs.getString("nombre"),
                     rs.getString("descripcion"),
                     rs.getString("imagen_producto"),
+                    rs.getDouble("precio_compra"),
                     rs.getDouble("precio_venta"),
                     rs.getDouble("precio_mayoreo"),
                     rs.getDouble("utilidad"),
@@ -166,6 +171,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
                     rs.getString("nombre"),
                     rs.getString("descripcion"),
                     rs.getString("imagen_producto"),
+                    rs.getDouble("precio_compra"),
                     rs.getDouble("precio_venta"),
                     rs.getDouble("precio_mayoreo"),
                     rs.getDouble("utilidad"),
@@ -195,6 +201,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
                     rs.getString("nombre"),
                     rs.getString("descripcion"),
                     rs.getString("imagen_producto"),
+                    rs.getDouble("precio_compra"),
                     rs.getDouble("precio_venta"),
                     rs.getDouble("precio_mayoreo"),
                     rs.getDouble("utilidad"),
@@ -212,21 +219,22 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
 
     @Override
     public void modificar(Producto producto) {
-        String sql = "UPDATE producto SET codigo = ?, nombre = ?, descripcion = ?, imagen_producto = ?, precio_venta = ?, precio_mayoreo = ?, utilidad = ?, impuesto = ?, fecha_registro = ?, Proveedor_idProveedor = ?, Categoria_idCategoria = ? WHERE idProducto = ?";
+        String sql = "UPDATE producto SET codigo = ?, nombre = ?, descripcion = ?, imagen_producto = ?, precio_compra = ?, precio_venta = ?, precio_mayoreo = ?, utilidad = ?, impuesto = ?, fecha_registro = ?, Proveedor_idProveedor = ?, Categoria_idCategoria = ? WHERE idProducto = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, producto.getCodigo());
             stmt.setString(2, producto.getNombre());
             stmt.setString(3, producto.getDescripcion());
             stmt.setString(4, producto.getImagen_producto());
-            stmt.setDouble(5, producto.getPrecio_venta());
-            stmt.setDouble(6, producto.getPrecio_mayoreo());
-            stmt.setDouble(7, producto.getUtilidad());
-            stmt.setDouble(8, producto.getImpuesto());
-            stmt.setTimestamp(9, producto.getFecha_registro());
-            stmt.setInt(10, producto.getProveedor_idProveedor());
-            stmt.setInt(11, producto.getCategoria_idCategoria());
-            stmt.setInt(12, producto.getIdProducto());
+            stmt.setDouble(5, producto.getPrecio_compra()); // Nuevo campo
+            stmt.setDouble(6, producto.getPrecio_venta());
+            stmt.setDouble(7, producto.getPrecio_mayoreo());
+            stmt.setDouble(8, producto.getUtilidad());
+            stmt.setDouble(9, producto.getImpuesto());
+            stmt.setTimestamp(10, producto.getFecha_registro());
+            stmt.setInt(11, producto.getProveedor_idProveedor());
+            stmt.setInt(12, producto.getCategoria_idCategoria());
+            stmt.setInt(13, producto.getIdProducto());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -234,7 +242,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
     }
 
     @Override
-    public void eliminar(int id) {
+     public void eliminar(int id) {
         String sql = "DELETE FROM producto WHERE idProducto = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -245,3 +253,10 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
         }
     }
 }
+
+
+
+
+
+
+   

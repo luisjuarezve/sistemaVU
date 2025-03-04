@@ -15,6 +15,7 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String imagen_producto;
+    private double precio_compra; // Nuevo campo
     private double precio_venta;
     private double precio_mayoreo;
     private double utilidad;
