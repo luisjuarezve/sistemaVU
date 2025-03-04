@@ -1,8 +1,6 @@
 package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
-import com.luisjuarez.sistemavu.model.Categoria;
-import com.luisjuarez.sistemavu.model.Inventario;
 import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.ProductoDAO;

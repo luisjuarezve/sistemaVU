@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu;
 
 import com.luisjuarez.sistemavu.model.ContactoProveedor;
+import com.luisjuarez.sistemavu.persistence.impl.CategoriaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.CompraDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ContactoProveedorDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.DetalleCompraDAOImplMariaDB;
@@ -8,6 +9,7 @@ import com.luisjuarez.sistemavu.persistence.impl.DetalleFacturaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.FacturaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.InventarioDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ProductoDAOImplMariaDB;
+import com.luisjuarez.sistemavu.service.CategoriaService;
 import com.luisjuarez.sistemavu.service.CompraService;
 import com.luisjuarez.sistemavu.service.ContactoProveedorService;
 import com.luisjuarez.sistemavu.service.DetalleCompraService;
@@ -15,6 +17,7 @@ import com.luisjuarez.sistemavu.service.DetalleFacturaService;
 import com.luisjuarez.sistemavu.service.FacturaService;
 import com.luisjuarez.sistemavu.service.InventarioService;
 import com.luisjuarez.sistemavu.service.ProductoService;
+import com.luisjuarez.sistemavu.service.impl.CategoriaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.CompraServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ContactoProveedorServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.DetalleCompraServiceImpl;
@@ -43,5 +46,7 @@ public class SistemaVU {
         pss.reporteProductosPDF("C:\\Users\\conta\\OneDrive\\Documentos\\prueba\\reporteProductos.pdf");
         ContactoProveedorService cps = new ContactoProveedorServiceImpl(new ContactoProveedorDAOImplMariaDB());
         cps.reporteContactoProveedorPDF("C:\\Users\\conta\\OneDrive\\Documentos\\prueba\\reporteContactos.pdf");
+        CategoriaService csa = new CategoriaServiceImpl(new CategoriaDAOImplMariaDB());
+        csa.reporteCategoriasPDF("C:\\Users\\conta\\OneDrive\\Documentos\\prueba\\reporteCategorias.pdf");
     }
 }
