@@ -1,6 +1,7 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.ContactoProveedor;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ContactoProveedorService {
@@ -11,4 +12,5 @@ public interface ContactoProveedorService {
     List<ContactoProveedor> mostrarListaContactos();
     void modificarContactoProveedor(ContactoProveedor contactoProveedor);
     void eliminarContactoProveedor(int id);
+    void reporteContactoProveedorPDF(String destino) throws SQLException;
 }

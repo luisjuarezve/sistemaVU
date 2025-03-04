@@ -12,7 +12,7 @@ public class ContactoProveedorDAOImplMariaDB implements ContactoProveedorDAO {
 
     @Override
     public void registrar(ContactoProveedor contactoProveedor) {
-        String sql = "INSERT INTO contacto_proveedor (nombre, apellido, telefono, correo, estado, fecha_registro, Proveedor_idProveedor) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO contactoproveedor (nombre, apellido, telefono, correo, estado, fecha_registro, Proveedor_idProveedor) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, contactoProveedor.getNombre());
@@ -30,7 +30,7 @@ public class ContactoProveedorDAOImplMariaDB implements ContactoProveedorDAO {
 
     @Override
     public ContactoProveedor buscarPorId(int id) {
-        String sql = "SELECT * FROM contacto_proveedor WHERE idContactoProveedor = ?";
+        String sql = "SELECT * FROM contactoproveedor WHERE idContactoProveedor = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -56,7 +56,7 @@ public class ContactoProveedorDAOImplMariaDB implements ContactoProveedorDAO {
     @Override
     public List<ContactoProveedor> buscarPorPalabraClave(String palabraClave) {
         List<ContactoProveedor> contactos = new ArrayList<>();
-        String sql = "SELECT * FROM contacto_proveedor WHERE nombre LIKE ? OR apellido LIKE ? OR correo LIKE ?";
+        String sql = "SELECT * FROM contactoproveedor WHERE nombre LIKE ? OR apellido LIKE ? OR correo LIKE ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, "%" + palabraClave + "%");
@@ -84,7 +84,7 @@ public class ContactoProveedorDAOImplMariaDB implements ContactoProveedorDAO {
     @Override
     public List<ContactoProveedor> buscarPorProveedorId(int proveedorId) {
         List<ContactoProveedor> contactos = new ArrayList<>();
-        String sql = "SELECT * FROM contacto_proveedor WHERE Proveedor_idProveedor = ?";
+        String sql = "SELECT * FROM contactoproveedor WHERE Proveedor_idProveedor = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, proveedorId);
@@ -110,7 +110,7 @@ public class ContactoProveedorDAOImplMariaDB implements ContactoProveedorDAO {
     @Override
     public List<ContactoProveedor> mostrarLista() {
         List<ContactoProveedor> contactos = new ArrayList<>();
-        String sql = "SELECT * FROM contacto_proveedor";
+        String sql = "SELECT * FROM contactoproveedor";
         try (Connection conn = ConexionBDDMysql.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -134,7 +134,7 @@ public class ContactoProveedorDAOImplMariaDB implements ContactoProveedorDAO {
 
     @Override
     public void modificar(ContactoProveedor contactoProveedor) {
-        String sql = "UPDATE contacto_proveedor SET nombre = ?, apellido = ?, telefono = ?, correo = ?, estado = ?, fecha_registro = ?, Proveedor_idProveedor = ? WHERE idContactoProveedor = ?";
+        String sql = "UPDATE contactoproveedor SET nombre = ?, apellido = ?, telefono = ?, correo = ?, estado = ?, fecha_registro = ?, Proveedor_idProveedor = ? WHERE idContactoProveedor = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, contactoProveedor.getNombre());
@@ -153,7 +153,7 @@ public class ContactoProveedorDAOImplMariaDB implements ContactoProveedorDAO {
 
     @Override
     public void eliminar(int id) {
-        String sql = "DELETE FROM contacto_proveedor WHERE idContactoProveedor = ?";
+        String sql = "DELETE FROM contactoproveedor WHERE idContactoProveedor = ?";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
