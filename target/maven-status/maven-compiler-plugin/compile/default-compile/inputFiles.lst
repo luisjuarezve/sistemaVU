@@ -23,6 +23,7 @@ C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\DetalleFacturaDAO.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\EmpleadoDAO.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\EmpleadoHasPermisoDAO.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\ExportAllTablesToCSV.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\FacturaDAO.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\impl\CategoriaDAOImplMariaDB.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\impl\ClienteDAOImplMariaDB.java
@@ -37,6 +38,7 @@ C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\impl\PermisoDAOImplMariaDB.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\impl\ProductoDAOImplMariaDB.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\impl\ProveedorDAOImplMariaDB.java
+C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\ImportAllTablesFromCSV.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\InventarioDAO.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\PermisoDAO.java
 C:\Users\conta\OneDrive\Documentos\NetBeansProjects\sistemaVU\src\main\java\com\luisjuarez\sistemavu\persistence\ProductoDAO.java

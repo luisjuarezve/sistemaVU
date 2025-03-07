@@ -29,10 +29,12 @@ com\luisjuarez\sistemavu\service\ContactoProveedorService.class
 com\luisjuarez\sistemavu\service\impl\InventarioServiceImpl.class
 com\luisjuarez\sistemavu\service\impl\DetalleCompraServiceImpl.class
 com\luisjuarez\sistemavu\service\CategoriaService.class
+com\luisjuarez\sistemavu\persistence\ImportAllTablesFromCSV.class
 com\luisjuarez\sistemavu\persistence\FacturaDAO.class
 com\luisjuarez\sistemavu\view\Login$7.class
 com\luisjuarez\sistemavu\persistence\impl\ContactoProveedorDAOImplMariaDB.class
 com\luisjuarez\sistemavu\persistence\EmpleadoDAO.class
+com\luisjuarez\sistemavu\persistence\ExportAllTablesToCSV.class
 com\luisjuarez\sistemavu\model\DetalleFactura.class
 com\luisjuarez\sistemavu\model\Categoria.class
 com\luisjuarez\sistemavu\SistemaVU.class
