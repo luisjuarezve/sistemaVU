@@ -4,6 +4,8 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Usuario
@@ -13,7 +15,7 @@ public class Panel_Ayuda extends javax.swing.JPanel {
     /**
      * Creates new form Panel_Ayuda
      */
-    public Panel_Ayuda() {
+    public Panel_Ayuda(Dimension Size) {
         initComponents();
     }
 
@@ -34,11 +36,11 @@ public class Panel_Ayuda extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1100, 550));
+        setPreferredSize(new java.awt.Dimension(920, 550));
         setLayout(new java.awt.GridBagLayout());
 
         roundedPanel1.setBackground(new java.awt.Color(0, 0, 102));
-        roundedPanel1.setPreferredSize(new java.awt.Dimension(900, 400));
+        roundedPanel1.setPreferredSize(new java.awt.Dimension(850, 400));
         roundedPanel1.setRoundBottomLeft(20);
         roundedPanel1.setRoundBottomRight(20);
         roundedPanel1.setRoundTopLeft(20);
@@ -67,8 +69,6 @@ public class Panel_Ayuda extends javax.swing.JPanel {
         roundedButton1.setRoundTopLeft(10);
         jPanel1.add(roundedButton1);
 
-        roundedPanel1.add(jPanel1, java.awt.BorderLayout.CENTER);
-
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(900, 300));
 
@@ -83,7 +83,9 @@ public class Panel_Ayuda extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        roundedPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        jPanel1.add(jPanel2);
+
+        roundedPanel1.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         add(roundedPanel1, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents

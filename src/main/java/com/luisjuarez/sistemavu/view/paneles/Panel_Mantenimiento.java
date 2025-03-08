@@ -4,6 +4,8 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Usuario
@@ -13,7 +15,7 @@ public class Panel_Mantenimiento extends javax.swing.JPanel {
     /**
      * Creates new form Panel_Mantenimiento
      */
-    public Panel_Mantenimiento() {
+    public Panel_Mantenimiento(Dimension Size) {
         initComponents();
     }
 
@@ -34,7 +36,7 @@ public class Panel_Mantenimiento extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1100, 550));
+        setPreferredSize(new java.awt.Dimension(920, 550));
         setLayout(new java.awt.GridBagLayout());
 
         roundedPanel1.setBackground(new java.awt.Color(0, 0, 102));

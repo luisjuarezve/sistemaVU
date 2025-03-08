@@ -210,6 +210,11 @@ public class Login extends javax.swing.JFrame {
         btn_forgotPassword.setBorder(null);
         btn_forgotPassword.setBorderPainted(false);
         btn_forgotPassword.setContentAreaFilled(false);
+        btn_forgotPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_forgotPasswordActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -315,6 +320,12 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn_loginKeyPressed
+
+    private void btn_forgotPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_forgotPasswordActionPerformed
+        this.dispose();
+        RecuperarContraseña rc = new RecuperarContraseña();
+        rc.setVisible(true);
+    }//GEN-LAST:event_btn_forgotPasswordActionPerformed
     
     /**
      * @param args the command line arguments

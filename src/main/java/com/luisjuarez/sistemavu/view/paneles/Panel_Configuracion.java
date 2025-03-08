@@ -4,6 +4,8 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Usuario
@@ -13,7 +15,7 @@ public class Panel_Configuracion extends javax.swing.JPanel {
     /**
      * Creates new form Panel_Configuracion
      */
-    public Panel_Configuracion() {
+    public Panel_Configuracion(Dimension Size) {
         initComponents();
     }
 
@@ -33,7 +35,8 @@ public class Panel_Configuracion extends javax.swing.JPanel {
         btn_Empleado = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1100, 550));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(920, 550));
         setLayout(new java.awt.GridBagLayout());
 
         roundedPanel1.setBackground(new java.awt.Color(0, 0, 102));

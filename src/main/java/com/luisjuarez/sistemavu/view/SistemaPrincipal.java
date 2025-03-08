@@ -26,7 +26,16 @@ import com.luisjuarez.sistemavu.service.impl.FacturaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.InventarioServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ProductoServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ProveedorServiceImpl;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Ayuda;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Categoria;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Cliente;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Configuracion;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Inventario;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Mantenimiento;
+import com.luisjuarez.sistemavu.view.paneles.Panel_NotaEntrega;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Productos;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Proveedor;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Reportes;
 import java.sql.Timestamp;
 
 /**
@@ -292,6 +301,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_proveedor.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_proveedor.setRoundTopLeft(10);
         btn_proveedor.setRoundTopRight(10);
+        btn_proveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_proveedorActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -306,6 +320,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_categoria.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_categoria.setRoundTopLeft(10);
         btn_categoria.setRoundTopRight(10);
+        btn_categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_categoriaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -320,6 +339,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_producto.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_producto.setRoundTopLeft(10);
         btn_producto.setRoundTopRight(10);
+        btn_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_productoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -334,6 +358,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_inventario.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_inventario.setRoundTopLeft(10);
         btn_inventario.setRoundTopRight(10);
+        btn_inventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inventarioActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -348,6 +377,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_notaentrega.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_notaentrega.setRoundTopLeft(10);
         btn_notaentrega.setRoundTopRight(10);
+        btn_notaentrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_notaentregaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -362,6 +396,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_mantenimiento.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_mantenimiento.setRoundTopLeft(10);
         btn_mantenimiento.setRoundTopRight(10);
+        btn_mantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mantenimientoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -376,6 +415,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_reportes.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_reportes.setRoundTopLeft(10);
         btn_reportes.setRoundTopRight(10);
+        btn_reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reportesActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -409,6 +453,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_ayuda.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_ayuda.setRoundTopLeft(10);
         btn_ayuda.setRoundTopRight(10);
+        btn_ayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ayudaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -460,12 +509,80 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clientesActionPerformed
 
     private void btn_configuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_configuracionActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Configuracion(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_configuracionActionPerformed
 
     private void btn_facturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_facturarActionPerformed
+
+    private void btn_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_proveedorActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Proveedor(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_proveedorActionPerformed
+
+    private void btn_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_categoriaActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Categoria(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_categoriaActionPerformed
+
+    private void btn_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_productoActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Productos(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_productoActionPerformed
+
+    private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Inventario(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_inventarioActionPerformed
+
+    private void btn_notaentregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_notaentregaActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_NotaEntrega(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint(); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_notaentregaActionPerformed
+
+    private void btn_mantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mantenimientoActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Mantenimiento(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint(); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_mantenimientoActionPerformed
+
+    private void btn_reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportesActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Reportes(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint(); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_reportesActionPerformed
+
+    private void btn_ayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayudaActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Ayuda(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ayudaActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

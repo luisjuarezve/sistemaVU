@@ -4,6 +4,8 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Usuario
@@ -13,7 +15,7 @@ public class Panel_Productos extends javax.swing.JPanel {
     /**
      * Creates new form Panel_Productos
      */
-    public Panel_Productos() {
+    public Panel_Productos(Dimension Size) {
         initComponents();
     }
 
@@ -44,15 +46,17 @@ public class Panel_Productos extends javax.swing.JPanel {
         btn_Eliminar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Regresar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
+        setPreferredSize(new java.awt.Dimension(920, 550));
+        setLayout(new java.awt.BorderLayout());
+
         ContenedorBarraBusqueda.setBackground(new java.awt.Color(255, 255, 255));
         ContenedorBarraBusqueda.setPreferredSize(new java.awt.Dimension(100, 90));
         ContenedorBarraBusqueda.setLayout(new java.awt.GridBagLayout());
 
         roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        roundedPanel1.setPreferredSize(new java.awt.Dimension(1000, 60));
+        roundedPanel1.setPreferredSize(new java.awt.Dimension(800, 60));
         roundedPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\tupcs\\OneDrive\\Documents\\GitHub\\sistemaVU\\src\\main\\resources\\images\\Buscar.png")); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         roundedPanel1.add(jLabel1);
 
@@ -82,7 +86,7 @@ public class Panel_Productos extends javax.swing.JPanel {
         roundedPanel1.add(btn_buscar);
 
         separador.setOpaque(false);
-        separador.setPreferredSize(new java.awt.Dimension(120, 50));
+        separador.setPreferredSize(new java.awt.Dimension(100, 50));
         roundedPanel1.add(separador);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -91,10 +95,12 @@ public class Panel_Productos extends javax.swing.JPanel {
 
         ContenedorBarraBusqueda.add(roundedPanel1, new java.awt.GridBagConstraints());
 
+        add(ContenedorBarraBusqueda, java.awt.BorderLayout.PAGE_START);
+
         ContenedorTable.setBackground(new java.awt.Color(255, 255, 255));
         ContenedorTable.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 440));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(700, 450));
 
         TableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,6 +118,8 @@ public class Panel_Productos extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TableProductos);
 
         ContenedorTable.add(jScrollPane1, new java.awt.GridBagConstraints());
+
+        add(ContenedorTable, java.awt.BorderLayout.CENTER);
 
         ContenedorBotones.setBackground(new java.awt.Color(255, 255, 255));
         ContenedorBotones.setPreferredSize(new java.awt.Dimension(200, 0));
@@ -187,34 +195,7 @@ public class Panel_Productos extends javax.swing.JPanel {
 
         ContenedorBotones.add(roundedPanel2, new java.awt.GridBagConstraints());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ContenedorBarraBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(ContenedorTable, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(ContenedorBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(ContenedorBarraBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ContenedorTable, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ContenedorBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        add(ContenedorBotones, java.awt.BorderLayout.LINE_END);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_buscadorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_buscadorFocusGained

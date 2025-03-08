@@ -4,6 +4,8 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Usuario
@@ -13,7 +15,7 @@ public class Panel_Proveedor extends javax.swing.JPanel {
     /**
      * Creates new form Panel_Proveedor
      */
-    public Panel_Proveedor() {
+    public Panel_Proveedor(Dimension Size) {
         initComponents();
     }
 
@@ -53,10 +55,9 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         ContenedorBarraBusqueda.setLayout(new java.awt.GridBagLayout());
 
         roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        roundedPanel1.setPreferredSize(new java.awt.Dimension(1000, 60));
+        roundedPanel1.setPreferredSize(new java.awt.Dimension(800, 60));
         roundedPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\tupcs\\OneDrive\\Documents\\GitHub\\sistemaVU\\src\\main\\resources\\images\\Buscar.png")); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         roundedPanel1.add(jLabel1);
 
@@ -85,7 +86,7 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         roundedPanel1.add(btn_buscar);
 
         separador.setOpaque(false);
-        separador.setPreferredSize(new java.awt.Dimension(120, 50));
+        separador.setPreferredSize(new java.awt.Dimension(100, 50));
         roundedPanel1.add(separador);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -99,7 +100,7 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         ContenedorTable.setBackground(new java.awt.Color(255, 255, 255));
         ContenedorTable.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 440));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(700, 450));
 
         TableProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
