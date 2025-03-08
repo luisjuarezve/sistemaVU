@@ -64,7 +64,4 @@ public class ExportAllTablesToCSV {
         }
     }
 
-    public static void main(String[] args) {
-        new ExportAllTablesToCSV();
-    }
 }

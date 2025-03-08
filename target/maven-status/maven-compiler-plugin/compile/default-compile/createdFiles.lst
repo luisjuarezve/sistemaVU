@@ -12,10 +12,12 @@ com\luisjuarez\sistemavu\persistence\DetalleFacturaDAO.class
 com\luisjuarez\sistemavu\model\Factura.class
 com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl.class
 com\luisjuarez\sistemavu\model\Permiso.class
+com\luisjuarez\sistemavu\persistence\TokenManager.class
 com\luisjuarez\sistemavu\persistence\ContactoProveedorDAO.class
 com\luisjuarez\sistemavu\model\Inventario.class
 com\luisjuarez\sistemavu\persistence\impl\EmpleadoDAOImplMariaDB.class
 com\luisjuarez\sistemavu\model\DetalleCompra.class
+com\luisjuarez\sistemavu\persistence\TokenManager$1.class
 com\luisjuarez\sistemavu\service\DetalleFacturaService.class
 com\luisjuarez\sistemavu\view\Login$1.class
 com\luisjuarez\sistemavu\persistence\impl\PermisoDAOImplMariaDB.class
