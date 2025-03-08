@@ -2,10 +2,10 @@ package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
 import com.luisjuarez.sistemavu.model.Categoria;
-import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.CategoriaDAO;
 import com.luisjuarez.sistemavu.service.CategoriaService;
+import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -56,6 +58,11 @@ public class CategoriaServiceImpl implements CategoriaService {
         return categoriaDAO.mostrarLista();
     }
 
+    @Override
+    public List<Categoria> buscarCategoriasPorPalabraClave(String palabraClave) {
+        return categoriaDAO.buscarPorPalabraClave(palabraClave);
+    }
+    
     @Override
     public void modificarCategoria(String categoriaID, Categoria categoria) {
         categoria.setIdCategoria(Integer.parseInt(categoriaID));
@@ -195,4 +202,64 @@ public class CategoriaServiceImpl implements CategoriaService {
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    @Override
+    public void cargarTabla(JTable tabla) throws SQLException {
+       DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id","Nombre", "Descripción"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Categoria> listaCategorias = mostrarLista();
+        for (Categoria categoria : listaCategorias) {
+            Object[] fila = new Object[11];
+            fila[0] = categoria.getIdCategoria();
+            fila[1] = categoria.getNombre();
+            fila[2] = categoria.getDescripcion();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla, String palabraClave) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id","Nombre", "Descripción"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Categoria> listaCategorias = buscarCategoriasPorPalabraClave(palabraClave);
+        for (Categoria categoria : listaCategorias) {
+            Object[] fila = new Object[11];
+            fila[0] = categoria.getIdCategoria();
+            fila[1] = categoria.getNombre();
+            fila[2] = categoria.getDescripcion();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    
 }

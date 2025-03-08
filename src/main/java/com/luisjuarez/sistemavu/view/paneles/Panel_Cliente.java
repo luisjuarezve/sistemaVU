@@ -24,7 +24,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
     public Panel_Cliente(Dimension Size) {
         try {
             initComponents();
-            SistemaPrincipal.getClienteService().cargarTablaClientes(TableClientes);
+            SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
         } catch (SQLException ex) {
             Logger.getLogger(Panel_Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -215,7 +215,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_buscadorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_buscadorFocusGained
-         if (txt_buscador.getText().equalsIgnoreCase("Introduce el rif o nombre del cliente")) {
+        if (txt_buscador.getText().equalsIgnoreCase("Introduce el rif o nombre del cliente")) {
             txt_buscador.setText("");
         }
     }//GEN-LAST:event_txt_buscadorFocusGained
@@ -234,7 +234,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
             public void run() {
                 SwingUtilities.invokeLater(() -> {
                     try {
-                        SistemaPrincipal.getClienteService().cargarTablaClientes(TableClientes, txt_buscador.getText());
+                        SistemaPrincipal.getClienteService().cargarTabla(TableClientes, txt_buscador.getText());
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, "Error al cargar la tabla de Clientes: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }

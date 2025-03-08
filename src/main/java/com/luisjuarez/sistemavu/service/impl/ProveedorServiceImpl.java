@@ -1,9 +1,11 @@
 package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
+import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.ProveedorDAO;
 import com.luisjuarez.sistemavu.service.ProveedorService;
+import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
@@ -18,6 +20,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -200,6 +204,76 @@ public class ProveedorServiceImpl implements ProveedorService {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id","T", "N°Doc", "Razón Social", "Dirección", "Teléfono", "Correo", "F. Registro"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Proveedor> listaProveedores = mostrarListaProveedores();
+        for (Proveedor proveedor : listaProveedores) {
+            Object[] fila = new Object[11];
+            fila[0] = proveedor.getIdProveedor();
+            fila[1] = proveedor.getTipo_doc();
+            fila[2] = proveedor.getNro_doc();
+            fila[3] = proveedor.getNombre() + 
+          (proveedor.getApellido() != null ? " " + proveedor.getApellido() : "");
+            fila[4] = proveedor.getDireccion();
+            fila[5] = proveedor.getTelefono();
+            fila[6] = proveedor.getCorreo_electronico();
+            fila[7] = proveedor.getFecha_registro();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla, String palabraClave) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id","T", "N°Doc", "Razón Social", "Dirección", "Teléfono", "Correo", "F. Registro"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Proveedor> listaProveedores = buscarProveedoresPorPalabraClave(palabraClave);
+        for (Proveedor proveedor : listaProveedores) {
+            Object[] fila = new Object[11];
+            fila[0] = proveedor.getIdProveedor();
+            fila[1] = proveedor.getTipo_doc();
+            fila[2] = proveedor.getNro_doc();
+            fila[3] = proveedor.getNombre() + 
+          (proveedor.getApellido() != null ? " " + proveedor.getApellido() : "");
+            fila[4] = proveedor.getDireccion();
+            fila[5] = proveedor.getTelefono();
+            fila[6] = proveedor.getCorreo_electronico();
+            fila[7] = proveedor.getFecha_registro();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
     }
 
 }

@@ -14,6 +14,6 @@ public interface ClienteService {
     void modificarCliente(String clienteID, Cliente cliente);
     void eliminarCliente(String clienteID);
     void reporteClientesPDF(String destino) throws SQLException;
-    void cargarTablaClientes(JTable tabla) throws SQLException;
-    void cargarTablaClientes(JTable tabla, String palabraClave) throws SQLException;
+    void cargarTabla(JTable tabla) throws SQLException;
+    void cargarTabla(JTable tabla, String palabraClave) throws SQLException;
 }

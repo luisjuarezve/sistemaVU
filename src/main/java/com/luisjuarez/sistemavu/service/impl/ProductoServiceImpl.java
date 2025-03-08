@@ -5,6 +5,7 @@ import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.ProductoDAO;
 import com.luisjuarez.sistemavu.service.ProductoService;
+import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
@@ -19,6 +20,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -176,7 +179,7 @@ public class ProductoServiceImpl implements ProductoService {
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String fecha = dateFormat.format(producto.getFecha_registro());
-                
+
                 Proveedor proveedor = SistemaPrincipal.getProveedorService().buscarProveedorPorId(producto.getProveedor_idProveedor());
                 String[] rows = {
                     producto.getCodigo(),
@@ -186,8 +189,7 @@ public class ProductoServiceImpl implements ProductoService {
                     precioVentaString, // Precio de venta formateado
                     impuestoString, // Impuesto formateado
                     proveedor.getNombre() + (proveedor.getApellido() != null ? " " + proveedor.getApellido() : ""),
-                    fecha,
-                };
+                    fecha,};
 
                 for (int j = 0; j < rows.length; j++) {
                     if (yPosition - rowHeight < margin) {
@@ -233,5 +235,89 @@ public class ProductoServiceImpl implements ProductoService {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id", "Cod", "Producto", "P. Compra", "Util", "P. Ven", "Iva", "Proveedor", "F. Registro"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Producto> listaProductos = mostrarListaProductos();
+        for (Producto producto : listaProductos) {
+            Proveedor proveedor = SistemaPrincipal.getProveedorService().buscarProveedorPorId(producto.getProveedor_idProveedor());
+            Object[] fila = new Object[11];
+            fila[0] = producto.getIdProducto();
+            fila[1] = producto.getCodigo();
+            fila[2] = producto.getNombre();
+            fila[3] = String.format("%.2f", producto.getPrecio_compra()); // Formateo a 2 decimales
+            fila[4] = String.format("%.2f", producto.getUtilidad()); // Formateo a 2 decimales
+            fila[5] = String.format("%.2f", producto.getPrecio_venta()); // Formateo a 2 decimales
+            fila[6] = String.format("%.2f", producto.getImpuesto()); // Formateo a 2 decimales
+            fila[7] = proveedor.getNombre()
+                    + (proveedor.getApellido() != null && !proveedor.getApellido().isEmpty()
+                    ? " " + proveedor.getApellido()
+                    : "");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            fila[8] = producto.getFecha_registro() != null
+                    ? dateFormat.format(producto.getFecha_registro())
+                    : "";
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla, String palabraClave) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id", "Cod", "Producto", "P. Compra", "Util", "P. Ven", "Iva", "Proveedor", "F. Registro"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Producto> listaProductos = buscarProductosPorPalabraClave(palabraClave);
+        for (Producto producto : listaProductos) {
+            Proveedor proveedor = SistemaPrincipal.getProveedorService().buscarProveedorPorId(producto.getProveedor_idProveedor());
+            Object[] fila = new Object[11];
+            fila[0] = producto.getIdProducto();
+            fila[1] = producto.getCodigo();
+            fila[2] = producto.getNombre();
+            fila[3] = String.format("%.2f", producto.getPrecio_compra()); // Formateo a 2 decimales
+            fila[4] = String.format("%.2f", producto.getUtilidad()); // Formateo a 2 decimales
+            fila[5] = String.format("%.2f", producto.getPrecio_venta()); // Formateo a 2 decimales
+            fila[6] = String.format("%.2f", producto.getImpuesto()); // Formateo a 2 decimales
+            fila[7] = proveedor.getNombre()
+                    + (proveedor.getApellido() != null && !proveedor.getApellido().isEmpty()
+                    ? " " + proveedor.getApellido()
+                    : "");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            fila[8] = producto.getFecha_registro() != null
+                    ? dateFormat.format(producto.getFecha_registro())
+                    : "";
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
     }
 }

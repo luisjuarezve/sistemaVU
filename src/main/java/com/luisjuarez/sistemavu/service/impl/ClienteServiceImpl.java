@@ -210,7 +210,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
     
     @Override
-    public void cargarTablaClientes(JTable tabla) {
+    public void cargarTabla(JTable tabla) {
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
@@ -246,7 +246,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public void cargarTablaClientes(JTable tabla, String palabraClave) throws SQLException {
+    public void cargarTabla(JTable tabla, String palabraClave) throws SQLException {
          DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
