@@ -4,6 +4,7 @@ import com.luisjuarez.sistemavu.config.ConfigProperties;
 import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.persistence.ClienteDAO;
 import com.luisjuarez.sistemavu.service.ClienteService;
+import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
@@ -18,6 +19,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -204,6 +207,78 @@ public class ClienteServiceImpl implements ClienteService {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    @Override
+    public void cargarTablaClientes(JTable tabla) {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id","Tipo Doc", "Número Doc", "Razón Social", "Teléfono", "Correo Electrónico", "Dirección", "Comentarios","Fecha Registro"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Cliente> listaClientes = mostrarListaClientes();
+        for (Cliente cliente : listaClientes) {
+            Object[] fila = new Object[11];
+            fila[0] = cliente.getIdCliente();
+            fila[1] = cliente.getTipo_doc();
+            fila[2] = cliente.getNro_doc();
+            fila[3] = cliente.getNombre() + 
+          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[4] = cliente.getTelefono();
+            fila[5] = cliente.getCorreo_electronico();
+            fila[6] = cliente.getDireccion();
+            fila[7] = cliente.getNotas();
+            fila[8] = cliente.getFecha_registro();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    @Override
+    public void cargarTablaClientes(JTable tabla, String palabraClave) throws SQLException {
+         DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id","Tipo Doc", "Número Doc", "Razón Social", "Teléfono", "Correo Electrónico", "Dirección", "Comentarios","Fecha Registro"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Cliente> listaClientes = buscarClientesPorPalabraClave(palabraClave);
+        for (Cliente cliente : listaClientes) {
+            Object[] fila = new Object[11];
+            fila[0] = cliente.getIdCliente();
+            fila[1] = cliente.getTipo_doc();
+            fila[2] = cliente.getNro_doc();
+            fila[3] = cliente.getNombre() + 
+          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[4] = cliente.getTelefono();
+            fila[5] = cliente.getCorreo_electronico();
+            fila[6] = cliente.getDireccion();
+            fila[7] = cliente.getNotas();
+            fila[8] = cliente.getFecha_registro();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
     }
 
 }

@@ -17,7 +17,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
      * Creates new form RecuperarContraseña
      */
     public RecuperarContraseña() {
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -220,25 +220,33 @@ public class RecuperarContraseña extends javax.swing.JFrame {
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
         String email = txt_correoContraseña.getText();
-        String token = TokenManager.generateToken();
+        if (SistemaPrincipal.getEmpleadoService().buscarEmpleadoPorCorreo(email) != null) {
+            String token = TokenManager.generateToken();
 
-        // Guardar el token
-        TokenManager.saveToken(email, token);
+            // Guardar el token
+            TokenManager.saveToken(email, token);
 
-        // Enviar el token por correo
-        TokenManager.sendEmail(email, "Recupera tu contraseña", "Tu token de recuperación es: " + token);
+            // Enviar el token por correo
+            TokenManager.sendEmail(email, "Recupera tu contraseña", "Tu token de recuperación es: " + token);
 
-        // Validar el token (prueba con el token recibido por correo)
-        String tokenString = JOptionPane.showInputDialog("Digite el token");
-        boolean isValid = TokenManager.validateToken(email, tokenString);
-        if (isValid) {
-            System.out.println("Token válido. Procede al restablecimiento.");
-        } else {
-            System.out.println("Token inválido o expirado.");
+            // Validar el token (prueba con el token recibido por correo)
+            String tokenString = JOptionPane.showInputDialog("Digite el token");
+            boolean isValid = TokenManager.validateToken(email, tokenString);
+            if (isValid) {
+                System.out.println("Token válido. Procede al restablecimiento.");
+            } else {
+                System.out.println("Token inválido o expirado.");
+            }
+
+            // Eliminar el token tras su uso
+            TokenManager.deleteToken(token);
+        }else{
+            JOptionPane.showMessageDialog(null, 
+                    "El correo electrónico no está registrado en nuestra base de datos. Por favor, verifica e inténtalo nuevamente.", 
+                    "Correo no registrado", 
+                    JOptionPane.ERROR_MESSAGE);
         }
 
-        // Eliminar el token tras su uso
-        TokenManager.deleteToken(token);
 
     }//GEN-LAST:event_btn_enviarActionPerformed
 
@@ -247,15 +255,14 @@ public class RecuperarContraseña extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_enviarKeyPressed
 
     private void btn_iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarSesionActionPerformed
-    this.dispose();
-    Login lg= new Login();
-    lg.setVisible(true);
+        this.dispose();
+        Login lg = new Login();
+        lg.setVisible(true);
     }//GEN-LAST:event_btn_iniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;

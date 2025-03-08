@@ -36,7 +36,10 @@ import com.luisjuarez.sistemavu.view.paneles.Panel_NotaEntrega;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Productos;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Proveedor;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Reportes;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *

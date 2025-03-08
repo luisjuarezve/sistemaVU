@@ -38,6 +38,7 @@ com\luisjuarez\sistemavu\model\CarritoProducto.class
 com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$4.class
 com\luisjuarez\sistemavu\persistence\ClienteDAO.class
+com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl$1.class
 com\luisjuarez\sistemavu\service\impl\DetalleFacturaServiceImpl.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$10.class
 com\luisjuarez\sistemavu\view\Login$8.class
@@ -61,6 +62,7 @@ com\luisjuarez\sistemavu\view\SistemaPrincipal$11.class
 com\luisjuarez\sistemavu\model\Categoria.class
 com\luisjuarez\sistemavu\SistemaVU.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$9.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$2.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoServiceImpl.class
 com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$1.class
 com\luisjuarez\sistemavu\persistence\impl\ClienteDAOImplMariaDB.class
@@ -69,6 +71,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$6.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Categoria.class
 com\luisjuarez\sistemavu\model\Proveedor.class
+com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl$2.class
 com\luisjuarez\sistemavu\persistence\impl\CompraDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal.class
 com\luisjuarez\sistemavu\service\ProveedorService.class
@@ -87,6 +90,7 @@ com\luisjuarez\sistemavu\view\Login$2.class
 com\luisjuarez\sistemavu\model\Empleado.class
 com\luisjuarez\sistemavu\model\ContactoProveedor.class
 com\luisjuarez\sistemavu\service\PermisoService.class
+com\luisjuarez\sistemavu\utils\JTableUtils.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$4.class
 com\luisjuarez\sistemavu\view\components\CustomTable$1.class
@@ -122,6 +126,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega.class
 com\luisjuarez\sistemavu\service\impl\ContactoProveedorServiceImpl.class
 com\luisjuarez\sistemavu\view\Login.class
 com\luisjuarez\sistemavu\view\components\RoundedButton.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$3.class
 com\luisjuarez\sistemavu\view\Login$4.class
 com\luisjuarez\sistemavu\persistence\impl\ProveedorDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$2.class

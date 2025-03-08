@@ -3,6 +3,7 @@ package com.luisjuarez.sistemavu.service;
 import com.luisjuarez.sistemavu.model.Cliente;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JTable;
 
 public interface ClienteService {
     void registrarCliente(Cliente cliente);
@@ -13,4 +14,6 @@ public interface ClienteService {
     void modificarCliente(String clienteID, Cliente cliente);
     void eliminarCliente(String clienteID);
     void reporteClientesPDF(String destino) throws SQLException;
+    void cargarTablaClientes(JTable tabla) throws SQLException;
+    void cargarTablaClientes(JTable tabla, String palabraClave) throws SQLException;
 }
