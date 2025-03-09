@@ -7,18 +7,21 @@ package com.luisjuarez.sistemavu.view.paneles;
 import com.luisjuarez.sistemavu.persistence.ExportAllTablesToCSV;
 import com.luisjuarez.sistemavu.persistence.ImportAllTablesFromCSV;
 import java.awt.Dimension;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Usuario
  */
 public class Panel_Mantenimiento extends javax.swing.JPanel {
+    private JPanel Seccion;
 
     /**
      * Creates new form Panel_Mantenimiento
      */
-    public Panel_Mantenimiento(Dimension Size) {
+    public Panel_Mantenimiento(Dimension Size, JPanel Seccion) {
         initComponents();
+        this.Seccion = Seccion;
     }
 
     /**
@@ -99,6 +102,11 @@ public class Panel_Mantenimiento extends javax.swing.JPanel {
         btn_Empleado.setRoundBottomLeft(10);
         btn_Empleado.setRoundBottomRight(10);
         btn_Empleado.setRoundTopLeft(10);
+        btn_Empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EmpleadoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -123,6 +131,14 @@ public class Panel_Mantenimiento extends javax.swing.JPanel {
     private void btn_RestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RestaurarActionPerformed
         new ImportAllTablesFromCSV();
     }//GEN-LAST:event_btn_RestaurarActionPerformed
+
+    private void btn_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EmpleadoActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Empleado(),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_EmpleadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

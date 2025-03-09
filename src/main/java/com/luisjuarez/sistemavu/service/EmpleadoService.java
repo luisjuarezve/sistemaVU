@@ -3,6 +3,7 @@ package com.luisjuarez.sistemavu.service;
 import com.luisjuarez.sistemavu.model.Empleado;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JTable;
 
 public interface EmpleadoService {
     void registrarEmpleado(Empleado empleado);
@@ -15,4 +16,6 @@ public interface EmpleadoService {
     List<Empleado> buscarEmpleadosPorPalabraClave(String palabraClave);
     Empleado autenticar(String usuario, String contraseña);
     void reporteEmpleadosPDF(String destino) throws SQLException;
+    void cargarTabla(JTable tabla) throws SQLException;
+    void cargarTabla(JTable tabla, String palabraClave) throws SQLException;
 }

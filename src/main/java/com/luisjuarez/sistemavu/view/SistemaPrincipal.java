@@ -567,7 +567,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
     private void btn_mantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mantenimientoActionPerformed
         Seccion.removeAll();
-        Seccion.add(new Panel_Mantenimiento(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.add(new Panel_Mantenimiento(Seccion.getSize(),Seccion),new java.awt.BorderLayout().CENTER);
         Seccion.revalidate();
         Seccion.repaint(); 
         // TODO add your handling code here:

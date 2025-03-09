@@ -1,9 +1,11 @@
 package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
+import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.persistence.EmpleadoDAO;
 import com.luisjuarez.sistemavu.service.EmpleadoService;
+import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
@@ -16,6 +18,8 @@ import java.util.Date;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -205,5 +209,66 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     @Override
     public Empleado autenticar(String usuario, String contraseña) {
        return empleadoDAO.autenticar(usuario, contraseña);
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id", "Nombre", "Apellido", "Usuario", "Correo"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Empleado> listaEmpleado = mostrarListaEmpleados();
+        for (Empleado empleado : listaEmpleado) {
+            Object[] fila = new Object[11];
+            fila[0] = empleado.getIdEmpleado();
+            fila[1] = empleado.getNombre();
+            fila[2] = empleado.getApellido();
+            fila[3] = empleado.getUsuario();
+            fila[4] = empleado.getCorreo();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);    }
+
+    @Override
+    public void cargarTabla(JTable tabla, String palabraClave) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id", "Nombre", "Apellido", "Usuario", "Correo"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Empleado> listaEmpleado = buscarEmpleadosPorPalabraClave(palabraClave);
+        for (Empleado empleado : listaEmpleado) {
+            Object[] fila = new Object[11];
+            fila[0] = empleado.getIdEmpleado();
+            fila[1] = empleado.getNombre();
+            fila[2] = empleado.getApellido();
+            fila[3] = empleado.getUsuario();
+            fila[4] = empleado.getCorreo();
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
     }
 }
