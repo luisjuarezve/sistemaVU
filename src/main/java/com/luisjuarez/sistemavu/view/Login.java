@@ -74,7 +74,7 @@ public class Login extends javax.swing.JFrame {
         header.add(lbl_title, gridBagConstraints);
 
         lbl_author.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_author.setText("Luis Juarez - Software Developer");
+        lbl_author.setText("SistemaVU");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -100,7 +100,6 @@ public class Login extends javax.swing.JFrame {
         btn_close.setBorder(null);
         btn_close.setBorderPainted(false);
         btn_close.setContentAreaFilled(false);
-        btn_close.setFocusable(false);
         btn_close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_closeActionPerformed(evt);

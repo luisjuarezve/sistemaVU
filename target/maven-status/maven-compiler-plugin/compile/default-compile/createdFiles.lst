@@ -6,6 +6,7 @@ com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$6.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$3.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Configuracion$3.class
 com\luisjuarez\sistemavu\view\components\CustomTable.class
+com\luisjuarez\sistemavu\view\formulario\FormularioRecuperarContrasena$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Reportes.class
 com\luisjuarez\sistemavu\view\components\CustomTable$2.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoHasPermisoServiceImpl.class
@@ -107,6 +108,7 @@ com\luisjuarez\sistemavu\persistence\impl\ProductoDAOImplMariaDB.class
 com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl$1.class
 com\luisjuarez\sistemavu\utils\ImagesUtils.class
 com\luisjuarez\sistemavu\view\Login$3.class
+com\luisjuarez\sistemavu\view\formulario\FormularioRecuperarContrasena.class
 com\luisjuarez\sistemavu\service\DetalleCompraService.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$2.class
 com\luisjuarez\sistemavu\model\Factura.class

@@ -4,7 +4,10 @@
  */
 package com.luisjuarez.sistemavu.view;
 
+import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.persistence.TokenManager;
+import com.luisjuarez.sistemavu.view.formulario.FormularioRecuperarContrasena;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -97,7 +100,6 @@ public class RecuperarContraseña extends javax.swing.JFrame {
         btn_close.setBorder(null);
         btn_close.setBorderPainted(false);
         btn_close.setContentAreaFilled(false);
-        btn_close.setFocusable(false);
         btn_close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_closeActionPerformed(evt);
@@ -203,51 +205,87 @@ public class RecuperarContraseña extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_closeActionPerformed
 
     private void txt_correoContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_correoContraseñaFocusGained
-        if (txt_correoContraseña.getText().equalsIgnoreCase("usuario")) {
+        if (txt_correoContraseña.getText().equalsIgnoreCase("Ingrese su correo")) {
             txt_correoContraseña.setText("");
         }
     }//GEN-LAST:event_txt_correoContraseñaFocusGained
 
     private void txt_correoContraseñaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_correoContraseñaFocusLost
         if (txt_correoContraseña.getText().isEmpty()) {
-            txt_correoContraseña.setText("Usuario");
+            txt_correoContraseña.setText("Ingrese su correo");
         }
     }//GEN-LAST:event_txt_correoContraseñaFocusLost
 
     private void txt_correoContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_correoContraseñaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String email = txt_correoContraseña.getText();
+            Empleado empleado = SistemaPrincipal.getEmpleadoService().buscarEmpleadoPorCorreo(email);
+            if (empleado != null) {
+                String token = TokenManager.generateToken();
 
+                // Guardar el token
+                TokenManager.saveToken(email, token);
+
+                // Enviar el token por correo
+                TokenManager.sendEmail(email, "Recupera tu contraseña", "Tu usuario es: " + empleado.getUsuario() + "\nTu token de recuperación es: " + token);
+
+                // Validar el token (prueba con el token recibido por correo)
+                String tokenString = JOptionPane.showInputDialog("Digite el token");
+                boolean isValid = TokenManager.validateToken(email, tokenString);
+                if (isValid) {
+                    Login lg = new Login();
+                    lg.setVisible(true);
+                    FormularioRecuperarContrasena frc = new FormularioRecuperarContrasena(empleado.getIdEmpleado());
+                    frc.setVisible(true);
+                    this.dispose();
+                } else {
+                    System.out.println("Token inválido o expirado.");
+                }
+
+                // Eliminar el token tras su uso
+                TokenManager.deleteToken(token);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "El correo electrónico no está registrado en nuestra base de datos. Por favor, verifica e inténtalo nuevamente.",
+                        "Correo no registrado",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_txt_correoContraseñaKeyPressed
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
         String email = txt_correoContraseña.getText();
-        if (SistemaPrincipal.getEmpleadoService().buscarEmpleadoPorCorreo(email) != null) {
+        Empleado empleado = SistemaPrincipal.getEmpleadoService().buscarEmpleadoPorCorreo(email);
+        if (empleado != null) {
             String token = TokenManager.generateToken();
 
             // Guardar el token
             TokenManager.saveToken(email, token);
 
             // Enviar el token por correo
-            TokenManager.sendEmail(email, "Recupera tu contraseña", "Tu token de recuperación es: " + token);
+            TokenManager.sendEmail(email, "Recupera tu contraseña", "Tu usuario es: " + empleado.getUsuario() + "\nTu token de recuperación es: " + token);
 
             // Validar el token (prueba con el token recibido por correo)
             String tokenString = JOptionPane.showInputDialog("Digite el token");
             boolean isValid = TokenManager.validateToken(email, tokenString);
             if (isValid) {
-                System.out.println("Token válido. Procede al restablecimiento.");
+                Login lg = new Login();
+                lg.setVisible(true);
+                FormularioRecuperarContrasena frc = new FormularioRecuperarContrasena(empleado.getIdEmpleado());
+                frc.setVisible(true);
+                this.dispose();
             } else {
                 System.out.println("Token inválido o expirado.");
             }
 
             // Eliminar el token tras su uso
             TokenManager.deleteToken(token);
-        }else{
-            JOptionPane.showMessageDialog(null, 
-                    "El correo electrónico no está registrado en nuestra base de datos. Por favor, verifica e inténtalo nuevamente.", 
-                    "Correo no registrado", 
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "El correo electrónico no está registrado en nuestra base de datos. Por favor, verifica e inténtalo nuevamente.",
+                    "Correo no registrado",
                     JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_btn_enviarActionPerformed
 
     private void btn_enviarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_enviarKeyPressed
