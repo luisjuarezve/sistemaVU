@@ -2,6 +2,7 @@ package com.luisjuarez.sistemavu.view;
 
 //import com.luisjuarez.sistemavu.persistence.impl.sqlite3.EmpleadosDAOSqlite3;
 //import com.luisjuarez.sistemavu.service.impl.EmpleadoServiceImpl;
+import com.luisjuarez.sistemavu.model.Empleado;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -258,9 +259,10 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         if (!txt_user.getText().equalsIgnoreCase("usuario") && !txt_user.getText().isEmpty() && !new String(txt_password.getPassword()).equalsIgnoreCase("contrasena") && !new String(txt_password.getPassword()).isEmpty()) {
-            if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
+            Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
+            if (empleado != null) {
                 lbl_error.setForeground(Color.white);
-                SistemaPrincipal sp = new SistemaPrincipal();
+                SistemaPrincipal sp = new SistemaPrincipal(empleado);
                 sp.setVisible(true);
                 this.dispose();
             } else {
@@ -276,9 +278,10 @@ public class Login extends javax.swing.JFrame {
             String username = txt_user.getText();
             String password = new String(txt_password.getPassword());
             if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
+                Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
+                if (empleado != null) {
                     lbl_error.setForeground(Color.white);
-                    SistemaPrincipal sp = new SistemaPrincipal();
+                    SistemaPrincipal sp = new SistemaPrincipal(empleado);
                     sp.setVisible(true);
                     this.dispose();
                 } else {
@@ -296,9 +299,10 @@ public class Login extends javax.swing.JFrame {
             String username = txt_user.getText();
             String password = new String(txt_password.getPassword());
             if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
+                Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
+                if (empleado != null) {
                     lbl_error.setForeground(Color.white);
-                    SistemaPrincipal sp = new SistemaPrincipal();
+                    SistemaPrincipal sp = new SistemaPrincipal(empleado);
                     sp.setVisible(true);
                     this.dispose();
                 } else {
@@ -315,9 +319,10 @@ public class Login extends javax.swing.JFrame {
             String username = txt_user.getText();
             String password = new String(txt_password.getPassword());
             if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
+                Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
+                if (empleado != null) {
                     lbl_error.setForeground(Color.white);
-                    SistemaPrincipal sp = new SistemaPrincipal();
+                    SistemaPrincipal sp = new SistemaPrincipal(empleado);
                     sp.setVisible(true);
                     this.dispose();
                 } else {

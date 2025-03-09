@@ -47,7 +47,7 @@ import java.util.logging.Logger;
  */
 public class SistemaPrincipal extends javax.swing.JFrame {
 
-    private static Empleado empleado = new Empleado(1, "Juan", "Pérez", "juan.perez@example.com", "juanperez", "contraseñaSegura123");
+    private static Empleado empleado;
 
     private static Cliente cliente = new Cliente(
         1, // idCliente
@@ -154,8 +154,10 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form SistemaVU
      */
-    public SistemaPrincipal() {
+    public SistemaPrincipal(Empleado empleado) {
         initComponents();
+        this.empleado = empleado;
+        jLabel2.setText(empleado.getNombre() + (empleado.getApellido() != null ? " " + empleado.getApellido() : ""));
         setLocationRelativeTo(null);
     }
 
