@@ -127,8 +127,9 @@ public class ClienteServiceImpl implements ClienteService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = new Color(0xFF8900);
-            Color black = new Color(0x000000);
+            Color orange = Color.decode("#"+config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#"+config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#"+config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"T", "N° Doc", "Razon Social", "Telefono", "Direccion", "Correo", "F. Registro"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
@@ -142,7 +143,7 @@ public class ClienteServiceImpl implements ClienteService {
                                     };
             float yPosition = 670;
             int fontSize = 8;
-            PDFboxUtils.drawTableHeaders(contentStream, segoeUIFont, fontSize, headers, columnWidths, margin, yPosition, orange, black, rowHeight);
+            PDFboxUtils.drawTableHeaders(contentStream, segoeUIFontBold, fontSize, headers, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
            
 
@@ -167,7 +168,7 @@ public class ClienteServiceImpl implements ClienteService {
                         PDFboxUtils.addPageNumber(contentStream, segoeUIFont, 10, pageNum++, pageWidth, 20);
                         // Autor
                         contentStream.setNonStrokingColor(Color.BLACK);
-                        String footer1 = StringUtil.toCapitalize("Luis Juarez - Software Developer");
+                        String footer1 = StringUtil.toCapitalize(config.getProperty("configuracion.autor").toUpperCase());
                         PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer1, 8, 20, pageWidth);
                         yPosition -= rowHeight; // Ajuste posterior a la creación de encabezados
                         //Copyright
@@ -191,7 +192,7 @@ public class ClienteServiceImpl implements ClienteService {
 
             // Autor
             contentStream.setNonStrokingColor(Color.BLACK);
-            String footer1 = StringUtil.toCapitalize("Luis Juarez - Software Developer");
+            String footer1 = StringUtil.toCapitalize(config.getProperty("configuracion.autor").toUpperCase());
             PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer1, 8, 20, pageWidth);
             yPosition -= rowHeight + 20; // Ajuste posterior a la creación de encabezados
             //Copyright
