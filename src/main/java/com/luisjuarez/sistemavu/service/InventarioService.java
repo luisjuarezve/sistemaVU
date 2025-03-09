@@ -3,6 +3,7 @@ package com.luisjuarez.sistemavu.service;
 import com.luisjuarez.sistemavu.model.Inventario;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JTable;
 
 public interface InventarioService {
     void registrarInventario(Inventario inventario);
@@ -14,4 +15,6 @@ public interface InventarioService {
     void aumentarInventario(int id, double cantidad);
     void disminuirInventario(int id, double cantidad);
     void reporteInventarioPDF(String destino) throws SQLException;
+    void cargarTabla(JTable tabla) throws SQLException;
+    void cargarTabla(JTable tabla, String palabraClave) throws SQLException;
 }

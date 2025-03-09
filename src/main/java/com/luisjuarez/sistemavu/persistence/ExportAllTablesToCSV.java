@@ -5,18 +5,19 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.io.FileWriter;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ExportAllTablesToCSV {
 
     public ExportAllTablesToCSV() {
-        String[] tables = {"Cliente", "Proveedor", "ContactoProveedor", "Empleado", "Categoria", "Producto", "Inventario", 
+        String[] tables = {"Cliente", "Proveedor", "ContactoProveedor", "Empleado", "Categoria", "Producto", "Inventario",
                            "Permiso", "Empleado_has_Permiso", "Factura", "DetalleFactura", "Compra", "DetalleCompra"};
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar Archivo CSV");
         fileChooser.setFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
-        
+
         int userSelection = fileChooser.showSaveDialog(null);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             String csvFilePath = fileChooser.getSelectedFile().getAbsolutePath();
@@ -58,10 +59,15 @@ public class ExportAllTablesToCSV {
                         e.printStackTrace();
                     }
                 }
+
+                JOptionPane.showMessageDialog(null, "Archivo guardado en: " + csvFilePath, "Guardado Exitoso!", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (Exception e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al guardar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "El usuario canceló la operación", "Guardado Fallido!", JOptionPane.WARNING_MESSAGE);
         }
     }
-
 }

@@ -4,6 +4,8 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.persistence.ExportAllTablesToCSV;
+import com.luisjuarez.sistemavu.persistence.ImportAllTablesFromCSV;
 import java.awt.Dimension;
 
 /**
@@ -57,6 +59,11 @@ public class Panel_Mantenimiento extends javax.swing.JPanel {
         btn_Respaldar.setRoundBottomLeft(10);
         btn_Respaldar.setRoundBottomRight(10);
         btn_Respaldar.setRoundTopLeft(10);
+        btn_Respaldar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RespaldarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -72,6 +79,11 @@ public class Panel_Mantenimiento extends javax.swing.JPanel {
         btn_Restaurar.setRoundBottomLeft(10);
         btn_Restaurar.setRoundBottomRight(10);
         btn_Restaurar.setRoundTopLeft(10);
+        btn_Restaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RestaurarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -103,6 +115,14 @@ public class Panel_Mantenimiento extends javax.swing.JPanel {
 
         add(roundedPanel1, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_RespaldarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RespaldarActionPerformed
+        new ExportAllTablesToCSV();
+    }//GEN-LAST:event_btn_RespaldarActionPerformed
+
+    private void btn_RestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RestaurarActionPerformed
+        new ImportAllTablesFromCSV();
+    }//GEN-LAST:event_btn_RestaurarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

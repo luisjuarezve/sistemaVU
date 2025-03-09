@@ -4,12 +4,20 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import java.awt.Dimension;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
+
 public class Panel_Reportes extends javax.swing.JPanel {
 
     /**
@@ -31,10 +39,10 @@ public class Panel_Reportes extends javax.swing.JPanel {
 
         roundedPanel1 = new com.luisjuarez.sistemavu.view.components.RoundedPanel();
         jLabel1 = new javax.swing.JLabel();
-        btn_Respaldar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Restaurar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Empleado = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Clientes = new com.luisjuarez.sistemavu.view.components.RoundedButton();
+        btn_facturar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
+        btn_inventario = new com.luisjuarez.sistemavu.view.components.RoundedButton();
+        btn_empleados = new com.luisjuarez.sistemavu.view.components.RoundedButton();
+        btn_clientes = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Regresar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -58,75 +66,95 @@ public class Panel_Reportes extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         roundedPanel1.add(jLabel1, gridBagConstraints);
 
-        btn_Respaldar.setBackground(new java.awt.Color(153, 204, 255));
-        btn_Respaldar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Respaldar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Respaldar.setText("Ventas");
-        btn_Respaldar.setFocusable(false);
-        btn_Respaldar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Respaldar.setPreferredSize(new java.awt.Dimension(140, 80));
-        btn_Respaldar.setRoundBottomLeft(10);
-        btn_Respaldar.setRoundBottomRight(10);
-        btn_Respaldar.setRoundTopLeft(10);
+        btn_facturar.setBackground(new java.awt.Color(153, 204, 255));
+        btn_facturar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_facturar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_facturar.setText("Ventas");
+        btn_facturar.setFocusable(false);
+        btn_facturar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_facturar.setPreferredSize(new java.awt.Dimension(140, 80));
+        btn_facturar.setRoundBottomLeft(10);
+        btn_facturar.setRoundBottomRight(10);
+        btn_facturar.setRoundTopLeft(10);
+        btn_facturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_facturarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = -60;
         gridBagConstraints.ipady = -33;
-        roundedPanel1.add(btn_Respaldar, gridBagConstraints);
+        roundedPanel1.add(btn_facturar, gridBagConstraints);
 
-        btn_Restaurar.setBackground(new java.awt.Color(153, 204, 255));
-        btn_Restaurar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Restaurar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Restaurar.setText("Inventario");
-        btn_Restaurar.setFocusable(false);
-        btn_Restaurar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Restaurar.setPreferredSize(new java.awt.Dimension(140, 80));
-        btn_Restaurar.setRoundBottomLeft(10);
-        btn_Restaurar.setRoundBottomRight(10);
-        btn_Restaurar.setRoundTopLeft(10);
+        btn_inventario.setBackground(new java.awt.Color(153, 204, 255));
+        btn_inventario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_inventario.setForeground(new java.awt.Color(255, 255, 255));
+        btn_inventario.setText("Inventario");
+        btn_inventario.setFocusable(false);
+        btn_inventario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_inventario.setPreferredSize(new java.awt.Dimension(140, 80));
+        btn_inventario.setRoundBottomLeft(10);
+        btn_inventario.setRoundBottomRight(10);
+        btn_inventario.setRoundTopLeft(10);
+        btn_inventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inventarioActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = -30;
         gridBagConstraints.ipady = -33;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        roundedPanel1.add(btn_Restaurar, gridBagConstraints);
+        roundedPanel1.add(btn_inventario, gridBagConstraints);
 
-        btn_Empleado.setBackground(new java.awt.Color(153, 204, 255));
-        btn_Empleado.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Empleado.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Empleado.setText("Empleados");
-        btn_Empleado.setFocusable(false);
-        btn_Empleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Empleado.setPreferredSize(new java.awt.Dimension(140, 80));
-        btn_Empleado.setRoundBottomLeft(10);
-        btn_Empleado.setRoundBottomRight(10);
-        btn_Empleado.setRoundTopLeft(10);
+        btn_empleados.setBackground(new java.awt.Color(153, 204, 255));
+        btn_empleados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_empleados.setForeground(new java.awt.Color(255, 255, 255));
+        btn_empleados.setText("Empleados");
+        btn_empleados.setFocusable(false);
+        btn_empleados.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_empleados.setPreferredSize(new java.awt.Dimension(140, 80));
+        btn_empleados.setRoundBottomLeft(10);
+        btn_empleados.setRoundBottomRight(10);
+        btn_empleados.setRoundTopLeft(10);
+        btn_empleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_empleadosActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = -25;
         gridBagConstraints.ipady = -33;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        roundedPanel1.add(btn_Empleado, gridBagConstraints);
+        roundedPanel1.add(btn_empleados, gridBagConstraints);
 
-        btn_Clientes.setBackground(new java.awt.Color(153, 204, 255));
-        btn_Clientes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Clientes.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Clientes.setText("Clientes");
-        btn_Clientes.setFocusable(false);
-        btn_Clientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Clientes.setPreferredSize(new java.awt.Dimension(140, 80));
-        btn_Clientes.setRoundBottomLeft(10);
-        btn_Clientes.setRoundBottomRight(10);
-        btn_Clientes.setRoundTopLeft(10);
+        btn_clientes.setBackground(new java.awt.Color(153, 204, 255));
+        btn_clientes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_clientes.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clientes.setText("Clientes");
+        btn_clientes.setFocusable(false);
+        btn_clientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_clientes.setPreferredSize(new java.awt.Dimension(140, 80));
+        btn_clientes.setRoundBottomLeft(10);
+        btn_clientes.setRoundBottomRight(10);
+        btn_clientes.setRoundTopLeft(10);
+        btn_clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clientesActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = -50;
         gridBagConstraints.ipady = -33;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        roundedPanel1.add(btn_Clientes, gridBagConstraints);
+        roundedPanel1.add(btn_clientes, gridBagConstraints);
 
         btn_Regresar.setBackground(new java.awt.Color(153, 204, 255));
         btn_Regresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -138,6 +166,11 @@ public class Panel_Reportes extends javax.swing.JPanel {
         btn_Regresar.setRoundBottomLeft(10);
         btn_Regresar.setRoundBottomRight(10);
         btn_Regresar.setRoundTopLeft(10);
+        btn_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = -50;
@@ -149,13 +182,140 @@ public class Panel_Reportes extends javax.swing.JPanel {
         add(roundedPanel1, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_facturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturarActionPerformed
+            // Crear un JFileChooser
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar archivo PDF");
+
+            // Configurar el JFileChooser para seleccionar archivos (solo para guardar)
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+            // Mostrar cuadro de diálogo para guardar archivo
+            int result = fileChooser.showSaveDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                // Obtener el archivo seleccionado
+                File selectedFile = fileChooser.getSelectedFile();
+
+                // Asegurar que tenga la extensión .pdf
+                String filePath = selectedFile.getAbsolutePath();
+                if (!filePath.toLowerCase().endsWith(".pdf")) {
+                    filePath += ".pdf"; // Agregar extensión si no está incluida
+                }
+
+                try {
+                    SistemaPrincipal.getFacturaService().reporteFacturasPDF(filePath);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Panel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Archivo guardado en: " + filePath, "Guardado Exitoso!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario cancelo la operacion","Guardado Fallido!", JOptionPane.WARNING_MESSAGE);
+            }
+    }//GEN-LAST:event_btn_facturarActionPerformed
+
+    private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
+        // Crear un JFileChooser
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar archivo PDF");
+
+            // Configurar el JFileChooser para seleccionar archivos (solo para guardar)
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+            // Mostrar cuadro de diálogo para guardar archivo
+            int result = fileChooser.showSaveDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                // Obtener el archivo seleccionado
+                File selectedFile = fileChooser.getSelectedFile();
+
+                // Asegurar que tenga la extensión .pdf
+                String filePath = selectedFile.getAbsolutePath();
+                if (!filePath.toLowerCase().endsWith(".pdf")) {
+                    filePath += ".pdf"; // Agregar extensión si no está incluida
+                }
+                try {
+                    SistemaPrincipal.getInventarioService().reporteInventarioPDF(filePath);
+                    JOptionPane.showMessageDialog(null, "Archivo guardado en: " + filePath, "Guardado Exitoso!", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Panel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario cancelo la operacion","Guardado Fallido!", JOptionPane.WARNING_MESSAGE);
+            }
+    }//GEN-LAST:event_btn_inventarioActionPerformed
+
+    private void btn_empleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_empleadosActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar archivo PDF");
+
+            // Configurar el JFileChooser para seleccionar archivos (solo para guardar)
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+            // Mostrar cuadro de diálogo para guardar archivo
+            int result = fileChooser.showSaveDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                // Obtener el archivo seleccionado
+                File selectedFile = fileChooser.getSelectedFile();
+
+                // Asegurar que tenga la extensión .pdf
+                String filePath = selectedFile.getAbsolutePath();
+                if (!filePath.toLowerCase().endsWith(".pdf")) {
+                    filePath += ".pdf"; // Agregar extensión si no está incluida
+                }
+                try {
+                    SistemaPrincipal.getEmpleadoService().reporteEmpleadosPDF(filePath);
+                    JOptionPane.showMessageDialog(null, "Archivo guardado en: " + filePath, "Guardado Exitoso!", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Panel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario cancelo la operacion","Guardado Fallido!", JOptionPane.WARNING_MESSAGE);
+            }
+    }//GEN-LAST:event_btn_empleadosActionPerformed
+
+    private void btn_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clientesActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar archivo PDF");
+
+            // Configurar el JFileChooser para seleccionar archivos (solo para guardar)
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+            // Mostrar cuadro de diálogo para guardar archivo
+            int result = fileChooser.showSaveDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                // Obtener el archivo seleccionado
+                File selectedFile = fileChooser.getSelectedFile();
+
+                // Asegurar que tenga la extensión .pdf
+                String filePath = selectedFile.getAbsolutePath();
+                if (!filePath.toLowerCase().endsWith(".pdf")) {
+                    filePath += ".pdf"; // Agregar extensión si no está incluida
+                }
+                try {
+                    SistemaPrincipal.getClienteService().reporteClientesPDF(filePath);
+                    JOptionPane.showMessageDialog(null, "Archivo guardado en: " + filePath, "Guardado Exitoso!", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Panel_Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario cancelo la operacion","Guardado Fallido!", JOptionPane.WARNING_MESSAGE);
+            }
+    }//GEN-LAST:event_btn_clientesActionPerformed
+
+    private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
+        
+    }//GEN-LAST:event_btn_RegresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Clientes;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Empleado;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Regresar;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Respaldar;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Restaurar;
+    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_clientes;
+    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_empleados;
+    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_facturar;
+    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_inventario;
     private javax.swing.JLabel jLabel1;
     private com.luisjuarez.sistemavu.view.components.RoundedPanel roundedPanel1;
     // End of variables declaration//GEN-END:variables

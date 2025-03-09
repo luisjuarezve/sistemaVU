@@ -1,4 +1,5 @@
 com\luisjuarez\sistemavu\service\ClienteService.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$2.class
 com\luisjuarez\sistemavu\persistence\EmpleadoHasPermisoDAO.class
 com\luisjuarez\sistemavu\service\EmpleadoService.class
 com\luisjuarez\sistemavu\view\Login$6.class
@@ -17,10 +18,12 @@ com\luisjuarez\sistemavu\persistence\DetalleFacturaDAO.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$2.class
 com\luisjuarez\sistemavu\model\Factura.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$5.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$4.class
 com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl.class
 com\luisjuarez\sistemavu\model\Permiso.class
 com\luisjuarez\sistemavu\persistence\TokenManager.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$1.class
+com\luisjuarez\sistemavu\service\impl\InventarioServiceImpl$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Inventario.class
 com\luisjuarez\sistemavu\persistence\ContactoProveedorDAO.class
@@ -44,6 +47,7 @@ com\luisjuarez\sistemavu\model\CarritoProducto.class
 com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$4.class
 com\luisjuarez\sistemavu\persistence\ClienteDAO.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$1.class
 com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl$1.class
 com\luisjuarez\sistemavu\service\impl\DetalleFacturaServiceImpl.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$10.class
@@ -57,6 +61,7 @@ com\luisjuarez\sistemavu\service\CategoriaService.class
 com\luisjuarez\sistemavu\persistence\ImportAllTablesFromCSV.class
 com\luisjuarez\sistemavu\persistence\FacturaDAO.class
 com\luisjuarez\sistemavu\view\Login$7.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Categoria$2.class
 com\luisjuarez\sistemavu\persistence\impl\ContactoProveedorDAOImplMariaDB.class
 com\luisjuarez\sistemavu\persistence\EmpleadoDAO.class
@@ -69,10 +74,13 @@ com\luisjuarez\sistemavu\view\SistemaPrincipal$11.class
 com\luisjuarez\sistemavu\model\Categoria.class
 com\luisjuarez\sistemavu\SistemaVU.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$9.class
+com\luisjuarez\sistemavu\service\impl\InventarioServiceImpl$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$2.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Proveedor$2.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoServiceImpl.class
 com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$1.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$3.class
 com\luisjuarez\sistemavu\persistence\impl\ClienteDAOImplMariaDB.class
 com\luisjuarez\sistemavu\persistence\impl\FacturaDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento.class
@@ -107,6 +115,7 @@ com\luisjuarez\sistemavu\view\components\CustomTable$1.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$1.class
 com\luisjuarez\sistemavu\persistence\CategoriaDAO.class
 com\luisjuarez\sistemavu\config\ConfigProperties.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$5.class
 com\luisjuarez\sistemavu\persistence\PermisoDAO.class
 com\luisjuarez\sistemavu\persistence\impl\CategoriaDAOImplMariaDB.class
 com\luisjuarez\sistemavu\utils\PDFboxUtils.class
@@ -141,5 +150,6 @@ com\luisjuarez\sistemavu\view\components\RoundedButton.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$3.class
 com\luisjuarez\sistemavu\view\Login$4.class
 com\luisjuarez\sistemavu\persistence\impl\ProveedorDAOImplMariaDB.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$3.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Configuracion.class

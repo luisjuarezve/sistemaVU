@@ -1,7 +1,6 @@
 package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
-import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.persistence.EmpleadoDAO;
 import com.luisjuarez.sistemavu.service.EmpleadoService;

@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ImportAllTablesFromCSV {
@@ -67,10 +68,14 @@ public class ImportAllTablesFromCSV {
                 // Habilitar las verificaciones de claves foráneas
                 enableForeignKeyChecks(connection);
 
-                System.out.println("Datos importados exitosamente desde " + csvFilePath);
+                JOptionPane.showMessageDialog(null, "Datos importados exitosamente desde: " + csvFilePath, "Importación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (SQLException | CsvValidationException | IOException e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Ocurrió un error durante la importación: " + e.getMessage(), "Error de Importación", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "El usuario canceló la operación", "Operación Cancelada", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -129,5 +134,4 @@ public class ImportAllTablesFromCSV {
         sql.append(");");
         return sql.toString();
     }
-
 }
