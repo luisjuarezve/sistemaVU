@@ -72,6 +72,7 @@ public class DetalleCompraServiceImpl implements DetalleCompraService {
     @Override
     public void reporteDetallesCompraPDF(String destino, int idCompra) throws SQLException {
         ConfigProperties config = new ConfigProperties();
+        config.recargarArchivo();
         String logoPath = config.getProperty("empresa.logo");
         PDDocument document = new PDDocument();
         PDRectangle pdRectangle = PDRectangle.A4;
@@ -86,11 +87,12 @@ public class DetalleCompraServiceImpl implements DetalleCompraService {
             PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
             // Añadir logo de la empresa en la primera página
             try {
-                PDImageXObject logoImage = PDImageXObject.createFromFile(getClass().getResource(logoPath).getPath(), document);
+                File logoFile = new File("src/main/resources" + logoPath); // Ruta completa
+                PDImageXObject logoImage = PDImageXObject.createFromFile(logoFile.getAbsolutePath(), document);
                 contentStream.drawImage(logoImage, 50, yStart - 80, 80, 80);
             } catch (IOException ex) {
-                Logger.getLogger(ClienteServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar el logo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
 
             // Cargar fuentes
@@ -100,14 +102,13 @@ public class DetalleCompraServiceImpl implements DetalleCompraService {
             PDType0Font segoeUIFontBold = PDType0Font.load(document, fontFileBold);
 
             // Información de la empresa en la primera página
-            
             String[] texts = {
                 config.getProperty("empresa.razon_social").toUpperCase(),
                 "RIF: " + config.getProperty("empresa.rif.tipo_doc").toUpperCase() + "-" + config.getProperty("empresa.rif.nro_doc"),
                 "Calle: " + config.getProperty("empresa.calle").toUpperCase() + " Casa/Local N° " + config.getProperty("empresa.casa").toUpperCase() + " Sector: " + StringUtil.toCapitalize(config.getProperty("empresa.sector")),
                 StringUtil.toCapitalize(config.getProperty("empresa.ciudad")) + ", Edo. " + StringUtil.toCapitalize(config.getProperty("empresa.estado")) + " Zona Postal " + StringUtil.toCapitalize(config.getProperty("empresa.codigo_postal")) + " Telf: " + config.getProperty("empresa.telefono"),
                 "E-mail: " + config.getProperty("empresa.correo").toLowerCase(),
-                "REPORTE DE DETALLES - COMPRA N° "+idCompra, // Aquí puedes añadir manualmente el título del reporte
+                "REPORTE DE DETALLES - COMPRA N° " + idCompra, // Aquí puedes añadir manualmente el título del reporte
                 "GENERADO POR: " + SistemaPrincipal.getEmpleado().getNombre() + " " + SistemaPrincipal.getEmpleado().getApellido(),
                 "FECHA: " + new SimpleDateFormat("dd/MM/yyyy").format(new Date())
             };
@@ -124,23 +125,22 @@ public class DetalleCompraServiceImpl implements DetalleCompraService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = Color.decode("#"+config.getProperty("configuracion.colorEncabezado").toUpperCase());
-            Color white = Color.decode("#"+config.getProperty("configuracion.colorTitulo").toUpperCase());
-            Color black = Color.decode("#"+config.getProperty("configuracion.colorRegistros").toUpperCase());
+            Color orange = Color.decode("#" + config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#" + config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#" + config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"Cod", "Producto", "Und", "Precio unitario", "Monto"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
-                                        tableWidth * 0.1f, //codigo
-                                        tableWidth * 0.3f, //Producto
-                                        tableWidth * 0.1f, //und
-                                        tableWidth * 0.2f, //precio unitario
-                                        tableWidth * 0.3f, //monto
+                tableWidth * 0.1f, //codigo
+                tableWidth * 0.3f, //Producto
+                tableWidth * 0.1f, //und
+                tableWidth * 0.2f, //precio unitario
+                tableWidth * 0.3f, //monto
             };
             float yPosition = 670;
             int fontSize = 8;
             PDFboxUtils.drawTableHeaders(contentStream, segoeUIFont, fontSize, headers, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
-           
 
             List<DetalleCompra> detallesCompras = detalleCompraDAO.buscarPorIdCompra(idCompra);
             for (DetalleCompra detalleCompra : detallesCompras) {
@@ -166,7 +166,7 @@ public class DetalleCompraServiceImpl implements DetalleCompraService {
                         String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2024");
                         PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer2, 8, 10, pageWidth);
                         contentStream.close();
-                        
+
                         //////
                         page = PDFboxUtils.createNewPage(document, pdRectangle);
                         contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);

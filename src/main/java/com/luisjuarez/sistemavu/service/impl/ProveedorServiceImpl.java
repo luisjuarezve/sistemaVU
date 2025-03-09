@@ -75,6 +75,7 @@ public class ProveedorServiceImpl implements ProveedorService {
     @Override
     public void reporteProveedorPDF(String destino) throws SQLException {
         ConfigProperties config = new ConfigProperties();
+        config.recargarArchivo();
         String logoPath = config.getProperty("empresa.logo");
         PDDocument document = new PDDocument();
         PDRectangle pdRectangle = PDRectangle.A4;
@@ -89,11 +90,12 @@ public class ProveedorServiceImpl implements ProveedorService {
             PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
             // Añadir logo de la empresa en la primera página
             try {
-                PDImageXObject logoImage = PDImageXObject.createFromFile(getClass().getResource(logoPath).getPath(), document);
+                File logoFile = new File("src/main/resources" + logoPath); // Ruta completa
+                PDImageXObject logoImage = PDImageXObject.createFromFile(logoFile.getAbsolutePath(), document);
                 contentStream.drawImage(logoImage, 50, yStart - 80, 80, 80);
             } catch (IOException ex) {
-                Logger.getLogger(ClienteServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar el logo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
 
             // Cargar fuentes
@@ -126,9 +128,9 @@ public class ProveedorServiceImpl implements ProveedorService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = Color.decode("#"+config.getProperty("configuracion.colorEncabezado").toUpperCase());
-            Color white = Color.decode("#"+config.getProperty("configuracion.colorTitulo").toUpperCase());
-            Color black = Color.decode("#"+config.getProperty("configuracion.colorRegistros").toUpperCase());
+            Color orange = Color.decode("#" + config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#" + config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#" + config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"T", "N°Doc", "Razón Social", "Dirección", "Teléfono", "Correo", "F. Regis"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
@@ -212,7 +214,7 @@ public class ProveedorServiceImpl implements ProveedorService {
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Id","T", "N°Doc", "Razón Social", "Dirección", "Teléfono", "Correo", "F. Registro"
+                    "Id", "T", "N°Doc", "Razón Social", "Dirección", "Teléfono", "Correo", "F. Registro"
                 }
         ) {
 
@@ -230,8 +232,8 @@ public class ProveedorServiceImpl implements ProveedorService {
             fila[0] = proveedor.getIdProveedor();
             fila[1] = proveedor.getTipo_doc();
             fila[2] = proveedor.getNro_doc();
-            fila[3] = proveedor.getNombre() + 
-          (proveedor.getApellido() != null ? " " + proveedor.getApellido() : "");
+            fila[3] = proveedor.getNombre()
+                    + (proveedor.getApellido() != null ? " " + proveedor.getApellido() : "");
             fila[4] = proveedor.getDireccion();
             fila[5] = proveedor.getTelefono();
             fila[6] = proveedor.getCorreo_electronico();
@@ -247,7 +249,7 @@ public class ProveedorServiceImpl implements ProveedorService {
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Id","T", "N°Doc", "Razón Social", "Dirección", "Teléfono", "Correo", "F. Registro"
+                    "Id", "T", "N°Doc", "Razón Social", "Dirección", "Teléfono", "Correo", "F. Registro"
                 }
         ) {
 
@@ -265,8 +267,8 @@ public class ProveedorServiceImpl implements ProveedorService {
             fila[0] = proveedor.getIdProveedor();
             fila[1] = proveedor.getTipo_doc();
             fila[2] = proveedor.getNro_doc();
-            fila[3] = proveedor.getNombre() + 
-          (proveedor.getApellido() != null ? " " + proveedor.getApellido() : "");
+            fila[3] = proveedor.getNombre()
+                    + (proveedor.getApellido() != null ? " " + proveedor.getApellido() : "");
             fila[4] = proveedor.getDireccion();
             fila[5] = proveedor.getTelefono();
             fila[6] = proveedor.getCorreo_electronico();

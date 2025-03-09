@@ -5,6 +5,15 @@
 package com.luisjuarez.sistemavu.view.formulario;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
+import com.luisjuarez.sistemavu.utils.ImagesUtils;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +21,9 @@ import javax.swing.JOptionPane;
  * @author Helen
  */
 public class Formulario_empresa extends javax.swing.JFrame {
-    private ConfigProperties config; 
+
+    private ConfigProperties config;
+    private File nuevaImagenSeleccionada; // Variable para almacenar temporalmente la nueva imagen seleccionada
 
     /**
      * Creates new form Formulario_Cliente
@@ -20,7 +31,7 @@ public class Formulario_empresa extends javax.swing.JFrame {
     public Formulario_empresa() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
         config = new ConfigProperties();
         config.recargarArchivo();
         recargarCampos();
@@ -313,6 +324,11 @@ public class Formulario_empresa extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Seleccionar foto");
         jButton4.setPreferredSize(new java.awt.Dimension(140, 60));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -378,6 +394,7 @@ public class Formulario_empresa extends javax.swing.JFrame {
         String sector = jTextField9.getText().toUpperCase();
         String telefono = jTextField8.getText().toUpperCase();
 
+        // Validaciones
         if (calle.isEmpty() || casa.isEmpty() || ciudad.isEmpty() || codigoPostal.isEmpty() || correo.isEmpty()
                 || estado.isEmpty() || razon.isEmpty() || nroDoc.isEmpty() || tipoDoc.isEmpty() || sector.isEmpty() || telefono.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
@@ -403,6 +420,8 @@ public class Formulario_empresa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un valor válido en los campos desplegables", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Detener la ejecución
         }
+
+        // Guardar propiedades de la empresa
         config.setProperty("empresa.calle", calle);
         config.setProperty("empresa.casa", casa);
         config.setProperty("empresa.ciudad", ciudad);
@@ -414,11 +433,40 @@ public class Formulario_empresa extends javax.swing.JFrame {
         config.setProperty("empresa.rif.tipo_doc", tipoDoc);
         config.setProperty("empresa.sector", sector);
         config.setProperty("empresa.telefono", telefono);
+
+        // Guardar el logo si se seleccionó una nueva imagen
+        if (nuevaImagenSeleccionada != null) {
+            try {
+                // Ruta donde guardar la nueva imagen
+                String newFileName = "logo_empresa_" + System.currentTimeMillis() + ".png"; // Nombre único
+                String newImagePath = "src/main/resources/images/" + newFileName;
+
+                // Copiar la nueva imagen seleccionada a la carpeta `images`
+                Files.copy(nuevaImagenSeleccionada.toPath(), Paths.get(newImagePath), StandardCopyOption.REPLACE_EXISTING);
+
+                // Actualizar la propiedad `empresa.logo` en config.properties
+                String oldImagePath = config.getProperty("empresa.logo"); // Ruta anterior
+                config.setProperty("empresa.logo", "/images/" + newFileName);
+
+                // Eliminar la imagen anterior
+                if (oldImagePath != null && !oldImagePath.isEmpty()) {
+                    File oldImageFile = new File("src/main/resources" + oldImagePath);
+                    if (oldImageFile.exists()) {
+                        oldImageFile.delete(); // Eliminar imagen anterior
+                    }
+                }
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al guardar la nueva imagen: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        }
+
         config.saveProperties();
         JOptionPane.showMessageDialog(null, "¡Los campos se actualizaron exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         config.recargarArchivo();
         this.dispose();
-        //config.setProperty("empresa.logo", "/images/nuevo_logo.png");
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -432,6 +480,35 @@ public class Formulario_empresa extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Seleccionar nueva imagen");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Imágenes (JPG, PNG, GIF)", "jpg", "png", "gif"));
+
+        int result = fileChooser.showOpenDialog(this); // Mostrar el diálogo
+        if (result == JFileChooser.APPROVE_OPTION) {
+            nuevaImagenSeleccionada = fileChooser.getSelectedFile(); // Guardar la imagen seleccionada temporalmente
+
+            // Verificar que el archivo es válido
+            if (nuevaImagenSeleccionada != null && nuevaImagenSeleccionada.exists()) {
+                try {
+                    // Usar ImageUtils para redimensionar la imagen con dimensiones 150 x 150
+                    ImageIcon icon = ImagesUtils.redimensionarIcon(nuevaImagenSeleccionada.getAbsolutePath(), 150, 150);
+
+                    // Setear el icono redimensionado en jLabel15
+                    jLabel15.setIcon(icon);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Error al redimensionar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El archivo seleccionado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

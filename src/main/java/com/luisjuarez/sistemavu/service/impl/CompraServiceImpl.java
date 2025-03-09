@@ -68,6 +68,7 @@ public class CompraServiceImpl implements CompraService {
     @Override
     public void reporteComprasPDF(String destino) throws SQLException {
         ConfigProperties config = new ConfigProperties();
+        config.recargarArchivo();
         String logoPath = config.getProperty("empresa.logo");
         PDDocument document = new PDDocument();
         PDRectangle pdRectangle = PDRectangle.A4;
@@ -82,11 +83,12 @@ public class CompraServiceImpl implements CompraService {
             PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
             // Añadir logo de la empresa en la primera página
             try {
-                PDImageXObject logoImage = PDImageXObject.createFromFile(getClass().getResource(logoPath).getPath(), document);
+                File logoFile = new File("src/main/resources" + logoPath); // Ruta completa
+                PDImageXObject logoImage = PDImageXObject.createFromFile(logoFile.getAbsolutePath(), document);
                 contentStream.drawImage(logoImage, 50, yStart - 80, 80, 80);
             } catch (IOException ex) {
-                Logger.getLogger(ClienteServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar el logo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
 
             // Cargar fuentes
@@ -96,7 +98,6 @@ public class CompraServiceImpl implements CompraService {
             PDType0Font segoeUIFontBold = PDType0Font.load(document, fontFileBold);
 
             // Información de la empresa en la primera página
-            
             String[] texts = {
                 config.getProperty("empresa.razon_social").toUpperCase(),
                 "RIF: " + config.getProperty("empresa.rif.tipo_doc").toUpperCase() + "-" + config.getProperty("empresa.rif.nro_doc"),
@@ -120,22 +121,21 @@ public class CompraServiceImpl implements CompraService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = Color.decode("#"+config.getProperty("configuracion.colorEncabezado").toUpperCase());
-            Color white = Color.decode("#"+config.getProperty("configuracion.colorTitulo").toUpperCase());
-            Color black = Color.decode("#"+config.getProperty("configuracion.colorRegistros").toUpperCase());
+            Color orange = Color.decode("#" + config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#" + config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#" + config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"Id", "Proveedor", "Total Compra", "Fecha de compra"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
-                                        tableWidth * 0.05f, //id
-                                        tableWidth * 0.60f, //proveedor
-                                        tableWidth * 0.2f, //total compra
-                                        tableWidth * 0.15f   //f compra
-                                    };
+                tableWidth * 0.05f, //id
+                tableWidth * 0.60f, //proveedor
+                tableWidth * 0.2f, //total compra
+                tableWidth * 0.15f //f compra
+            };
             float yPosition = 670;
             int fontSize = 8;
             PDFboxUtils.drawTableHeaders(contentStream, segoeUIFont, fontSize, headers, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
-           
 
             List<Compra> compras = compraDAO.mostrarLista();
             for (Compra compra : compras) {
@@ -145,7 +145,7 @@ public class CompraServiceImpl implements CompraService {
                 Proveedor proveedor = SistemaPrincipal.getProveedorService().buscarProveedorPorId(compra.getIdProveedor());
                 String[] rows = {
                     String.valueOf(compra.getIdCompra()),
-                    proveedor.getNombre()+(proveedor.getApellido() != null ? " " + proveedor.getApellido() : ""),
+                    proveedor.getNombre() + (proveedor.getApellido() != null ? " " + proveedor.getApellido() : ""),
                     String.valueOf(compra.getTotalCompra()),
                     fecha
                 };
@@ -163,7 +163,7 @@ public class CompraServiceImpl implements CompraService {
                         String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2024");
                         PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer2, 8, 10, pageWidth);
                         contentStream.close();
-                        
+
                         //////
                         page = PDFboxUtils.createNewPage(document, pdRectangle);
                         contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
@@ -197,6 +197,4 @@ public class CompraServiceImpl implements CompraService {
         }
     }
 
-    
-    
 }

@@ -75,6 +75,7 @@ com\luisjuarez\sistemavu\view\RecuperarContraseña$1.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$1.class
 com\luisjuarez\sistemavu\utils\PDFboxUtils.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$3.class
+com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$8.class
 com\luisjuarez\sistemavu\persistence\ProductoDAO.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Ayuda.class
 com\luisjuarez\sistemavu\utils\StringUtil.class

@@ -83,6 +83,7 @@ public class FacturaServiceImpl implements FacturaService {
     @Override
     public void reporteFacturasPDF(String destino) throws SQLException {
         ConfigProperties config = new ConfigProperties();
+        config.recargarArchivo();
         String logoPath = config.getProperty("empresa.logo");
         PDDocument document = new PDDocument();
         PDRectangle pdRectangle = PDRectangle.A4;
@@ -97,11 +98,12 @@ public class FacturaServiceImpl implements FacturaService {
             PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
             // Añadir logo de la empresa en la primera página
             try {
-                PDImageXObject logoImage = PDImageXObject.createFromFile(getClass().getResource(logoPath).getPath(), document);
+                File logoFile = new File("src/main/resources" + logoPath); // Ruta completa
+                PDImageXObject logoImage = PDImageXObject.createFromFile(logoFile.getAbsolutePath(), document);
                 contentStream.drawImage(logoImage, 50, yStart - 80, 80, 80);
             } catch (IOException ex) {
-                Logger.getLogger(ClienteServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar el logo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
 
             // Cargar fuentes
@@ -111,7 +113,6 @@ public class FacturaServiceImpl implements FacturaService {
             PDType0Font segoeUIFontBold = PDType0Font.load(document, fontFileBold);
 
             // Información de la empresa en la primera página
-            
             String[] texts = {
                 config.getProperty("empresa.razon_social").toUpperCase(),
                 "RIF: " + config.getProperty("empresa.rif.tipo_doc").toUpperCase() + "-" + config.getProperty("empresa.rif.nro_doc"),
@@ -135,25 +136,24 @@ public class FacturaServiceImpl implements FacturaService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = Color.decode("#"+config.getProperty("configuracion.colorEncabezado").toUpperCase());
-            Color white = Color.decode("#"+config.getProperty("configuracion.colorTitulo").toUpperCase());
-            Color black = Color.decode("#"+config.getProperty("configuracion.colorRegistros").toUpperCase());
+            Color orange = Color.decode("#" + config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#" + config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#" + config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"Id", "Cliente", "Documento", "Subtotal", "Impuesto", "Total", "Fecha"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
-                                        tableWidth * 0.05f, //id
-                                        tableWidth * 0.18f,  //Cliente
-                                        tableWidth * 0.11f,  //Documento
-                                        tableWidth * 0.2f, //Subtotal
-                                        tableWidth * 0.16f, //Impuesto
-                                        tableWidth * 0.2f, //Total
-                                        tableWidth * 0.1f  //fecha
+                tableWidth * 0.05f, //id
+                tableWidth * 0.18f, //Cliente
+                tableWidth * 0.11f, //Documento
+                tableWidth * 0.2f, //Subtotal
+                tableWidth * 0.16f, //Impuesto
+                tableWidth * 0.2f, //Total
+                tableWidth * 0.1f //fecha
             };
             float yPosition = 670;
             int fontSize = 8;
             PDFboxUtils.drawTableHeaders(contentStream, segoeUIFontBold, fontSize, headers, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
-           
 
             List<Factura> facturas = facturaDAO.mostrarLista();
             for (Factura factura : facturas) {
@@ -164,16 +164,16 @@ public class FacturaServiceImpl implements FacturaService {
                 Cliente cliente = SistemaPrincipal.getClienteService().buscarClientePorId(String.valueOf(factura.getCliente_idCliente()));
                 ///
                 double subtotal = factura.getSubtotal();
-                String subtotalFactura = String.format("%.2f Bs (%.2f USD)", subtotal*tasa, subtotal);
+                String subtotalFactura = String.format("%.2f Bs (%.2f USD)", subtotal * tasa, subtotal);
                 double iva = factura.getImpuesto();
-                String impuesto = String.format("%.2f Bs (%.2f USD)", iva*tasa, iva);
+                String impuesto = String.format("%.2f Bs (%.2f USD)", iva * tasa, iva);
                 double total = factura.getTotalFactura();
-                String monto = String.format("%.2f Bs (%.2f USD)", total*tasa, total);
+                String monto = String.format("%.2f Bs (%.2f USD)", total * tasa, total);
                 ///
                 String[] rows = {
                     String.valueOf(factura.getIdFactura()),
-                    cliente.getNombre()+(cliente.getApellido() != null ? " " + cliente.getApellido() : ""),
-                    cliente.getTipo_doc()+"-"+cliente.getNro_doc(),
+                    cliente.getNombre() + (cliente.getApellido() != null ? " " + cliente.getApellido() : ""),
+                    cliente.getTipo_doc() + "-" + cliente.getNro_doc(),
                     subtotalFactura,
                     impuesto,
                     monto,
@@ -193,7 +193,7 @@ public class FacturaServiceImpl implements FacturaService {
                         String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2024");
                         PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer2, 8, 10, pageWidth);
                         contentStream.close();
-                        
+
                         //////
                         page = PDFboxUtils.createNewPage(document, pdRectangle);
                         contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
@@ -249,9 +249,9 @@ public class FacturaServiceImpl implements FacturaService {
             Cliente cliente = SistemaPrincipal.getClienteService().buscarClientePorId(String.valueOf(factura.getCliente_idCliente()));
             Object[] fila = new Object[11];
             fila[0] = factura.getIdFactura();
-            fila[1] = cliente.getNombre() + 
-          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
-            fila[2] = cliente.getTipo_doc()+cliente.getNro_doc();
+            fila[1] = cliente.getNombre()
+                    + (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[2] = cliente.getTipo_doc() + cliente.getNro_doc();
             fila[3] = String.format("%.2f", factura.getCantidad()); // Formateo a 2 decimales
             fila[4] = String.format("%.2f", factura.getSubtotal()); // Formateo a 2 decimales
             fila[5] = String.format("%.2f", factura.getImpuesto()); // Formateo a 2 decimales
@@ -288,9 +288,9 @@ public class FacturaServiceImpl implements FacturaService {
             Cliente cliente = SistemaPrincipal.getClienteService().buscarClientePorId(String.valueOf(factura.getCliente_idCliente()));
             Object[] fila = new Object[11];
             fila[0] = factura.getIdFactura();
-            fila[1] = cliente.getNombre() + 
-          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
-            fila[2] = cliente.getTipo_doc()+cliente.getNro_doc();
+            fila[1] = cliente.getNombre()
+                    + (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[2] = cliente.getTipo_doc() + cliente.getNro_doc();
             fila[3] = String.format("%.2f", factura.getCantidad()); // Formateo a 2 decimales
             fila[4] = String.format("%.2f", factura.getSubtotal()); // Formateo a 2 decimales
             fila[5] = String.format("%.2f", factura.getImpuesto()); // Formateo a 2 decimales

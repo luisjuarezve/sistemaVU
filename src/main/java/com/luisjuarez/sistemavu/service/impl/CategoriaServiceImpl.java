@@ -62,7 +62,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     public List<Categoria> buscarCategoriasPorPalabraClave(String palabraClave) {
         return categoriaDAO.buscarPorPalabraClave(palabraClave);
     }
-    
+
     @Override
     public void modificarCategoria(String categoriaID, Categoria categoria) {
         categoria.setIdCategoria(Integer.parseInt(categoriaID));
@@ -83,6 +83,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     @Override
     public void reporteCategoriasPDF(String destino) throws SQLException {
         ConfigProperties config = new ConfigProperties();
+        config.recargarArchivo();
         String logoPath = config.getProperty("empresa.logo");
         PDDocument document = new PDDocument();
         PDRectangle pdRectangle = PDRectangle.A4;
@@ -97,11 +98,12 @@ public class CategoriaServiceImpl implements CategoriaService {
             PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
             // Añadir logo de la empresa en la primera página
             try {
-                PDImageXObject logoImage = PDImageXObject.createFromFile(getClass().getResource(logoPath).getPath(), document);
+                File logoFile = new File("src/main/resources" + logoPath); // Ruta completa
+                PDImageXObject logoImage = PDImageXObject.createFromFile(logoFile.getAbsolutePath(), document);
                 contentStream.drawImage(logoImage, 50, yStart - 80, 80, 80);
             } catch (IOException ex) {
-                Logger.getLogger(ClienteServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar el logo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
 
             // Cargar fuentes
@@ -134,9 +136,9 @@ public class CategoriaServiceImpl implements CategoriaService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = Color.decode("#"+config.getProperty("configuracion.colorEncabezado").toUpperCase());
-            Color white = Color.decode("#"+config.getProperty("configuracion.colorTitulo").toUpperCase());
-            Color black = Color.decode("#"+config.getProperty("configuracion.colorRegistros").toUpperCase());
+            Color orange = Color.decode("#" + config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#" + config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#" + config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"id", "Nombre", "Descripcion"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
@@ -151,7 +153,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
             List<Categoria> categorias = SistemaPrincipal.getCategoriaService().mostrarLista();
             for (Categoria categoria : categorias) {
-               
+
                 String[] rows = {
                     String.valueOf(categoria.getIdCategoria()),
                     categoria.getNombre(),
@@ -206,10 +208,10 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public void cargarTabla(JTable tabla) throws SQLException {
-       DefaultTableModel model = new DefaultTableModel(
+        DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Id","Nombre", "Descripción"
+                    "Id", "Nombre", "Descripción"
                 }
         ) {
 
@@ -238,7 +240,7 @@ public class CategoriaServiceImpl implements CategoriaService {
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Id","Nombre", "Descripción"
+                    "Id", "Nombre", "Descripción"
                 }
         ) {
 
@@ -262,5 +264,4 @@ public class CategoriaServiceImpl implements CategoriaService {
         JTableUtils.ajustarAnchoCelda(tabla);
     }
 
-    
 }

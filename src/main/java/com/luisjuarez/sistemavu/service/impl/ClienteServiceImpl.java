@@ -75,6 +75,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void reporteClientesPDF(String destino) throws SQLException {
         ConfigProperties config = new ConfigProperties();
+        config.recargarArchivo();
         String logoPath = config.getProperty("empresa.logo");
         PDDocument document = new PDDocument();
         PDRectangle pdRectangle = PDRectangle.A4;
@@ -89,11 +90,12 @@ public class ClienteServiceImpl implements ClienteService {
             PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
             // Añadir logo de la empresa en la primera página
             try {
-                PDImageXObject logoImage = PDImageXObject.createFromFile(getClass().getResource(logoPath).getPath(), document);
+                File logoFile = new File("src/main/resources" + logoPath); // Ruta completa
+                PDImageXObject logoImage = PDImageXObject.createFromFile(logoFile.getAbsolutePath(), document);
                 contentStream.drawImage(logoImage, 50, yStart - 80, 80, 80);
             } catch (IOException ex) {
-                Logger.getLogger(ClienteServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al cargar el logo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
 
             // Cargar fuentes
@@ -103,7 +105,6 @@ public class ClienteServiceImpl implements ClienteService {
             PDType0Font segoeUIFontBold = PDType0Font.load(document, fontFileBold);
 
             // Información de la empresa en la primera página
-            
             String[] texts = {
                 config.getProperty("empresa.razon_social").toUpperCase(),
                 "RIF: " + config.getProperty("empresa.rif.tipo_doc").toUpperCase() + "-" + config.getProperty("empresa.rif.nro_doc"),
@@ -127,36 +128,35 @@ public class ClienteServiceImpl implements ClienteService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = Color.decode("#"+config.getProperty("configuracion.colorEncabezado").toUpperCase());
-            Color white = Color.decode("#"+config.getProperty("configuracion.colorTitulo").toUpperCase());
-            Color black = Color.decode("#"+config.getProperty("configuracion.colorRegistros").toUpperCase());
+            Color orange = Color.decode("#" + config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#" + config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#" + config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"T", "N° Doc", "Razon Social", "Telefono", "Direccion", "Correo", "F. Registro"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
-                                        tableWidth * 0.05f, //ttipo
-                                        tableWidth * 0.1f,  //nro doc
-                                        tableWidth * 0.2f,  //razon
-                                        tableWidth * 0.1f,  //tel
-                                        tableWidth * 0.25f,  //dir
-                                        tableWidth * 0.2f, //correo
-                                        tableWidth * 0.1f   //f registro
-                                    };
+                tableWidth * 0.05f, //ttipo
+                tableWidth * 0.1f, //nro doc
+                tableWidth * 0.2f, //razon
+                tableWidth * 0.1f, //tel
+                tableWidth * 0.25f, //dir
+                tableWidth * 0.2f, //correo
+                tableWidth * 0.1f //f registro
+            };
             float yPosition = 670;
             int fontSize = 8;
             PDFboxUtils.drawTableHeaders(contentStream, segoeUIFontBold, fontSize, headers, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
-           
 
             List<Cliente> clientes = clienteDAO.mostrarLista();
             for (Cliente cliente : clientes) {
                 // Formatear la fecha para mostrar solo la parte de la fecha sin la hora
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String fecha = dateFormat.format(cliente.getFecha_registro());
-                
+
                 String[] rows = {
                     cliente.getTipo_doc(),
                     cliente.getNro_doc(),
-                    cliente.getNombre()+(cliente.getApellido() != null ? " " + cliente.getApellido() : ""),
+                    cliente.getNombre() + (cliente.getApellido() != null ? " " + cliente.getApellido() : ""),
                     cliente.getTelefono(),
                     cliente.getDireccion(),
                     cliente.getCorreo_electronico(),
@@ -176,7 +176,7 @@ public class ClienteServiceImpl implements ClienteService {
                         String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2024");
                         PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer2, 8, 10, pageWidth);
                         contentStream.close();
-                        
+
                         //////
                         page = PDFboxUtils.createNewPage(document, pdRectangle);
                         contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.OVERWRITE, true, true);
@@ -209,13 +209,13 @@ public class ClienteServiceImpl implements ClienteService {
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     @Override
     public void cargarTabla(JTable tabla) {
         DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Id","Tipo Doc", "Número Doc", "Razón Social", "Teléfono", "Correo Electrónico", "Dirección", "Comentarios","Fecha Registro"
+                    "Id", "Tipo Doc", "Número Doc", "Razón Social", "Teléfono", "Correo Electrónico", "Dirección", "Comentarios", "Fecha Registro"
                 }
         ) {
 
@@ -233,8 +233,8 @@ public class ClienteServiceImpl implements ClienteService {
             fila[0] = cliente.getIdCliente();
             fila[1] = cliente.getTipo_doc();
             fila[2] = cliente.getNro_doc();
-            fila[3] = cliente.getNombre() + 
-          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[3] = cliente.getNombre()
+                    + (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
             fila[4] = cliente.getTelefono();
             fila[5] = cliente.getCorreo_electronico();
             fila[6] = cliente.getDireccion();
@@ -248,10 +248,10 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void cargarTabla(JTable tabla, String palabraClave) throws SQLException {
-         DefaultTableModel model = new DefaultTableModel(
+        DefaultTableModel model = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Id","Tipo Doc", "Número Doc", "Razón Social", "Teléfono", "Correo Electrónico", "Dirección", "Comentarios","Fecha Registro"
+                    "Id", "Tipo Doc", "Número Doc", "Razón Social", "Teléfono", "Correo Electrónico", "Dirección", "Comentarios", "Fecha Registro"
                 }
         ) {
 
@@ -269,8 +269,8 @@ public class ClienteServiceImpl implements ClienteService {
             fila[0] = cliente.getIdCliente();
             fila[1] = cliente.getTipo_doc();
             fila[2] = cliente.getNro_doc();
-            fila[3] = cliente.getNombre() + 
-          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[3] = cliente.getNombre()
+                    + (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
             fila[4] = cliente.getTelefono();
             fila[5] = cliente.getCorreo_electronico();
             fila[6] = cliente.getDireccion();
