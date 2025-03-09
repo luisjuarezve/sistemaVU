@@ -4,6 +4,7 @@ import com.luisjuarez.sistemavu.model.Factura;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
+import javax.swing.JTable;
 
 public interface FacturaService {
     void registrarFactura(Factura factura);
@@ -15,4 +16,6 @@ public interface FacturaService {
     void modificarFactura(Factura factura);
     void eliminarFactura(int id);
     void reporteFacturasPDF(String destino) throws SQLException;
+    void cargarTabla(JTable tabla) throws SQLException;
+    void cargarTabla(JTable tabla, String palabraClave) throws SQLException;
 }

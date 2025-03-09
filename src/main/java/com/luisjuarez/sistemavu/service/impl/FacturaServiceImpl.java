@@ -3,8 +3,11 @@ package com.luisjuarez.sistemavu.service.impl;
 import com.luisjuarez.sistemavu.config.ConfigProperties;
 import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.Factura;
+import com.luisjuarez.sistemavu.model.Inventario;
+import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.persistence.FacturaDAO;
 import com.luisjuarez.sistemavu.service.FacturaService;
+import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
@@ -20,6 +23,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -219,5 +224,83 @@ public class FacturaServiceImpl implements FacturaService {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id", "Cliente", "Documento", "cantidad", "Subtotal", "Impuesto", "Total", "Fecha"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Factura> listaFacturas = mostrarListaFacturas();
+        for (Factura factura : listaFacturas) {
+            Cliente cliente = SistemaPrincipal.getClienteService().buscarClientePorId(String.valueOf(factura.getCliente_idCliente()));
+            Object[] fila = new Object[11];
+            fila[0] = factura.getIdFactura();
+            fila[1] = cliente.getNombre() + 
+          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[2] = cliente.getTipo_doc()+cliente.getNro_doc();
+            fila[3] = String.format("%.2f", factura.getCantidad()); // Formateo a 2 decimales
+            fila[4] = String.format("%.2f", factura.getSubtotal()); // Formateo a 2 decimales
+            fila[5] = String.format("%.2f", factura.getImpuesto()); // Formateo a 2 decimales
+            fila[6] = String.format("%.2f", factura.getTotalFactura());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            fila[7] = factura.getFecha() != null
+                    ? dateFormat.format(factura.getFecha())
+                    : "";
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla, String palabraClave) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id", "Cliente", "Documento", "cantidad", "Subtotal", "Impuesto", "Total", "Fecha"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<Factura> listaFacturas = buscarFacturasPorClienteId(Integer.parseInt(palabraClave));
+        for (Factura factura : listaFacturas) {
+            Cliente cliente = SistemaPrincipal.getClienteService().buscarClientePorId(String.valueOf(factura.getCliente_idCliente()));
+            Object[] fila = new Object[11];
+            fila[0] = factura.getIdFactura();
+            fila[1] = cliente.getNombre() + 
+          (cliente.getApellido() != null ? " " + cliente.getApellido() : "");
+            fila[2] = cliente.getTipo_doc()+cliente.getNro_doc();
+            fila[3] = String.format("%.2f", factura.getCantidad()); // Formateo a 2 decimales
+            fila[4] = String.format("%.2f", factura.getSubtotal()); // Formateo a 2 decimales
+            fila[5] = String.format("%.2f", factura.getImpuesto()); // Formateo a 2 decimales
+            fila[6] = String.format("%.2f", factura.getTotalFactura());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            fila[7] = factura.getFecha() != null
+                    ? dateFormat.format(factura.getFecha())
+                    : "";
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
     }
 }
