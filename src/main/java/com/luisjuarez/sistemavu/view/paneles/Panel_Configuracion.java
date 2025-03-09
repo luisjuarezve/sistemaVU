@@ -53,7 +53,7 @@ public class Panel_Configuracion extends javax.swing.JPanel {
         btn_Respaldar.setBackground(new java.awt.Color(153, 204, 255));
         btn_Respaldar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_Respaldar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Respaldar.setText("Taza del dia");
+        btn_Respaldar.setText("Tasa del día");
         btn_Respaldar.setFocusable(false);
         btn_Respaldar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_Respaldar.setPreferredSize(new java.awt.Dimension(120, 60));
@@ -112,7 +112,7 @@ public class Panel_Configuracion extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Configuracion");
+        jLabel1.setText("Configuración");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

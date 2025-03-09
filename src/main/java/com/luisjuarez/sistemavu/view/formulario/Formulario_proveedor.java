@@ -307,12 +307,6 @@ public class Formulario_proveedor extends javax.swing.JFrame {
             return;
         }
 
-        // Validar que los nombres y apellidos sean solo letras
-        if (!nombre.matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(null, "El nombre solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
         if (!apellido.isEmpty() && !apellido.matches("[a-zA-Z]+")) {
             JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;

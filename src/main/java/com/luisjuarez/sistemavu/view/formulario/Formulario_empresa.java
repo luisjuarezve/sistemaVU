@@ -4,11 +4,15 @@
  */
 package com.luisjuarez.sistemavu.view.formulario;
 
+import com.luisjuarez.sistemavu.config.ConfigProperties;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Helen
  */
 public class Formulario_empresa extends javax.swing.JFrame {
+    private ConfigProperties config; 
 
     /**
      * Creates new form Formulario_Cliente
@@ -16,6 +20,10 @@ public class Formulario_empresa extends javax.swing.JFrame {
     public Formulario_empresa() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        config = new ConfigProperties();
+        config.recargarArchivo();
+        recargarCampos();
     }
 
     /**
@@ -41,8 +49,6 @@ public class Formulario_empresa extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -62,10 +68,8 @@ public class Formulario_empresa extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 255, 255));
@@ -183,27 +187,6 @@ public class Formulario_empresa extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jTextField3, gridBagConstraints);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("Direccion:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jLabel6, gridBagConstraints);
-
-        jTextField4.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField4.setPreferredSize(new java.awt.Dimension(140, 25));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
-        jPanel2.add(jTextField4, gridBagConstraints);
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Correo electronico:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -229,14 +212,14 @@ public class Formulario_empresa extends javax.swing.JFrame {
         jLabel9.setText("Codigo postal:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel9, gridBagConstraints);
 
         jTextField7.setPreferredSize(new java.awt.Dimension(140, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
         jPanel2.add(jTextField7, gridBagConstraints);
 
@@ -263,13 +246,13 @@ public class Formulario_empresa extends javax.swing.JFrame {
         jLabel10.setText("Sector");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         jPanel2.add(jLabel10, gridBagConstraints);
 
         jTextField9.setPreferredSize(new java.awt.Dimension(140, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(jTextField9, gridBagConstraints);
 
@@ -292,15 +275,14 @@ public class Formulario_empresa extends javax.swing.JFrame {
         jLabel17.setText("Estado");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        gridBagConstraints.gridy = 4;
         jPanel2.add(jLabel17, gridBagConstraints);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Amazonas", "Anzoategui", "Apure", "Aragua", "Barinas", "Bolivar", "Carabobo", "Cojedes", "Delta Amacuro", "Falcon", "Guarico", "Lara", "Merida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Tachira", "Trujillo", "Vargas", "Yaracuy", "Zulia" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "AMAZONAS", "ANZOATEGUI", "APURE", "ARAGUA", "BARINAS", "BOLIVAR", "CARABOBO", "COJEDES", "DELTA AMACURO", "FALCON", "GUARICO", "LARA", "MERIDA", "MIRANDA", "MONAGAS", "NUEVA ESPARTA", "PORTUGUESA", "SUCRE", "TACHIRA", "TRUJILLO", "VARGAS", "YARACUY", "ZULIA" }));
         jComboBox2.setPreferredSize(new java.awt.Dimension(140, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jPanel2.add(jComboBox2, gridBagConstraints);
 
@@ -366,17 +348,6 @@ public class Formulario_empresa extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel3.add(jButton2, gridBagConstraints);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boton-eliminar.png"))); // NOI18N
-        jButton3.setPreferredSize(new java.awt.Dimension(75, 65));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel3.add(jButton3, gridBagConstraints);
-
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
         pack();
@@ -395,20 +366,64 @@ public class Formulario_empresa extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String calle = jTextField10.getText().toUpperCase();
+        String casa = jTextField3.getText().toUpperCase();
+        String ciudad = jTextField2.getText().toUpperCase();
+        String codigoPostal = jTextField7.getText().toUpperCase();
+        String correo = jTextField5.getText().toUpperCase();
+        String estado = jComboBox2.getSelectedItem().toString().toUpperCase();
+        String razon = jTextField1.getText().toUpperCase();
+        String nroDoc = jTextField6.getText().toUpperCase();
+        String tipoDoc = jComboBox1.getSelectedItem().toString().toUpperCase();
+        String sector = jTextField9.getText().toUpperCase();
+        String telefono = jTextField8.getText().toUpperCase();
+
+        if (calle.isEmpty() || casa.isEmpty() || ciudad.isEmpty() || codigoPostal.isEmpty() || correo.isEmpty()
+                || estado.isEmpty() || razon.isEmpty() || nroDoc.isEmpty() || tipoDoc.isEmpty() || sector.isEmpty() || telefono.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución
+        }
+
+        if (!nroDoc.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El número de documento (RIF) debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución
+        }
+
+        if (!telefono.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El número de teléfono debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución
+        }
+
+        if (!correo.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$")) {
+            JOptionPane.showMessageDialog(null, "El correo electrónico no tiene un formato válido", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución
+        }
+
+        if (jComboBox1.getSelectedIndex() == 0 || jComboBox2.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un valor válido en los campos desplegables", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución
+        }
+        config.setProperty("empresa.calle", calle);
+        config.setProperty("empresa.casa", casa);
+        config.setProperty("empresa.ciudad", ciudad);
+        config.setProperty("empresa.codigo_postal", codigoPostal);
+        config.setProperty("empresa.correo", correo);
+        config.setProperty("empresa.estado", estado);
+        config.setProperty("empresa.razon_social", razon);
+        config.setProperty("empresa.rif.nro_doc", nroDoc);
+        config.setProperty("empresa.rif.tipo_doc", tipoDoc);
+        config.setProperty("empresa.sector", sector);
+        config.setProperty("empresa.telefono", telefono);
+        config.saveProperties();
+        JOptionPane.showMessageDialog(null, "¡Los campos se actualizaron exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        config.recargarArchivo();
+        this.dispose();
+        //config.setProperty("empresa.logo", "/images/nuevo_logo.png");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
         // TODO add your handling code here:
@@ -418,12 +433,10 @@ public class Formulario_empresa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -438,7 +451,6 @@ public class Formulario_empresa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -450,11 +462,26 @@ public class Formulario_empresa extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+    private void recargarCampos() {
+        config.recargarArchivo();
+        // Vuelve a cargar las propiedades del archivo
+        jTextField10.setText(config.getProperty("empresa.calle")); // Calle
+        jTextField3.setText(config.getProperty("empresa.casa")); // Casa
+        jTextField2.setText(config.getProperty("empresa.ciudad")); // Ciudad
+        jTextField7.setText(config.getProperty("empresa.codigo_postal")); // Código Postal
+        jTextField5.setText(config.getProperty("empresa.correo")); // Correo
+        jComboBox2.setSelectedItem(config.getProperty("empresa.estado")); // Estado
+        jTextField1.setText(config.getProperty("empresa.razon_social")); // Razón Social
+        jTextField6.setText(config.getProperty("empresa.rif.nro_doc")); // Número de Documento
+        jComboBox1.setSelectedItem(config.getProperty("empresa.rif.tipo_doc")); // Tipo de Documento
+        jTextField9.setText(config.getProperty("empresa.sector")); // Sector
+        jTextField8.setText(config.getProperty("empresa.telefono")); // Teléfono
+    }
+
 }

@@ -12,7 +12,7 @@ public class ClienteDAOImplMariaDB implements ClienteDAO {
 
     @Override
     public void registrar(Cliente cliente) {
-        String sql = "INSERT INTO cliente (tipo_doc, nro_doc, nombre, apellido, telefono, direccion, correo_electronico, fecha_registro, notas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cliente (tipo_doc, nro_doc, nombre, apellido, telefono, direccion, correo_electronico, notas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cliente.getTipo_doc());
             stmt.setString(2, cliente.getNro_doc());
@@ -21,8 +21,7 @@ public class ClienteDAOImplMariaDB implements ClienteDAO {
             stmt.setString(5, cliente.getTelefono());
             stmt.setString(6, cliente.getDireccion());
             stmt.setString(7, cliente.getCorreo_electronico());
-            stmt.setTimestamp(8, cliente.getFecha_registro());
-            stmt.setString(9, cliente.getNotas());
+            stmt.setString(8, cliente.getNotas());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

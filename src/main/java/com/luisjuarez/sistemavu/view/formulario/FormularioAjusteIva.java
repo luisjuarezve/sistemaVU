@@ -40,8 +40,9 @@ public class FormularioAjusteIva extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         roundedButton1 = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 300));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new java.awt.GridBagLayout());

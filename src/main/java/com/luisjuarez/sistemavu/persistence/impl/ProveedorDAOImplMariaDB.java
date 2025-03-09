@@ -12,7 +12,7 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
 
     @Override
     public void registrar(Proveedor proveedor) {
-        String sql = "INSERT INTO proveedor (tipo_doc, nro_doc, nombre, apellido, telefono, correo_electronico, direccion, notas, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO proveedor (tipo_doc, nro_doc, nombre, apellido, telefono, correo_electronico, direccion, notas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, proveedor.getTipo_doc());
@@ -23,7 +23,6 @@ public class ProveedorDAOImplMariaDB implements ProveedorDAO {
             ps.setString(6, proveedor.getCorreo_electronico());
             ps.setString(7, proveedor.getDireccion());
             ps.setString(8, proveedor.getNotas());
-            ps.setTimestamp(9, proveedor.getFecha_registro());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

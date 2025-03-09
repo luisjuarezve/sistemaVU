@@ -318,13 +318,8 @@ public class Formulario_Cliente extends javax.swing.JFrame {
             return;
         }
 
-        // Validar que los nombres y apellidos sean solo letras
-        if (!nombre.matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(null, "El nombre solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
-        if (!apellido.isEmpty() && !apellido.matches("[a-zA-Z]+")) {
+        if (!apellido.matches("[a-zA-Z]+")) {
             JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -341,9 +336,8 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         cliente.setDireccion(direccion);
         cliente.setCorreo_electronico(correoElectronico);
         cliente.setNotas(notas);
-        
-        SistemaPrincipal.getClienteService().registrarCliente(cliente);
 
+        SistemaPrincipal.getClienteService().registrarCliente(cliente);
         try {
             SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
         } catch (SQLException ex) {
@@ -351,11 +345,6 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         }
 
         this.dispose();
-
-
-    
-    
-    
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
