@@ -13,5 +13,6 @@ public interface EmpleadoService {
     Empleado inicioSesion(String usuario, String contrasena);
     Empleado buscarEmpleadoPorCorreo(String correo);
     List<Empleado> buscarEmpleadosPorPalabraClave(String palabraClave);
+    Empleado autenticar(String usuario, String contraseña);
     void reporteEmpleadosPDF(String destino) throws SQLException;
 }

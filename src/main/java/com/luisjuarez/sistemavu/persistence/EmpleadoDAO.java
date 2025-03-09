@@ -12,4 +12,5 @@ public interface EmpleadoDAO {
     Empleado inicioSesion(String usuario, String contrasena);
     Empleado buscarPorCorreo(String correo);
     List<Empleado> buscarPorPalabraClave(String palabraClave);
+    Empleado autenticar(String usuario, String contrasena);
 }

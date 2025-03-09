@@ -44,6 +44,7 @@ com\luisjuarez\sistemavu\view\Login$7.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Categoria$2.class
 com\luisjuarez\sistemavu\persistence\impl\ContactoProveedorDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$4.class
+com\luisjuarez\sistemavu\view\formulario\FormularioRecuperarContrasena$2.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$5.class
 com\luisjuarez\sistemavu\model\Categoria.class
 com\luisjuarez\sistemavu\SistemaVU.class
@@ -68,6 +69,7 @@ com\luisjuarez\sistemavu\service\impl\ProveedorServiceImpl.class
 com\luisjuarez\sistemavu\persistence\impl\DetalleFacturaDAOImplMariaDB.class
 com\luisjuarez\sistemavu\persistence\ConexionBDDMysql.class
 com\luisjuarez\sistemavu\view\Login$2.class
+com\luisjuarez\sistemavu\view\formulario\FormularioRecuperarContrasena$3.class
 com\luisjuarez\sistemavu\model\ContactoProveedor.class
 com\luisjuarez\sistemavu\service\PermisoService.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña.class

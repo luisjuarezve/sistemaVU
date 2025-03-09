@@ -15,8 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -202,5 +200,10 @@ public class EmpleadoServiceImpl implements EmpleadoService {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public Empleado autenticar(String usuario, String contraseña) {
+       return empleadoDAO.autenticar(usuario, contraseña);
     }
 }

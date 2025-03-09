@@ -6,16 +6,18 @@ package com.luisjuarez.sistemavu.view.formulario;
 
 import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Helen
  */
-
 public class FormularioRecuperarContrasena extends javax.swing.JFrame {
-    
+
     private Empleado empleado;
+
     /**
      * Creates new form FormularioTasaDolar
      */
@@ -67,6 +69,11 @@ public class FormularioRecuperarContrasena extends javax.swing.JFrame {
 
         jPasswordField1.setMinimumSize(new java.awt.Dimension(94, 26));
         jPasswordField1.setPreferredSize(new java.awt.Dimension(94, 26));
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -82,6 +89,11 @@ public class FormularioRecuperarContrasena extends javax.swing.JFrame {
 
         jPasswordField2.setMinimumSize(new java.awt.Dimension(94, 26));
         jPasswordField2.setPreferredSize(new java.awt.Dimension(94, 26));
+        jPasswordField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField2KeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
@@ -127,7 +139,7 @@ public class FormularioRecuperarContrasena extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
-        
+
         boolean datosValidos = false; // Variable para controlar la validez de los datos
 
         while (!datosValidos) { // Mantener el bucle hasta que los datos sean válidos
@@ -153,6 +165,64 @@ public class FormularioRecuperarContrasena extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_roundedButton1ActionPerformed
+
+    private void jPasswordField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            boolean datosValidos = false; // Variable para controlar la validez de los datos
+
+            while (!datosValidos) { // Mantener el bucle hasta que los datos sean válidos
+                String password = new String(jPasswordField1.getPassword());
+                String repassword = new String(jPasswordField2.getPassword());
+
+                // Validar que las contraseñas no estén vacías
+                if (password.isEmpty() || repassword.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Los campos de contraseña no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Detener la ejecución
+                }
+
+                // Validar que las contraseñas sean iguales
+                if (password.equals(repassword)) {
+                    empleado.setContrasena(password);
+                    SistemaPrincipal.getEmpleadoService().modificarEmpleado(empleado);
+                    JOptionPane.showMessageDialog(this, "La contraseña se actualizó correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    datosValidos = true; // Salir del bucle
+                } else {
+                    JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    break; // Permite reintentar ingresando contraseñas
+                }
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_jPasswordField2KeyPressed
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            boolean datosValidos = false; // Variable para controlar la validez de los datos
+
+            while (!datosValidos) { // Mantener el bucle hasta que los datos sean válidos
+                String password = new String(jPasswordField1.getPassword());
+                String repassword = new String(jPasswordField2.getPassword());
+
+                // Validar que las contraseñas no estén vacías
+                if (password.isEmpty() || repassword.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Los campos de contraseña no pueden estar vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Detener la ejecución
+                }
+
+                // Validar que las contraseñas sean iguales
+                if (password.equals(repassword)) {
+                    empleado.setContrasena(password);
+                    SistemaPrincipal.getEmpleadoService().modificarEmpleado(empleado);
+                    JOptionPane.showMessageDialog(this, "La contraseña se actualizó correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    datosValidos = true; // Salir del bucle
+                } else {
+                    JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    break; // Permite reintentar ingresando contraseñas
+                }
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_jPasswordField1KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

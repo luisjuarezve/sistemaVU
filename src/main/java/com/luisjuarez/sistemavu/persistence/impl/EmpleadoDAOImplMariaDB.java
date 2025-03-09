@@ -13,8 +13,7 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     @Override
     public void registrar(Empleado empleado) {
         String sql = "INSERT INTO empleado (nombre, apellido, usuario, contrasena, correo) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, empleado.getNombre());
             stmt.setString(2, empleado.getApellido());
             stmt.setString(3, empleado.getUsuario());
@@ -29,18 +28,17 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     @Override
     public Empleado buscarPorId(int id) {
         String sql = "SELECT * FROM empleado WHERE idEmpleado = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return new Empleado(
-                    rs.getInt("idEmpleado"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("usuario"),
-                    rs.getString("contrasena"),
-                    rs.getString("correo")
+                        rs.getInt("idEmpleado"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("correo")
                 );
             }
         } catch (SQLException e) {
@@ -53,17 +51,15 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     public List<Empleado> mostrarLista() {
         List<Empleado> empleados = new ArrayList<>();
         String sql = "SELECT * FROM empleado";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 empleados.add(new Empleado(
-                    rs.getInt("idEmpleado"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("usuario"),
-                    rs.getString("contrasena"),
-                    rs.getString("correo")
+                        rs.getInt("idEmpleado"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("correo")
                 ));
             }
         } catch (SQLException e) {
@@ -75,8 +71,7 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     @Override
     public void modificar(Empleado empleado) {
         String sql = "UPDATE empleado SET nombre = ?, apellido = ?, usuario = ?, contrasena = ?, correo = ? WHERE idEmpleado = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, empleado.getNombre());
             stmt.setString(2, empleado.getApellido());
             stmt.setString(3, empleado.getUsuario());
@@ -92,8 +87,7 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     @Override
     public void eliminar(int id) {
         String sql = "DELETE FROM empleado WHERE idEmpleado = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -104,19 +98,18 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     @Override
     public Empleado inicioSesion(String usuario, String contrasena) {
         String sql = "SELECT * FROM empleado WHERE usuario = ? AND contrasena = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, usuario);
             stmt.setString(2, contrasena);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return new Empleado(
-                    rs.getInt("idEmpleado"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("usuario"),
-                    rs.getString("contrasena"),
-                    rs.getString("correo")
+                        rs.getInt("idEmpleado"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("correo")
                 );
             }
         } catch (SQLException e) {
@@ -128,18 +121,17 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     @Override
     public Empleado buscarPorCorreo(String correo) {
         String sql = "SELECT * FROM empleado WHERE correo = ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, correo);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return new Empleado(
-                    rs.getInt("idEmpleado"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("usuario"),
-                    rs.getString("contrasena"),
-                    rs.getString("correo")
+                        rs.getInt("idEmpleado"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("correo")
                 );
             }
         } catch (SQLException e) {
@@ -152,20 +144,19 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     public List<Empleado> buscarPorPalabraClave(String palabraClave) {
         List<Empleado> empleados = new ArrayList<>();
         String sql = "SELECT * FROM empleado WHERE nombre LIKE ? OR apellido LIKE ? OR correo LIKE ?";
-        try (Connection conn = ConexionBDDMysql.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, "%" + palabraClave + "%");
             stmt.setString(2, "%" + palabraClave + "%");
             stmt.setString(3, "%" + palabraClave + "%");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 empleados.add(new Empleado(
-                    rs.getInt("idEmpleado"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("usuario"),
-                    rs.getString("contrasena"),
-                    rs.getString("correo")
+                        rs.getInt("idEmpleado"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("correo")
                 ));
             }
         } catch (SQLException e) {
@@ -173,4 +164,35 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
         }
         return empleados;
     }
+
+    @Override
+    public Empleado autenticar(String usuario, String contrasena) {
+        String sql = "SELECT * FROM empleado WHERE usuario = ? AND contrasena = ?";
+        Empleado empleado = null;
+
+        try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, usuario); // Asignar el usuario al primer parámetro
+            stmt.setString(2, contrasena); // Asignar la contraseña al segundo parámetro
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Crear el objeto Empleado con los datos obtenidos
+                    empleado = new Empleado();
+                    empleado.setIdEmpleado(rs.getInt("idEmpleado"));
+                    empleado.setNombre(rs.getString("nombre"));
+                    empleado.setApellido(rs.getString("apellido"));
+                    empleado.setUsuario(rs.getString("usuario"));
+                    empleado.setContrasena(rs.getString("contrasena"));
+                    empleado.setCorreo(rs.getString("correo"));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return empleado; // Retorna el empleado o null si no se encuentra
+    }
+
 }

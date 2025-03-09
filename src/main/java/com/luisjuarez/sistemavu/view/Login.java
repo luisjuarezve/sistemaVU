@@ -2,6 +2,8 @@ package com.luisjuarez.sistemavu.view;
 
 //import com.luisjuarez.sistemavu.persistence.impl.sqlite3.EmpleadosDAOSqlite3;
 //import com.luisjuarez.sistemavu.service.impl.EmpleadoServiceImpl;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +14,6 @@ public class Login extends javax.swing.JFrame {
 
     //private EmpleadosDAOSqlite3 empleadoDAO = new EmpleadosDAOSqlite3();
     //private EmpleadoServiceImpl empleadoService = new EmpleadoServiceImpl(empleadoDAO);
-
     /**
      * Creates new form NewJFrame
      */
@@ -257,46 +258,52 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         if (!txt_user.getText().equalsIgnoreCase("usuario") && !txt_user.getText().isEmpty() && !new String(txt_password.getPassword()).equalsIgnoreCase("contrasena") && !new String(txt_password.getPassword()).isEmpty()) {
-            /*if (empleadoService.iniciarSesion(txt_user.getText(), new String(txt_password.getPassword())) != null) {
+            if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
                 lbl_error.setForeground(Color.white);
+                SistemaPrincipal sp = new SistemaPrincipal();
+                sp.setVisible(true);
                 this.dispose();
             } else {
                 lbl_error.setForeground(Color.red);
-            }*/
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Debes ingresar el usuario y la contraseña", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btn_loginActionPerformed
-    
+
     private void txt_userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_userKeyPressed
-        if (evt.getKeyCode() == 10) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String username = txt_user.getText();
             String password = new String(txt_password.getPassword());
             if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                /*if (empleadoService.iniciarSesion(username, password) != null) {
+                if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
                     lbl_error.setForeground(Color.white);
+                    SistemaPrincipal sp = new SistemaPrincipal();
+                    sp.setVisible(true);
                     this.dispose();
                 } else {
                     lbl_error.setForeground(Color.red);
-                }*/
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Debes ingresar el usuario y la contraseña", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_txt_userKeyPressed
 
-        
+
     private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
-        if (evt.getKeyCode() == 10) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String username = txt_user.getText();
             String password = new String(txt_password.getPassword());
             if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                /*if (empleadoService.iniciarSesion(username, password) != null) {
+                if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
                     lbl_error.setForeground(Color.white);
+                    SistemaPrincipal sp = new SistemaPrincipal();
+                    sp.setVisible(true);
                     this.dispose();
                 } else {
                     lbl_error.setForeground(Color.red);
-                }*/
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Debes ingresar el usuario y la contraseña", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -304,16 +311,18 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordKeyPressed
 
     private void btn_loginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_loginKeyPressed
-        if (evt.getKeyCode() == 10) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String username = txt_user.getText();
             String password = new String(txt_password.getPassword());
             if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                /*if (empleadoService.iniciarSesion(username, password) != null) {
+                if (SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword())) != null) {
                     lbl_error.setForeground(Color.white);
+                    SistemaPrincipal sp = new SistemaPrincipal();
+                    sp.setVisible(true);
                     this.dispose();
                 } else {
                     lbl_error.setForeground(Color.red);
-                }*/
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Debes ingresar el usuario y la contraseña", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -325,7 +334,7 @@ public class Login extends javax.swing.JFrame {
         RecuperarContraseña rc = new RecuperarContraseña();
         rc.setVisible(true);
     }//GEN-LAST:event_btn_forgotPasswordActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
