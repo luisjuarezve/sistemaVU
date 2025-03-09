@@ -143,11 +143,12 @@ public class EmpleadoDAOImplMariaDB implements EmpleadoDAO {
     @Override
     public List<Empleado> buscarPorPalabraClave(String palabraClave) {
         List<Empleado> empleados = new ArrayList<>();
-        String sql = "SELECT * FROM empleado WHERE nombre LIKE ? OR apellido LIKE ? OR correo LIKE ?";
+        String sql = "SELECT * FROM empleado WHERE nombre LIKE ? OR apellido LIKE ? OR correo LIKE ? OR idEmpleado LIKE ?";
         try (Connection conn = ConexionBDDMysql.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, "%" + palabraClave + "%");
             stmt.setString(2, "%" + palabraClave + "%");
             stmt.setString(3, "%" + palabraClave + "%");
+            stmt.setString(4, "%" + palabraClave + "%");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 empleados.add(new Empleado(

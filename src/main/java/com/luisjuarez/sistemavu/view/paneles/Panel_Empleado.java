@@ -9,6 +9,8 @@ import com.luisjuarez.sistemavu.view.formulario.Formulario_empleado;
 import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -23,7 +25,12 @@ public class Panel_Empleado extends javax.swing.JPanel {
      * Creates new form Panel_Empleado
      */
     public Panel_Empleado() {
-        initComponents();
+       initComponents();
+        try {
+            SistemaPrincipal.getEmpleadoService().cargarTabla(TableEmpleados);
+        } catch (SQLException ex) {
+            Logger.getLogger(Panel_Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
