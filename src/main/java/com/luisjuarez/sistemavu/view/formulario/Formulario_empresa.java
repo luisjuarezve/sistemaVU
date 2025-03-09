@@ -15,6 +15,7 @@ public class Formulario_empresa extends javax.swing.JFrame {
      */
     public Formulario_empresa() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

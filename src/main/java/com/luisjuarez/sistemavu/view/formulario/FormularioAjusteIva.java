@@ -26,6 +26,7 @@ public class FormularioAjusteIva extends javax.swing.JFrame {
      */
     public FormularioAjusteIva() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     
@@ -67,6 +68,11 @@ public class FormularioAjusteIva extends javax.swing.JFrame {
         roundedButton1.setRoundBottomLeft(10);
         roundedButton1.setRoundBottomRight(10);
         roundedButton1.setRoundTopLeft(10);
+        roundedButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundedButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -86,6 +92,10 @@ public class FormularioAjusteIva extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
+       
+    }//GEN-LAST:event_roundedButton1ActionPerformed
 
 
     

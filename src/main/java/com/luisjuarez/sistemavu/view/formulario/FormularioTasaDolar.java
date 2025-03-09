@@ -26,6 +26,7 @@ public class FormularioTasaDolar extends javax.swing.JFrame {
      */
     public FormularioTasaDolar() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     

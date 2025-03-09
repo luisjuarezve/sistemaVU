@@ -4,17 +4,25 @@
  */
 package com.luisjuarez.sistemavu.view.formulario;
 
+import com.luisjuarez.sistemavu.model.Categoria;
+import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author Helen
  */
 public class Formulario_categorias extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Formulario_Cliente
-     */
-    public Formulario_categorias() {
+          private JTable tableCategoria;
+    public Formulario_categorias(JTable table) {
         initComponents();
+        tableCategoria= table;
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -31,7 +39,6 @@ public class Formulario_categorias extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -72,17 +79,6 @@ public class Formulario_categorias extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel3.add(jButton1, gridBagConstraints);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        jButton2.setPreferredSize(new java.awt.Dimension(75, 65));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel3.add(jButton2, gridBagConstraints);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boton-eliminar.png"))); // NOI18N
         jButton3.setPreferredSize(new java.awt.Dimension(75, 65));
@@ -148,15 +144,57 @@ public class Formulario_categorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       
+
+
+        String nombre = jTextField6.getText();
+        String descripcion = jTextField1.getText();
+
+        
+        
+        
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El nombre no debe estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La descripción no debe estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Pattern pattern = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
+
+        if (!pattern.matcher(nombre).matches()) {
+            JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+
+        if (!pattern.matcher(descripcion).matches()) {
+            JOptionPane.showMessageDialog(this, "La descripción solo debe contener letras.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+
+
+        Categoria categoria = new Categoria();
+        categoria.setNombre(nombre);
+        categoria.setDescripcion(descripcion);
+
+        SistemaPrincipal.getCategoriaService().registrarCategoria(categoria);
+
+        try {
+            SistemaPrincipal.getCategoriaService().cargarTabla(tableCategoria);
+        } catch (SQLException ex) {
+            Logger.getLogger(Formulario_categorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       jTextField6.setText("");
+       jTextField1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -171,7 +209,6 @@ public class Formulario_categorias extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

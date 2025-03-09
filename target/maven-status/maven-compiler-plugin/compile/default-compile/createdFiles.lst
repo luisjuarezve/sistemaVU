@@ -4,6 +4,7 @@ com\luisjuarez\sistemavu\view\formulario\Formulario_categorias$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Categoria$1.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$6.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$3.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Configuracion$3.class
 com\luisjuarez\sistemavu\view\components\CustomTable.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Reportes.class
 com\luisjuarez\sistemavu\view\components\CustomTable$2.class
@@ -32,10 +33,9 @@ com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$1.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$4.class
 com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl$1.class
-com\luisjuarez\sistemavu\view\formulario\Formulario_empleado$6.class
+com\luisjuarez\sistemavu\view\formulario\FormularioAjusteIva$1.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa.class
 com\luisjuarez\sistemavu\service\ContactoProveedorService.class
-com\luisjuarez\sistemavu\view\formulario\Formulario_categorias$5.class
 com\luisjuarez\sistemavu\service\impl\DetalleCompraServiceImpl.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$4.class
 com\luisjuarez\sistemavu\persistence\ImportAllTablesFromCSV.class
@@ -95,6 +95,7 @@ com\luisjuarez\sistemavu\model\Cliente.class
 com\luisjuarez\sistemavu\model\Producto.class
 com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega.class
 com\luisjuarez\sistemavu\service\impl\ProductoServiceImpl$1.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Proveedor$4.class
 com\luisjuarez\sistemavu\view\components\RoundedButton.class
 com\luisjuarez\sistemavu\view\Login$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Configuracion.class
@@ -120,7 +121,7 @@ com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$3.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$6.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$2.class
-com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$8.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Categoria$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Facturar.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Categoria$3.class
 com\luisjuarez\sistemavu\service\InventarioService.class
@@ -165,8 +166,8 @@ com\luisjuarez\sistemavu\model\Carrito.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$4.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$3.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$7.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Configuracion$1.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$12.class
-com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$7.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_categorias$3.class
 com\luisjuarez\sistemavu\service\FacturaService.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_categorias.class
@@ -182,6 +183,7 @@ com\luisjuarez\sistemavu\view\formulario\Formulario_empleado$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$5.class
 com\luisjuarez\sistemavu\persistence\impl\CategoriaDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$3.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos.class
 com\luisjuarez\sistemavu\persistence\DetalleCompraDAO.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_categorias$2.class
@@ -190,14 +192,15 @@ com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento$2.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$5.class
 com\luisjuarez\sistemavu\model\EmpleadoHasPermiso.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Productos$4.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$5.class
 com\luisjuarez\sistemavu\service\ProductoService.class
 com\luisjuarez\sistemavu\service\impl\ContactoProveedorServiceImpl.class
 com\luisjuarez\sistemavu\view\Login.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$3.class
-com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$7.class
 com\luisjuarez\sistemavu\persistence\impl\ProveedorDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$3.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$2.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$1.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Configuracion$2.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_categorias$1.class

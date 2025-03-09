@@ -4,17 +4,25 @@
  */
 package com.luisjuarez.sistemavu.view.formulario;
 
+import com.luisjuarez.sistemavu.model.Proveedor;
+import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author Helen
  */
 public class Formulario_proveedor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Formulario_Cliente
-     */
-    public Formulario_proveedor() {
+    private JTable TablePro;
+    public Formulario_proveedor(JTable table) {
         initComponents();
+        TablePro= table;
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -31,7 +39,6 @@ public class Formulario_proveedor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,17 +92,6 @@ public class Formulario_proveedor extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel3.add(jButton1, gridBagConstraints);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        jButton2.setPreferredSize(new java.awt.Dimension(75, 65));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        jPanel3.add(jButton2, gridBagConstraints);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boton-eliminar.png"))); // NOI18N
         jButton3.setPreferredSize(new java.awt.Dimension(75, 65));
@@ -279,15 +275,81 @@ public class Formulario_proveedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       Proveedor proveedor= new Proveedor();
+       
+        String tipoDoc = jComboBox1.getSelectedItem().toString();
+        String nroDoc = jTextField6.getText();
+        String nombre = jTextField1.getText();
+        String apellido = jTextField2.getText();
+        String telefono = jTextField3.getText();
+        String direccion = jTextField4.getText();
+        String correoElectronico = jTextField5.getText();
+        String notas = jTextArea1.getText();
+        
+       
+        if (tipoDoc.isEmpty() || nroDoc.isEmpty() || nombre.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correoElectronico.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios, excepto Apellido y Notas.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!telefono.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El teléfono debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que el tipo de documento sea mayor que 1
+        try {
+            if (jComboBox1.getSelectedIndex() == 0) {
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de documento válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El tipo de documento debe ser un número válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que los nombres y apellidos sean solo letras
+        if (!nombre.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(null, "El nombre solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!apellido.isEmpty() && !apellido.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!nroDoc.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El número de documento debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        proveedor.setTipo_doc(tipoDoc);
+        proveedor.setNro_doc(nroDoc);
+        proveedor.setNombre(nombre);
+        proveedor.setApellido(apellido);
+        proveedor.setTelefono(telefono);
+        proveedor.setDireccion(direccion);
+        proveedor.setCorreo_electronico(correoElectronico);
+        proveedor.setNotas(notas);
+       
+        SistemaPrincipal.getProveedorService().registrarProveedor(proveedor);
+       
+        try {
+            SistemaPrincipal.getProveedorService().cargarTabla(TablePro);
+        } catch (SQLException ex) {
+            Logger.getLogger(Formulario_proveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+    jComboBox1.setSelectedIndex(0);
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+    jTextArea1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -310,7 +372,6 @@ public class Formulario_proveedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

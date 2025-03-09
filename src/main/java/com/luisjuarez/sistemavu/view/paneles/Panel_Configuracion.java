@@ -4,6 +4,9 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.view.formulario.FormularioAjusteIva;
+import com.luisjuarez.sistemavu.view.formulario.FormularioTasaDolar;
+import com.luisjuarez.sistemavu.view.formulario.Formulario_empresa;
 import java.awt.Dimension;
 
 /**
@@ -57,6 +60,11 @@ public class Panel_Configuracion extends javax.swing.JPanel {
         btn_Respaldar.setRoundBottomLeft(10);
         btn_Respaldar.setRoundBottomRight(10);
         btn_Respaldar.setRoundTopLeft(10);
+        btn_Respaldar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RespaldarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -72,6 +80,11 @@ public class Panel_Configuracion extends javax.swing.JPanel {
         btn_Restaurar.setRoundBottomLeft(10);
         btn_Restaurar.setRoundBottomRight(10);
         btn_Restaurar.setRoundTopLeft(10);
+        btn_Restaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RestaurarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 30, 10);
@@ -87,6 +100,11 @@ public class Panel_Configuracion extends javax.swing.JPanel {
         btn_Empleado.setRoundBottomLeft(10);
         btn_Empleado.setRoundBottomRight(10);
         btn_Empleado.setRoundTopLeft(10);
+        btn_Empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EmpleadoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -103,6 +121,21 @@ public class Panel_Configuracion extends javax.swing.JPanel {
 
         add(roundedPanel1, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_RespaldarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RespaldarActionPerformed
+        FormularioTasaDolar tasa= new FormularioTasaDolar();
+        tasa.setVisible(true);
+    }//GEN-LAST:event_btn_RespaldarActionPerformed
+
+    private void btn_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EmpleadoActionPerformed
+        FormularioAjusteIva iva= new FormularioAjusteIva();
+        iva.setVisible(true);
+    }//GEN-LAST:event_btn_EmpleadoActionPerformed
+
+    private void btn_RestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RestaurarActionPerformed
+        Formulario_empresa emp= new Formulario_empresa();
+        emp.setVisible(true);
+    }//GEN-LAST:event_btn_RestaurarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

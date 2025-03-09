@@ -5,6 +5,7 @@
 package com.luisjuarez.sistemavu.view.paneles;
 
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import com.luisjuarez.sistemavu.view.formulario.Formulario_categorias;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.Timer;
@@ -163,6 +164,11 @@ public class Panel_Categoria extends javax.swing.JPanel {
         btn_Nuevo.setRoundBottomLeft(10);
         btn_Nuevo.setRoundBottomRight(10);
         btn_Nuevo.setRoundTopLeft(10);
+        btn_Nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NuevoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -246,6 +252,11 @@ public class Panel_Categoria extends javax.swing.JPanel {
             }
         }, 300);
     }//GEN-LAST:event_txt_buscadorKeyReleased
+
+    private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
+       Formulario_categorias cat= new Formulario_categorias(TableCategoria);
+       cat.setVisible(true);
+    }//GEN-LAST:event_btn_NuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
