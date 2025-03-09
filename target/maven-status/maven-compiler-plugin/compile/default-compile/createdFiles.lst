@@ -75,12 +75,12 @@ com\luisjuarez\sistemavu\view\RecuperarContraseña$1.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$1.class
 com\luisjuarez\sistemavu\utils\PDFboxUtils.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$3.class
-com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$8.class
 com\luisjuarez\sistemavu\persistence\ProductoDAO.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Ayuda.class
 com\luisjuarez\sistemavu\utils\StringUtil.class
 com\luisjuarez\sistemavu\persistence\InventarioDAO.class
 com\luisjuarez\sistemavu\view\Login$5.class
+com\luisjuarez\sistemavu\view\formulario\FormularioTasaDolar$1.class
 com\luisjuarez\sistemavu\persistence\impl\EmpleadoHasPermisoDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$7.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$2.class

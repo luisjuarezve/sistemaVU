@@ -4,6 +4,7 @@
  */
 package com.luisjuarez.sistemavu.view.formulario;
 
+import com.luisjuarez.sistemavu.config.ConfigProperties;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,6 +15,7 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,15 +23,18 @@ import javax.swing.JFrame;
  */
 public class FormularioTasaDolar extends javax.swing.JFrame {
 
+    private ConfigProperties config = new ConfigProperties();
+
     /**
      * Creates new form FormularioTasaDolar
      */
     public FormularioTasaDolar() {
         initComponents();
+        config.recargarArchivo();
+        jTextField1.setText(config.getProperty("configuracion.tasa"));
         setLocationRelativeTo(null);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,6 +47,7 @@ public class FormularioTasaDolar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 300));
+        setPreferredSize(new java.awt.Dimension(300, 300));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -68,6 +74,11 @@ public class FormularioTasaDolar extends javax.swing.JFrame {
         roundedButton1.setRoundBottomLeft(10);
         roundedButton1.setRoundBottomRight(10);
         roundedButton1.setRoundTopLeft(10);
+        roundedButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundedButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -88,8 +99,32 @@ public class FormularioTasaDolar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
+        String tasa = jTextField1.getText();
 
-    
+        if (tasa.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo de tasa no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución
+        }
+
+        try {
+            double tasaNumerica = Double.parseDouble(tasa);
+            if (tasaNumerica <= 0) {
+                JOptionPane.showMessageDialog(null, "La tasa debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Detener la ejecución
+            }
+            // Si es válido, guardarlo en config.properties
+            config.setProperty("configuracion.tasa", tasa);
+            config.saveProperties();
+            JOptionPane.showMessageDialog(null, "Tasa guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "La tasa debe ser un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_roundedButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
