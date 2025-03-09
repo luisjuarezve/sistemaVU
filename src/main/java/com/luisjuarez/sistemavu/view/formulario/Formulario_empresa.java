@@ -559,6 +559,7 @@ public class Formulario_empresa extends javax.swing.JFrame {
         jComboBox1.setSelectedItem(config.getProperty("empresa.rif.tipo_doc")); // Tipo de Documento
         jTextField9.setText(config.getProperty("empresa.sector")); // Sector
         jTextField8.setText(config.getProperty("empresa.telefono")); // Teléfono
+        jLabel15.setIcon(ImagesUtils.redimensionarIcon("src/main/resources"+config.getProperty("empresa.logo"), 150, 150));
     }
 
 }
