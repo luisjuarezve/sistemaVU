@@ -43,7 +43,6 @@ public class Panel_Reportes extends javax.swing.JPanel {
         btn_inventario = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_empleados = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_clientes = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Regresar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(920, 550));
@@ -155,29 +154,6 @@ public class Panel_Reportes extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         roundedPanel1.add(btn_clientes, gridBagConstraints);
-
-        btn_Regresar.setBackground(new java.awt.Color(153, 204, 255));
-        btn_Regresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Regresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Regresar.setText("Regresar");
-        btn_Regresar.setFocusable(false);
-        btn_Regresar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Regresar.setPreferredSize(new java.awt.Dimension(140, 80));
-        btn_Regresar.setRoundBottomLeft(10);
-        btn_Regresar.setRoundBottomRight(10);
-        btn_Regresar.setRoundTopLeft(10);
-        btn_Regresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_RegresarActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = -50;
-        gridBagConstraints.ipady = -33;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        roundedPanel1.add(btn_Regresar, gridBagConstraints);
 
         add(roundedPanel1, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
@@ -305,13 +281,8 @@ public class Panel_Reportes extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_btn_clientesActionPerformed
 
-    private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
-        
-    }//GEN-LAST:event_btn_RegresarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Regresar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_clientes;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_empleados;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_facturar;

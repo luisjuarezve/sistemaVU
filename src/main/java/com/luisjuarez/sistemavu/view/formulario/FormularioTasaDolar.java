@@ -5,16 +5,7 @@
 package com.luisjuarez.sistemavu.view.formulario;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -61,13 +52,19 @@ public class FormularioTasaDolar extends javax.swing.JFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jTextField1.setPreferredSize(new java.awt.Dimension(100, 25));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         jPanel1.add(jTextField1, gridBagConstraints);
 
-        roundedButton1.setBackground(new java.awt.Color(0, 255, 255));
+        roundedButton1.setBackground(new java.awt.Color(0, 0, 255));
+        roundedButton1.setForeground(new java.awt.Color(255, 255, 255));
         roundedButton1.setText("Guardar");
         roundedButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         roundedButton1.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -121,9 +118,33 @@ public class FormularioTasaDolar extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "La tasa debe ser un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_roundedButton1ActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String tasa = jTextField1.getText();
+
+            if (tasa.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El campo de tasa no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Detener la ejecución
+            }
+
+            try {
+                double tasaNumerica = Double.parseDouble(tasa);
+                if (tasaNumerica <= 0) {
+                    JOptionPane.showMessageDialog(null, "La tasa debe ser un número positivo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Detener la ejecución
+                }
+                // Si es válido, guardarlo en config.properties
+                config.setProperty("configuracion.tasa", tasa);
+                config.saveProperties();
+                JOptionPane.showMessageDialog(null, "Tasa guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "La tasa debe ser un valor numérico válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

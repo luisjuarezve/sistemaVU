@@ -53,6 +53,7 @@ com\luisjuarez\sistemavu\view\SistemaPrincipal$9.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$3.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Proveedor$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$1.class
+com\luisjuarez\sistemavu\view\formulario\FormularioAjusteIva$2.class
 com\luisjuarez\sistemavu\persistence\impl\ClienteDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$1.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$6.class
@@ -85,6 +86,7 @@ com\luisjuarez\sistemavu\persistence\InventarioDAO.class
 com\luisjuarez\sistemavu\view\Login$5.class
 com\luisjuarez\sistemavu\view\formulario\FormularioTasaDolar$1.class
 com\luisjuarez\sistemavu\persistence\impl\EmpleadoHasPermisoDAOImplMariaDB.class
+com\luisjuarez\sistemavu\view\formulario\FormularioTasaDolar$2.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$7.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$2.class
 com\luisjuarez\sistemavu\persistence\CompraDAO.class
@@ -184,7 +186,6 @@ com\luisjuarez\sistemavu\view\components\CustomTable$1.class
 com\luisjuarez\sistemavu\persistence\CategoriaDAO.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$6.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empleado$2.class
-com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$5.class
 com\luisjuarez\sistemavu\persistence\impl\CategoriaDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$3.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$4.class
