@@ -178,7 +178,6 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         body = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         roundedPanel1 = new com.luisjuarez.sistemavu.view.components.RoundedPanel();
@@ -232,13 +231,6 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 7));
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sign-out-alt.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sign-out-alt-hover.png"))); // NOI18N
-        jPanel2.add(jButton2);
-
         header.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
         getContentPane().add(header, java.awt.BorderLayout.NORTH);
@@ -613,7 +605,6 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_salir;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -17,11 +17,13 @@ import javax.swing.JTable;
  * @author Helen
  */
 public class Formulario_Cliente extends javax.swing.JFrame {
-      private JTable TableClientes;
+
+    private JTable TableClientes;
+
     public Formulario_Cliente(JTable table) {
-        
+
         initComponents();
-        TableClientes= table;
+        TableClientes = table;
         setLocationRelativeTo(null);
     }
 
@@ -39,22 +41,22 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_tipoDoc = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txt_nroDoc = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_apellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_telefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_direccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_correo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_comentarios = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -88,14 +90,14 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel2, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- ", "V", "J", "G", "P", "E" }));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(140, 25));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(150, 25));
+        cmb_tipoDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- ", "V", "J", "G", "P", "E" }));
+        cmb_tipoDoc.setMinimumSize(new java.awt.Dimension(140, 25));
+        cmb_tipoDoc.setPreferredSize(new java.awt.Dimension(150, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jComboBox1, gridBagConstraints);
+        jPanel2.add(cmb_tipoDoc, gridBagConstraints);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Numero doc:");
@@ -105,18 +107,18 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel11, gridBagConstraints);
 
-        jTextField6.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField6.setPreferredSize(new java.awt.Dimension(150, 25));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txt_nroDoc.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_nroDoc.setPreferredSize(new java.awt.Dimension(150, 25));
+        txt_nroDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txt_nroDocActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField6, gridBagConstraints);
+        jPanel2.add(txt_nroDoc, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Nombre:");
@@ -126,18 +128,18 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel3, gridBagConstraints);
 
-        jTextField1.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField1.setPreferredSize(new java.awt.Dimension(150, 25));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_nombre.setPreferredSize(new java.awt.Dimension(150, 25));
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_nombreActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField1, gridBagConstraints);
+        jPanel2.add(txt_nombre, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Apellido:");
@@ -147,13 +149,13 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel4, gridBagConstraints);
 
-        jTextField2.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField2.setPreferredSize(new java.awt.Dimension(150, 25));
+        txt_apellido.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_apellido.setPreferredSize(new java.awt.Dimension(150, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField2, gridBagConstraints);
+        jPanel2.add(txt_apellido, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Telefono:");
@@ -163,13 +165,13 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel5, gridBagConstraints);
 
-        jTextField3.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField3.setPreferredSize(new java.awt.Dimension(150, 25));
+        txt_telefono.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_telefono.setPreferredSize(new java.awt.Dimension(150, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField3, gridBagConstraints);
+        jPanel2.add(txt_telefono, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Direccion:");
@@ -179,18 +181,18 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel6, gridBagConstraints);
 
-        jTextField4.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField4.setPreferredSize(new java.awt.Dimension(150, 25));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txt_direccion.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_direccion.setPreferredSize(new java.awt.Dimension(150, 25));
+        txt_direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txt_direccionActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField4, gridBagConstraints);
+        jPanel2.add(txt_direccion, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Correo electronico:");
@@ -200,18 +202,18 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 20);
         jPanel2.add(jLabel7, gridBagConstraints);
 
-        jTextField5.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField5.setPreferredSize(new java.awt.Dimension(150, 25));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txt_correo.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_correo.setPreferredSize(new java.awt.Dimension(150, 25));
+        txt_correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txt_correoActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField5, gridBagConstraints);
+        jPanel2.add(txt_correo, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Comentario:");
@@ -229,11 +231,11 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         jScrollPane1.setMinimumSize(new java.awt.Dimension(140, 60));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(140, 60));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setMinimumSize(new java.awt.Dimension(200, 100));
-        jTextArea1.setPreferredSize(new java.awt.Dimension(200, 100));
-        jScrollPane1.setViewportView(jTextArea1);
+        txt_comentarios.setColumns(20);
+        txt_comentarios.setRows(5);
+        txt_comentarios.setMinimumSize(new java.awt.Dimension(200, 100));
+        txt_comentarios.setPreferredSize(new java.awt.Dimension(200, 100));
+        jScrollPane1.setViewportView(txt_comentarios);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -274,57 +276,56 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txt_nroDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nroDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txt_nroDocActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txt_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_correoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txt_correoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Cliente cliente = new Cliente();
-        String tipoDoc = jComboBox1.getSelectedItem().toString();
-        String nroDoc = jTextField6.getText();
-        String nombre = jTextField1.getText();
-        String apellido = jTextField2.getText();
-        String telefono = jTextField3.getText();
-        String direccion = jTextField4.getText();
-        String correoElectronico = jTextField5.getText();
-        String notas = jTextArea1.getText();
-        
+        String tipoDoc = cmb_tipoDoc.getSelectedItem().toString();
+        String nroDoc = txt_nroDoc.getText();
+        String nombre = txt_nombre.getText();
+        String apellido = txt_apellido.getText();
+        String telefono = txt_telefono.getText();
+        String direccion = txt_direccion.getText();
+        String correoElectronico = txt_correo.getText();
+        String notas = txt_comentarios.getText();
 
         if (tipoDoc.isEmpty() || nroDoc.isEmpty() || nombre.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correoElectronico.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios, excepto Apellido y Notas.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!telefono.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "El teléfono debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+
+        if (!nroDoc.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El número de documento debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Validar que el tipo de documento sea mayor que 1
-        try {
-            if (jComboBox1.getSelectedIndex() == 0) {
-        JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de documento válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El tipo de documento debe ser un número válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-
-        if (!apellido.matches("[a-zA-Z]+")) {
+        if (!apellido.isEmpty() && !apellido.matches("[a-zA-Z]+")) {
             JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!nroDoc.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "El número de documento debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+
+        if (!telefono.matches("\\d{11,}")) {
+            JOptionPane.showMessageDialog(null, "El teléfono debe ser numérico y contener al menos 11 dígitos.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!correoElectronico.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un correo electrónico válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (cmb_tipoDoc.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de documento válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -337,37 +338,38 @@ public class Formulario_Cliente extends javax.swing.JFrame {
         cliente.setCorreo_electronico(correoElectronico);
         cliente.setNotas(notas);
 
-        SistemaPrincipal.getClienteService().registrarCliente(cliente);
         try {
+            SistemaPrincipal.getClienteService().registrarCliente(cliente);
             SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
+            JOptionPane.showMessageDialog(null, "El cliente ha sido registrado exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Formulario_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar registrar al cliente. Por favor, intente nuevamente.", "Error de Registro", JOptionPane.ERROR_MESSAGE);
         }
 
-        this.dispose();
-    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    jComboBox1.setSelectedIndex(0);
-    jTextField1.setText("");
-    jTextField2.setText("");
-    jTextField3.setText("");
-    jTextField4.setText("");
-    jTextField5.setText("");
-    jTextField6.setText("");
-    jTextArea1.setText("");
+        cmb_tipoDoc.setSelectedIndex(0);
+        txt_nombre.setText("");
+        txt_apellido.setText("");
+        txt_telefono.setText("");
+        txt_direccion.setText("");
+        txt_correo.setText("");
+        txt_nroDoc.setText("");
+        txt_comentarios.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txt_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txt_direccionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmb_tipoDoc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -381,12 +383,12 @@ public class Formulario_Cliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField txt_apellido;
+    private javax.swing.JTextArea txt_comentarios;
+    private javax.swing.JTextField txt_correo;
+    private javax.swing.JTextField txt_direccion;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_nroDoc;
+    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,6 +29,7 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
         this.TableCategoria = table;
         this.categoria = categoria;
         TableCategoria = table;
+        setCategoriaFields(categoria);
         setLocationRelativeTo(null);
     }
 
@@ -151,28 +152,22 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    
-
-        Categoria categoria = new Categoria();
         String nombre = jTextField6.getText();
         String descripcion = jTextField1.getText();
 
-// Validar que los campos no estén vacíos y que no contengan números
         if (nombre.isEmpty() || descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Los campos no deben estar vacíos");
         } else if (nombre.matches(".*\\d.*") || descripcion.matches(".*\\d.*")) {
             JOptionPane.showMessageDialog(null, "Los campos no deben contener números");
         } else {
-            // Preguntar al usuario si quiere modificar la categoría
-            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas registrar esta categoría?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas modifcar esta categoría?", "Confirmación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 categoria.setNombre(nombre);
                 categoria.setDescripcion(descripcion);
 
-                SistemaPrincipal.getCategoriaService().registrarCategoria(categoria);
-                JOptionPane.showMessageDialog(null, "Categoría registrada correctamente");
+                SistemaPrincipal.getCategoriaService().modificarCategoria(String.valueOf(categoria.getIdCategoria()), categoria);
+                JOptionPane.showMessageDialog(null, "Categoría modificada correctamente");
 
                 try {
                     SistemaPrincipal.getCategoriaService().cargarTabla(TableCategoria);
@@ -182,7 +177,7 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
 
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Registro de categoría cancelado");
+                JOptionPane.showMessageDialog(null, "Modificacion de categoría cancelado");
             }
         }
 
@@ -215,8 +210,8 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
-public void setCategoriaFields(String nombre, String descripcion) {
-        jTextField6.setText(nombre);
-        jTextField1.setText(descripcion);
+public void setCategoriaFields(Categoria categoria) {
+        jTextField6.setText(categoria.getNombre());
+        jTextField1.setText(categoria.getDescripcion());
     }
 }

@@ -4,11 +4,19 @@
  */
 package com.luisjuarez.sistemavu.view.formulario;
 
+import com.luisjuarez.sistemavu.model.Inventario;
 import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.persistence.ComboItem;
+import com.luisjuarez.sistemavu.utils.ImagesUtils;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
-import javax.swing.JComboBox;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -16,13 +24,18 @@ import javax.swing.JOptionPane;
  */
 public class Formulario_Producto extends javax.swing.JFrame {
 
+    private File nuevaImagenSeleccionada;
+    private JTable tabla;
+
     /**
      * Creates new form Formulario_Cliente
      */
-    public Formulario_Producto() {
+    public Formulario_Producto(JTable tabla) {
         initComponents();
+        this.tabla = tabla;
         SistemaPrincipal.getProveedorService().cargarComboBox(jComboBox3);
         SistemaPrincipal.getCategoriaService().cargarComboBox(jComboBox1);
+        jLabel15.setIcon(ImagesUtils.redimensionarIcon(getClass().getResource("/images/No image.png"), 150, 150));
         setLocationRelativeTo(null);
     }
 
@@ -40,24 +53,30 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txt_codigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_descrip = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txt_precioCompra = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txt_utilidad = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txt_precioVenta = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txt_precioMayoreo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txt_impuesto = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txt_cantidad = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txt_invMin = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txt_invMax = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -97,26 +116,13 @@ public class Formulario_Producto extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel2, gridBagConstraints);
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("Precio compra");
+        txt_codigo.setNextFocusableComponent(txt_nombre);
+        txt_codigo.setPreferredSize(new java.awt.Dimension(140, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
-        jPanel2.add(jLabel11, gridBagConstraints);
-
-        jTextField6.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField6.setPreferredSize(new java.awt.Dimension(140, 25));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
-        jPanel2.add(jTextField6, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel2.add(txt_codigo, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Nombre:");
@@ -126,39 +132,19 @@ public class Formulario_Producto extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel3, gridBagConstraints);
 
-        jTextField1.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField1.setPreferredSize(new java.awt.Dimension(140, 25));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombre.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_nombre.setNextFocusableComponent(txt_descrip);
+        txt_nombre.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_nombreActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField1, gridBagConstraints);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Precio venta:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jLabel4, gridBagConstraints);
-
-        jTextField2.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField2.setPreferredSize(new java.awt.Dimension(140, 25));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
-        jPanel2.add(jTextField2, gridBagConstraints);
+        jPanel2.add(txt_nombre, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Descripcion:");
@@ -168,104 +154,207 @@ public class Formulario_Producto extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel5, gridBagConstraints);
 
-        jTextField3.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField3.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_descrip.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_descrip.setNextFocusableComponent(txt_precioCompra);
+        txt_descrip.setPreferredSize(new java.awt.Dimension(140, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField3, gridBagConstraints);
+        jPanel2.add(txt_descrip, gridBagConstraints);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Precio mayoreo:");
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setText("Precio compra");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
-        jPanel2.add(jLabel7, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
+        jPanel2.add(jLabel11, gridBagConstraints);
 
-        jTextField5.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField5.setPreferredSize(new java.awt.Dimension(140, 25));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txt_precioCompra.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_precioCompra.setNextFocusableComponent(txt_utilidad);
+        txt_precioCompra.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_precioCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txt_precioCompraActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField5, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
+        jPanel2.add(txt_precioCompra, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Utilidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel9, gridBagConstraints);
 
-        jTextField7.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_utilidad.setNextFocusableComponent(txt_precioVenta);
+        txt_utilidad.setPreferredSize(new java.awt.Dimension(140, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
-        jPanel2.add(jTextField7, gridBagConstraints);
+        jPanel2.add(txt_utilidad, gridBagConstraints);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setText("Impuesto:");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Precio venta:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        jPanel2.add(jLabel8, gridBagConstraints);
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel2.add(jLabel4, gridBagConstraints);
 
-        jTextField8.setMinimumSize(new java.awt.Dimension(140, 25));
-        jTextField8.setPreferredSize(new java.awt.Dimension(140, 25));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txt_precioVenta.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_precioVenta.setNextFocusableComponent(txt_precioMayoreo);
+        txt_precioVenta.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_precioVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txt_precioVentaActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
+        jPanel2.add(txt_precioVenta, gridBagConstraints);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Precio mayoreo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
+        jPanel2.add(jLabel7, gridBagConstraints);
+
+        txt_precioMayoreo.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_precioMayoreo.setNextFocusableComponent(txt_impuesto);
+        txt_precioMayoreo.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_precioMayoreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_precioMayoreoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel2.add(txt_precioMayoreo, gridBagConstraints);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setText("Impuesto:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        jPanel2.add(jLabel8, gridBagConstraints);
+
+        txt_impuesto.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_impuesto.setNextFocusableComponent(txt_cantidad);
+        txt_impuesto.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_impuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_impuestoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        jPanel2.add(txt_impuesto, gridBagConstraints);
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setText("Cantidad:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanel2.add(jLabel13, gridBagConstraints);
+
+        txt_cantidad.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_cantidad.setNextFocusableComponent(txt_invMin);
+        txt_cantidad.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_cantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cantidadActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        jPanel2.add(txt_cantidad, gridBagConstraints);
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setText("Inv. Minimo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        jPanel2.add(jLabel14, gridBagConstraints);
+
+        txt_invMin.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_invMin.setNextFocusableComponent(txt_invMax);
+        txt_invMin.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_invMin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_invMinActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        jPanel2.add(txt_invMin, gridBagConstraints);
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel17.setText("Inv. Maximo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        jPanel2.add(jTextField8, gridBagConstraints);
+        jPanel2.add(jLabel17, gridBagConstraints);
+
+        txt_invMax.setMinimumSize(new java.awt.Dimension(140, 25));
+        txt_invMax.setNextFocusableComponent(jComboBox3);
+        txt_invMax.setPreferredSize(new java.awt.Dimension(140, 25));
+        txt_invMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_invMaxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        jPanel2.add(txt_invMax, gridBagConstraints);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setText("Proveedor ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel10, gridBagConstraints);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", " " }));
+        jComboBox3.setNextFocusableComponent(jComboBox1);
+        jComboBox3.setPreferredSize(new java.awt.Dimension(140, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
+        jPanel2.add(jComboBox3, gridBagConstraints);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel12.setText("Categoria ID:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         jPanel2.add(jLabel12, gridBagConstraints);
 
-        jTextField11.setPreferredSize(new java.awt.Dimension(140, 25));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel2.add(jTextField11, gridBagConstraints);
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", " " }));
-        jComboBox3.setPreferredSize(new java.awt.Dimension(140, 25));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 0);
-        jPanel2.add(jComboBox3, gridBagConstraints);
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", " " }));
+        jComboBox1.setNextFocusableComponent(jButton1);
         jComboBox1.setPreferredSize(new java.awt.Dimension(140, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(jComboBox1, gridBagConstraints);
 
@@ -276,7 +365,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usuario.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/No image.png"))); // NOI18N
         jLabel15.setPreferredSize(new java.awt.Dimension(150, 150));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -296,6 +385,11 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Seleccionar foto");
         jButton4.setPreferredSize(new java.awt.Dimension(140, 60));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -336,68 +430,165 @@ public class Formulario_Producto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txt_precioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_precioCompraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txt_precioCompraActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txt_precioMayoreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_precioMayoreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txt_precioMayoreoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Producto producto = new Producto();
+        Inventario inventario = new Inventario();
 
-// Validar y obtener el proveedor seleccionado
-        ComboItem selectedItemProveedor = (ComboItem) jComboBox3.getSelectedItem();
-        if (selectedItemProveedor != null && selectedItemProveedor.getId() != 0) {
-            producto.setProveedor_idProveedor(selectedItemProveedor.getId());
+        if (nuevaImagenSeleccionada != null) {
+            // Ruta de destino donde se guardará la imagen
+            String rutaDestino = "src/main/resources/products/" + nuevaImagenSeleccionada.getName();
+            File archivoDestino = new File(rutaDestino);
+
+            try {
+                // Copiar la imagen seleccionada al directorio de destino
+                Files.copy(nuevaImagenSeleccionada.toPath(), archivoDestino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // Guardar la ruta relativa en la base de datos
+                producto.setImagen_producto("/products/" + nuevaImagenSeleccionada.getName());
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al guardar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return; // Detener ejecución si ocurre un error al guardar la imagen
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un proveedor válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            // No se seleccionó una nueva imagen, usar la imagen por defecto
+            producto.setImagen_producto("/images/No image.png");
+        }
+
+        if (txt_precioCompra.getText().isEmpty() || txt_utilidad.getText().isEmpty()
+                || txt_precioVenta.getText().isEmpty() || txt_precioMayoreo.getText().isEmpty()
+                || txt_impuesto.getText().isEmpty() || txt_cantidad.getText().isEmpty()
+                || txt_invMin.getText().isEmpty() || txt_invMax.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_precioCompra.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_precioCompra.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "El precio de compra debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_utilidad.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_utilidad.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "La utilidad debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_precioVenta.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_precioVenta.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "El precio de venta debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        // Validar que el precio de venta sea mayor que el precio de compra
+        if (Double.parseDouble(txt_precioVenta.getText()) <= Double.parseDouble(txt_precioCompra.getText())) {
+            JOptionPane.showMessageDialog(null, "El precio de venta debe ser mayor que el precio de compra.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_precioMayoreo.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_precioMayoreo.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "El precio de mayoreo debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_impuesto.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_impuesto.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "El impuesto debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_cantidad.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_cantidad.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "La cantidad debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_invMin.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_invMin.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "El inventario mínimo debe ser un número no negativo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (!txt_invMax.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_invMax.getText()) <= 0) {
+            JOptionPane.showMessageDialog(null, "El inventario máximo debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        if (Double.parseDouble(txt_invMax.getText()) < Double.parseDouble(txt_invMin.getText())) {
+            JOptionPane.showMessageDialog(null, "El inventario máximo debe ser mayor o igual al inventario mínimo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return; // Detener ejecución
+        }
+
+        ComboItem selectedItemProveedor = (ComboItem) jComboBox3.getSelectedItem();
+        if (selectedItemProveedor == null || selectedItemProveedor.getId() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un proveedor válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return; // Detener la ejecución si no hay proveedor válido
         }
 
-// Validar y obtener la categoría seleccionada
         ComboItem selectedItemCategoria = (ComboItem) jComboBox1.getSelectedItem();
-        if (selectedItemCategoria != null && selectedItemCategoria.getId() != 0) {
-            producto.setCategoria_idCategoria(selectedItemCategoria.getId());
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona una categoría válida.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        if (selectedItemCategoria == null || selectedItemCategoria.getId() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona una categoría válida.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return; // Detener la ejecución si no hay categoría válida
         }
 
-// Obtener datos de los campos
-        String codigo = jTextField11.getText();
-        String nombre = jTextField1.getText();
-        String descripcion = jTextField3.getText();
+        String codigo = txt_codigo.getText();
+        String nombre = txt_nombre.getText();
+        String descripcion = txt_descrip.getText();
 
-        double precioMayoreo = Double.parseDouble(jTextField5.getText());
-        double impuesto = Double.parseDouble(jTextField8.getText());
-        double precioCompra = Double.parseDouble(jTextField6.getText());
-        double precioVenta = Double.parseDouble(jTextField2.getText());
-        double utilidad = Double.parseDouble(jTextField7.getText());
+        double precioMayoreo = Double.parseDouble(txt_precioMayoreo.getText());
+        double impuesto = Double.parseDouble(txt_impuesto.getText());
+        double precioCompra = Double.parseDouble(txt_precioCompra.getText());
+        double precioVenta = Double.parseDouble(txt_precioVenta.getText());
+        double utilidad = Double.parseDouble(txt_utilidad.getText());
 
-// Asignar valores al producto
         producto.setCodigo(codigo);
         producto.setNombre(nombre);
         producto.setDescripcion(descripcion);
+        producto.setPrecio_compra(precioCompra);
+        producto.setUtilidad(utilidad);
+        producto.setPrecio_venta(precioVenta);
         producto.setPrecio_mayoreo(precioMayoreo);
         producto.setImpuesto(impuesto);
-        producto.setPrecio_compra(precioCompra);
-        producto.setPrecio_venta(precioVenta);
-        producto.setUtilidad(utilidad);
+        producto.setProveedor_idProveedor(selectedItemProveedor.getId());
+        producto.setCategoria_idCategoria(selectedItemCategoria.getId());
 
-// Asignar una imagen por defecto (o manejar imágenes si es necesario)
-        producto.setImagen_producto("default_image.jpg");
+        boolean productoRegistrado = false;
+        try {
+            SistemaPrincipal.getProductoService().registrarProducto(producto);
+            productoRegistrado = true;
+            JOptionPane.showMessageDialog(this, "Producto registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al registrar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
 
-// Registrar el producto
-        SistemaPrincipal.getProductoService().registrarProducto(producto);
+        if (productoRegistrado) {
+            try {
+                double cantidad = Double.parseDouble(txt_cantidad.getText());
+                double inventarioMin = Double.parseDouble(txt_invMin.getText());
+                double inventarioMax = Double.parseDouble(txt_invMax.getText());
 
-// Confirmación al usuario
-        JOptionPane.showMessageDialog(this, "Producto registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                inventario.setProducto_idProducto(SistemaPrincipal.getProductoService().buscarProductoPorCodigo(producto.getCodigo()).getIdProducto());
+                inventario.setCantidad(cantidad);
+                inventario.setInventario_min(inventarioMin);
+                inventario.setInventario_max(inventarioMax);
+
+                SistemaPrincipal.getInventarioService().registrarInventario(inventario);
+                JOptionPane.showMessageDialog(this, "Inventario registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                SistemaPrincipal.productoService.cargarTabla(tabla);
+                this.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al registrar el inventario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -405,13 +596,53 @@ public class Formulario_Producto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txt_impuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_impuestoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txt_impuestoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_precioVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_precioVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_precioVentaActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Seleccionar nueva imagen");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Imágenes (JPG, PNG, GIF)", "jpg", "png", "gif"));
+
+        int result = fileChooser.showOpenDialog(this); // Mostrar el diálogo
+        if (result == JFileChooser.APPROVE_OPTION) {
+            nuevaImagenSeleccionada = fileChooser.getSelectedFile(); // Guardar la imagen seleccionada temporalmente
+
+            // Verificar que el archivo es válido
+            if (nuevaImagenSeleccionada != null && nuevaImagenSeleccionada.exists()) {
+                try {
+                    // Usar ImageUtils para redimensionar la imagen con dimensiones 150 x 150
+                    ImageIcon icon = ImagesUtils.redimensionarIcon(nuevaImagenSeleccionada.getAbsolutePath(), 150, 150);
+
+                    // Setear el icono redimensionado en jLabel15
+                    jLabel15.setIcon(icon);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Error al redimensionar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El archivo seleccionado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txt_cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cantidadActionPerformed
+
+    private void txt_invMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_invMinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_invMinActionPerformed
+
+    private void txt_invMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_invMaxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_invMaxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -424,8 +655,11 @@ public class Formulario_Producto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -437,13 +671,16 @@ public class Formulario_Producto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField txt_cantidad;
+    private javax.swing.JTextField txt_codigo;
+    private javax.swing.JTextField txt_descrip;
+    private javax.swing.JTextField txt_impuesto;
+    private javax.swing.JTextField txt_invMax;
+    private javax.swing.JTextField txt_invMin;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_precioCompra;
+    private javax.swing.JTextField txt_precioMayoreo;
+    private javax.swing.JTextField txt_precioVenta;
+    private javax.swing.JTextField txt_utilidad;
     // End of variables declaration//GEN-END:variables
 }

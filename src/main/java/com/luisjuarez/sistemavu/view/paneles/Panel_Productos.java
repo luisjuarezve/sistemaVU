@@ -265,9 +265,8 @@ public class Panel_Productos extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_buscadorKeyReleased
 
     private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
-        Formulario_Producto pro= new Formulario_Producto();
+        Formulario_Producto pro= new Formulario_Producto(TableProductos);
         pro.setVisible(true);
-                
     }//GEN-LAST:event_btn_NuevoActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed

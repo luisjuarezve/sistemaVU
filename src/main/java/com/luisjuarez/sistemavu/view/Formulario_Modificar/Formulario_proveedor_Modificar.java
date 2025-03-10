@@ -26,6 +26,7 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
         initComponents();
         this.TableProveedor = table;
         this.proveedor = proveedor;
+        setProveedorFields(proveedor);
         setLocationRelativeTo(null);
     }
 
@@ -122,6 +123,7 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
         jPanel2.add(jLabel2, gridBagConstraints);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- ", "V", "J", "G", "P", "E" }));
+        jComboBox1.setEnabled(false);
         jComboBox1.setMinimumSize(new java.awt.Dimension(100, 25));
         jComboBox1.setPreferredSize(new java.awt.Dimension(150, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -138,6 +140,7 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel2.add(jLabel11, gridBagConstraints);
 
+        jTextField6.setEnabled(false);
         jTextField6.setMinimumSize(new java.awt.Dimension(150, 25));
         jTextField6.setPreferredSize(new java.awt.Dimension(150, 25));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -279,10 +282,6 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Proveedor proveedor = new Proveedor();
-
-        String tipoDoc = jComboBox1.getSelectedItem().toString();
-        String nroDoc = jTextField6.getText();
         String nombre = jTextField1.getText();
         String apellido = jTextField2.getText();
         String telefono = jTextField3.getText();
@@ -290,23 +289,13 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
         String correoElectronico = jTextField5.getText();
         String notas = jTextArea1.getText();
 
-        if (tipoDoc.isEmpty() || nroDoc.isEmpty() || nombre.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correoElectronico.isEmpty()) {
+        if (nombre.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correoElectronico.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios, excepto Apellido y Notas.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!telefono.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "El teléfono debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
-        // Validar que el tipo de documento sea mayor que 1
-        try {
-            if (jComboBox1.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de documento válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El tipo de documento debe ser un número válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        if (!telefono.matches("\\d{11,}")) {
+            JOptionPane.showMessageDialog(null, "El teléfono debe ser numérico y contener al menos 11 dígitos.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -314,13 +303,20 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!nroDoc.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "El número de documento debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+
+        if (!correoElectronico.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un correo electrónico válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        proveedor.setTipo_doc(tipoDoc);
-        proveedor.setNro_doc(nroDoc);
+        apellido = apellido.isEmpty() ? null : apellido;
+
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea modificar los datos?", "Confirmación de Modificación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "La modificación ha sido cancelada.", "Operación Cancelada", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         proveedor.setNombre(nombre);
         proveedor.setApellido(apellido);
         proveedor.setTelefono(telefono);
@@ -328,24 +324,25 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
         proveedor.setCorreo_electronico(correoElectronico);
         proveedor.setNotas(notas);
 
-        SistemaPrincipal.getProveedorService().registrarProveedor(proveedor);
-
         try {
+            SistemaPrincipal.getProveedorService().modificarProveedor(proveedor);
             SistemaPrincipal.getProveedorService().cargarTabla(TableProveedor);
+            JOptionPane.showMessageDialog(null, "El usuario se ha modificado exitosamente.", "Modificación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Formulario_proveedor_Modificar.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar modificar el usuario. Por favor, intente nuevamente.", "Error en Modificación", JOptionPane.ERROR_MESSAGE);
         }
-        this.dispose();
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jComboBox1.setSelectedIndex(0);
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
-        jTextField6.setText("");
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -391,16 +388,14 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
-public void setProveedorFields(String tipoDoc, String nroDoc, String nombre, String apellido, 
-                               String telefono, String direccion, String correoElectronico, 
-                               String notas) {
-    jComboBox1.setSelectedItem(tipoDoc);
-    jTextField6.setText(nroDoc);
-    jTextField1.setText(nombre);
-    jTextField2.setText(apellido);
-    jTextField3.setText(telefono);
-    jTextField4.setText(direccion);
-    jTextField5.setText(correoElectronico);
-    jTextArea1.setText(notas);
-}
+public void setProveedorFields(Proveedor proveedor) {
+        jComboBox1.setSelectedItem(proveedor.getTipo_doc());
+        jTextField6.setText(proveedor.getNro_doc());
+        jTextField1.setText(proveedor.getNombre());
+        jTextField2.setText(proveedor.getApellido());
+        jTextField3.setText(proveedor.getTelefono());
+        jTextField4.setText(proveedor.getDireccion());
+        jTextField5.setText(proveedor.getCorreo_electronico());
+        jTextArea1.setText(proveedor.getNotas());
+    }
 }

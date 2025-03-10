@@ -4,7 +4,6 @@
  */
 package com.luisjuarez.sistemavu.view.Formulario_Modificar;
 
-import com.luisjuarez.sistemavu.view.formulario.*;
 import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import java.sql.SQLException;
@@ -309,24 +308,19 @@ public class Formulario_Cliente_Modificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios, excepto Apellido y Notas.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!telefono.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "El teléfono debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-// Validar que el tipo de documento sea mayor que 1
-        if (jComboBox1.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de documento válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
         if (!apellido.matches("[a-zA-Z]+")) {
             JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (!nroDoc.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "El número de documento debe ser numérico.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        if (!telefono.matches("\\d{11,}")) {
+            JOptionPane.showMessageDialog(null, "El teléfono debe ser numérico y contener al menos 11 dígitos.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!correoElectronico.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un correo electrónico válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -341,28 +335,27 @@ public class Formulario_Cliente_Modificar extends javax.swing.JFrame {
 
         int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas modificar los datos del cliente?", "Confirmación de modificación", JOptionPane.YES_NO_OPTION);
         if (confirmacion == JOptionPane.YES_OPTION) {
-            SistemaPrincipal.getClienteService().modificarCliente(String.valueOf(cliente.getIdCliente()), cliente);
             try {
+                SistemaPrincipal.getClienteService().modificarCliente(String.valueOf(cliente.getIdCliente()), cliente);
                 SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
+                JOptionPane.showMessageDialog(null, "El cliente se ha modificado exitosamente.", "Modificación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
             } catch (SQLException ex) {
                 Logger.getLogger(Formulario_Cliente_Modificar.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar modificar los datos del cliente. Por favor, intente nuevamente.", "Error de Modificación", JOptionPane.ERROR_MESSAGE);
             }
-            this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Modificación cancelada", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
         }
 
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jComboBox1.setSelectedIndex(0);
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
-        jTextField6.setText("");
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
