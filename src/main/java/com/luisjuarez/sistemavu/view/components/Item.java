@@ -4,17 +4,39 @@
  */
 package com.luisjuarez.sistemavu.view.components;
 
+import com.luisjuarez.sistemavu.model.Carrito;
+import com.luisjuarez.sistemavu.model.Inventario;
+import com.luisjuarez.sistemavu.model.Producto;
+import com.luisjuarez.sistemavu.utils.ImagesUtils;
+import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Facturar;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Usuario
  */
 public class Item extends javax.swing.JPanel {
-
+    private Producto producto;
+    private Inventario inventario;
+    private Carrito carrito;
+    private JPanel panel;
+    private Panel_Facturar panelFacturar; 
+    
     /**
      * Creates new form Item
      */
-    public Item() {
+    public Item(Producto producto, Inventario inventario, Carrito carrito, Panel_Facturar panelFacturar, JPanel panel) {
         initComponents();
+        this.producto = producto;
+        this.inventario = inventario;
+        this.carrito = carrito;
+        this.panelFacturar = panelFacturar;
+        this.panel = panel;
+        jLabel1.setIcon(ImagesUtils.redimensionarIcon(getClass().getResource(producto.getImagen_producto()), 150, 150));
+        lbl_NombreProducto.setText(producto.getNombre());
+        lbl_PrecioProductoBs.setText(String.format("%.2f",producto.getPrecio_venta()*SistemaPrincipal.getTasa())+" Bs");
+        lbl_PrecioProductoDolar.setText(String.format("%.2f", producto.getPrecio_venta())+" $");
     }
 
     /**
@@ -59,6 +81,11 @@ public class Item extends javax.swing.JPanel {
         roundedButton1.setRoundBottomRight(10);
         roundedButton1.setRoundTopLeft(10);
         roundedButton1.setRoundTopRight(10);
+        roundedButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundedButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(roundedButton1, new java.awt.GridBagConstraints());
 
         add(jPanel1, java.awt.BorderLayout.PAGE_END);
@@ -94,6 +121,11 @@ public class Item extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
+        carrito.agregarProducto(producto, inventario, 1);
+        panelFacturar.cargarProductosFactura(carrito);
+    }//GEN-LAST:event_roundedButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

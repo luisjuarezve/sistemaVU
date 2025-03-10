@@ -4,17 +4,41 @@
  */
 package com.luisjuarez.sistemavu.view.components;
 
+import com.luisjuarez.sistemavu.model.Carrito;
+import com.luisjuarez.sistemavu.model.Inventario;
+import com.luisjuarez.sistemavu.model.Producto;
+import com.luisjuarez.sistemavu.utils.ImagesUtils;
+import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Facturar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
  */
 public class ItemInvoice extends javax.swing.JPanel {
 
+    private Carrito carrito = SistemaPrincipal.getCarrito();
+    private Producto producto;
+    private Inventario inventario;
+    private Panel_Facturar panelFacturar;
+
     /**
      * Creates new form ItemInvoice
      */
-    public ItemInvoice() {
+    public ItemInvoice(Producto producto, double cantidad, Inventario inventario, Panel_Facturar panelFacturar) {
         initComponents();
+        this.producto = producto;
+        this.inventario = inventario;
+        this.panelFacturar = panelFacturar;
+        lbl_Imagen.setIcon(ImagesUtils.redimensionarIcon(getClass().getResource(producto.getImagen_producto()), 70, 70));
+        lbl_CantidadProducto.setText(String.valueOf(cantidad));
+        lbl_CantidadExistencia.setText(String.valueOf(inventario.getCantidad()));
+        jLabel1.setText(producto.getNombre());
+        lbl_PrecioDolar.setText(String.format("%.2f", producto.getPrecio_venta()) + " $");
+        lbl_PrecioBs.setText(String.format("%.2f", producto.getPrecio_venta() * SistemaPrincipal.getTasa()) + " Bs");
+        lbl_TotalDolar.setText(String.format("%.2f", producto.getPrecio_venta() * cantidad) + " $");
+        lbl_TotalBs.setText(String.format("%.2f", producto.getPrecio_venta() * cantidad * SistemaPrincipal.getTasa()) + " Bs");
     }
 
     /**
@@ -167,8 +191,13 @@ public class ItemInvoice extends javax.swing.JPanel {
 
         btn_Mas.setBackground(new java.awt.Color(0, 0, 102));
         btn_Mas.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Mas.setText("+");
+        btn_Mas.setText("-");
         btn_Mas.setPreferredSize(new java.awt.Dimension(30, 30));
+        btn_Mas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MasActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -179,8 +208,13 @@ public class ItemInvoice extends javax.swing.JPanel {
         Botones.add(btn_Mas, gridBagConstraints);
 
         btn_Menos.setBackground(new java.awt.Color(153, 204, 255));
-        btn_Menos.setText("-");
+        btn_Menos.setText("+");
         btn_Menos.setPreferredSize(new java.awt.Dimension(30, 30));
+        btn_Menos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MenosActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -190,6 +224,16 @@ public class ItemInvoice extends javax.swing.JPanel {
 
         add(Botones, java.awt.BorderLayout.LINE_END);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_MasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MasActionPerformed
+        carrito.agregarProducto(producto, inventario, 1);
+        panelFacturar.cargarProductosFactura(carrito);
+    }//GEN-LAST:event_btn_MasActionPerformed
+
+    private void btn_MenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MenosActionPerformed
+        carrito.disminuirProducto(producto, 1);
+        panelFacturar.cargarProductosFactura(carrito);
+    }//GEN-LAST:event_btn_MenosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

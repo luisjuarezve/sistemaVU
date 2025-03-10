@@ -13,4 +13,5 @@ public interface FacturaDAO {
     List<Factura> mostrarLista();
     void modificar(Factura factura);
     void eliminar(int id);
+    int contarFacturas();
 }

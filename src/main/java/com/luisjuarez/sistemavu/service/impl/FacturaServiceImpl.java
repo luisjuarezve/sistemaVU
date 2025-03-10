@@ -14,6 +14,9 @@ import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.sql.Timestamp;
@@ -303,5 +306,10 @@ public class FacturaServiceImpl implements FacturaService {
         }
         JTableUtils.centrarTitulosEncabezado(tabla);
         JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    @Override
+    public int contarFacturas() {
+        return facturaDAO.contarFacturas();
     }
 }

@@ -1,6 +1,9 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.Factura;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -18,4 +21,5 @@ public interface FacturaService {
     void reporteFacturasPDF(String destino) throws SQLException;
     void cargarTabla(JTable tabla) throws SQLException;
     void cargarTabla(JTable tabla, String palabraClave) throws SQLException;
+    int contarFacturas();  
 }

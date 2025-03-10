@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente {
+
     private int idCliente;
     private String tipo_doc;
     private String nro_doc;
@@ -19,4 +20,18 @@ public class Cliente {
     private String correo_electronico;
     private Timestamp fecha_registro;
     private String notas;
+
+    public void limpiar() {
+        this.idCliente = 0;
+        this.tipo_doc = "";
+        this.nro_doc = "";
+        this.nombre = "";
+        this.apellido = "";
+        this.telefono = "";
+        this.direccion = "";
+        this.correo_electronico = "";
+        this.fecha_registro = null; // Restablecer a null
+        this.notas = "";
+    }
+
 }

@@ -3,8 +3,9 @@ package com.luisjuarez.sistemavu.model;
 import java.util.ArrayList;
 
 public class Carrito {
+
     private ArrayList<CarritoProducto> items;
-    
+
     public Carrito() {
         this.items = new ArrayList<>();
     }
@@ -69,8 +70,17 @@ public class Carrito {
     public ArrayList<CarritoProducto> getItems() {
         return items;
     }
-    
-    public void limpiarCarrito() { 
-        items.clear(); 
+
+    public void limpiarCarrito() {
+        items.clear();
     }
+
+    public int getCantidadTotal() {
+        int total = 0;
+        for (CarritoProducto item : items) {
+            total += item.getCantidad(); // Suma la cantidad de cada producto
+        }
+        return total;
+    }
+
 }

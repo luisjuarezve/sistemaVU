@@ -1,10 +1,14 @@
 package com.luisjuarez.sistemavu.view;
 
+import com.luisjuarez.sistemavu.config.ConfigProperties;
+import com.luisjuarez.sistemavu.model.Carrito;
 import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.persistence.impl.CategoriaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ClienteDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.CompraDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.DetalleCompraDAOImplMariaDB;
+import com.luisjuarez.sistemavu.persistence.impl.DetalleFacturaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.EmpleadoDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.FacturaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.InventarioDAOImplMariaDB;
@@ -13,6 +17,7 @@ import com.luisjuarez.sistemavu.persistence.impl.ProveedorDAOImplMariaDB;
 import com.luisjuarez.sistemavu.service.CategoriaService;
 import com.luisjuarez.sistemavu.service.ClienteService;
 import com.luisjuarez.sistemavu.service.CompraService;
+import com.luisjuarez.sistemavu.service.DetalleFacturaService;
 import com.luisjuarez.sistemavu.service.EmpleadoService;
 import com.luisjuarez.sistemavu.service.FacturaService;
 import com.luisjuarez.sistemavu.service.InventarioService;
@@ -21,6 +26,7 @@ import com.luisjuarez.sistemavu.service.ProveedorService;
 import com.luisjuarez.sistemavu.service.impl.CategoriaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.ClienteServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.CompraServiceImpl;
+import com.luisjuarez.sistemavu.service.impl.DetalleFacturaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.EmpleadoServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.FacturaServiceImpl;
 import com.luisjuarez.sistemavu.service.impl.InventarioServiceImpl;
@@ -37,19 +43,18 @@ import com.luisjuarez.sistemavu.view.paneles.Panel_NotaEntrega;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Productos;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Proveedor;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Reportes;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author conta
  */
 public class SistemaPrincipal extends javax.swing.JFrame {
-
+    private ConfigProperties config = new ConfigProperties();
     private static Empleado empleado;
-
+    private static Double tasa;
+    private static Carrito carrito = new Carrito();
+    
     private static Cliente cliente = new Cliente(
         1, // idCliente
         "V", // tipo_doc: 'V' para venezolano, 'E' para extranjero
@@ -71,6 +76,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     public static EmpleadoService empleadoService = new EmpleadoServiceImpl(new EmpleadoDAOImplMariaDB());
     public static CompraService compraService = new CompraServiceImpl(new CompraDAOImplMariaDB());
     public static FacturaService facturaService = new FacturaServiceImpl(new FacturaDAOImplMariaDB());
+    public static DetalleFacturaService detalleFacturaService = new DetalleFacturaServiceImpl(new DetalleFacturaDAOImplMariaDB());
     
     public static Empleado getEmpleado() {
         return empleado;
@@ -151,6 +157,32 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     public static void setCompraService(CompraService compraService) {
         SistemaPrincipal.compraService = compraService;
     }
+
+    public static DetalleFacturaService getDetalleFacturaService() {
+        return detalleFacturaService;
+    }
+
+    public static void setDetalleFacturaService(DetalleFacturaService detalleFacturaService) {
+        SistemaPrincipal.detalleFacturaService = detalleFacturaService;
+    }
+
+    
+    
+    public static Double getTasa() {
+        return tasa;
+    }
+
+    public static void setTasa(Double tasa) {
+        SistemaPrincipal.tasa = tasa;
+    }
+
+    public static Carrito getCarrito() {
+        return carrito;
+    }
+
+    public static void setCarrito(Carrito carrito) {
+        SistemaPrincipal.carrito = carrito;
+    }
     
     /**
      * Creates new form SistemaVU
@@ -159,6 +191,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.empleado = empleado;
         jLabel2.setText(empleado.getNombre() + (empleado.getApellido() != null ? " " + empleado.getApellido() : ""));
+        tasa = Double.valueOf(config.getProperty("configuracion.tasa"));    
         setLocationRelativeTo(null);
     }
 
@@ -516,7 +549,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
     private void btn_facturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturarActionPerformed
         Seccion.removeAll();
-        Seccion.add(new Panel_Facturar(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.add(new Panel_Facturar(),new java.awt.BorderLayout().CENTER);
         Seccion.revalidate();
         Seccion.repaint();
         // TODO add your handling code here:
