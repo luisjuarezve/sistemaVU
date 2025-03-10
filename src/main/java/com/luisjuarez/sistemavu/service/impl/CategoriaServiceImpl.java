@@ -4,6 +4,7 @@ import com.luisjuarez.sistemavu.config.ConfigProperties;
 import com.luisjuarez.sistemavu.model.Categoria;
 import com.luisjuarez.sistemavu.model.Proveedor;
 import com.luisjuarez.sistemavu.persistence.CategoriaDAO;
+import com.luisjuarez.sistemavu.persistence.ComboItem;
 import com.luisjuarez.sistemavu.service.CategoriaService;
 import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
@@ -18,8 +19,6 @@ import java.util.Date;
 
 import javax.swing.JComboBox;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -263,5 +262,26 @@ public class CategoriaServiceImpl implements CategoriaService {
         JTableUtils.centrarTitulosEncabezado(tabla);
         JTableUtils.ajustarAnchoCelda(tabla);
     }
+
+    @Override
+    public void cargarComboBox(JComboBox comboBox) {
+        // Obtener la lista de proveedores desde la base de datos
+        List<Categoria> listaCategorias = mostrarLista();
+
+        // Limpia el JComboBox
+        comboBox.removeAllItems();
+
+        // Agregar un elemento predeterminado
+        comboBox.addItem(new ComboItem(0, "- Seleccione una categoria -"));
+
+        // Llenar el JComboBox con objetos ComboItem (ID + Nombre del proveedor)
+        for (Categoria categoria : listaCategorias) {
+            comboBox.addItem(new ComboItem(
+                    categoria.getIdCategoria(),
+                    categoria.getNombre()
+            ));
+        }
+    }
+
 
 }

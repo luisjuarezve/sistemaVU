@@ -1,8 +1,8 @@
 package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
-import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.Proveedor;
+import com.luisjuarez.sistemavu.persistence.ComboItem;
 import com.luisjuarez.sistemavu.persistence.ProveedorDAO;
 import com.luisjuarez.sistemavu.service.ProveedorService;
 import com.luisjuarez.sistemavu.utils.JTableUtils;
@@ -17,8 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -277,6 +276,27 @@ public class ProveedorServiceImpl implements ProveedorService {
         }
         JTableUtils.centrarTitulosEncabezado(tabla);
         JTableUtils.ajustarAnchoCelda(tabla);
+    }
+
+    @Override
+    public void cargarComboBox(JComboBox comboBox) {
+    // Obtener la lista de proveedores desde la base de datos
+    List<Proveedor> proveedores = mostrarListaProveedores();
+
+            // Limpia el JComboBox
+            comboBox.removeAllItems();
+
+            // Agregar un elemento predeterminado
+            comboBox.addItem(new ComboItem(0, "- Seleccione un proveedor -"));
+
+            // Llenar el JComboBox con objetos ComboItem (ID + Nombre del proveedor)
+            for (Proveedor proveedor : proveedores) {
+                comboBox.addItem(new ComboItem(
+                        proveedor.getIdProveedor(),
+                        proveedor.getNombre()
+                    + (proveedor.getApellido() != null ? " " + proveedor.getApellido() : "")
+                ));
+            }
     }
 
 }

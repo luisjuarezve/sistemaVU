@@ -4,6 +4,12 @@
  */
 package com.luisjuarez.sistemavu.view.formulario;
 
+import com.luisjuarez.sistemavu.model.Producto;
+import com.luisjuarez.sistemavu.persistence.ComboItem;
+import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Helen
@@ -15,6 +21,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
      */
     public Formulario_Producto() {
         initComponents();
+        SistemaPrincipal.getProveedorService().cargarComboBox(jComboBox3);
+        SistemaPrincipal.getCategoriaService().cargarComboBox(jComboBox1);
         setLocationRelativeTo(null);
     }
 
@@ -341,7 +349,56 @@ public class Formulario_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Producto producto = new Producto();
+
+// Validar y obtener el proveedor seleccionado
+        ComboItem selectedItemProveedor = (ComboItem) jComboBox3.getSelectedItem();
+        if (selectedItemProveedor != null && selectedItemProveedor.getId() != 0) {
+            producto.setProveedor_idProveedor(selectedItemProveedor.getId());
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un proveedor válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return; // Detener la ejecución si no hay proveedor válido
+        }
+
+// Validar y obtener la categoría seleccionada
+        ComboItem selectedItemCategoria = (ComboItem) jComboBox1.getSelectedItem();
+        if (selectedItemCategoria != null && selectedItemCategoria.getId() != 0) {
+            producto.setCategoria_idCategoria(selectedItemCategoria.getId());
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una categoría válida.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return; // Detener la ejecución si no hay categoría válida
+        }
+
+// Obtener datos de los campos
+        String codigo = jTextField11.getText();
+        String nombre = jTextField1.getText();
+        String descripcion = jTextField3.getText();
+
+        double precioMayoreo = Double.parseDouble(jTextField5.getText());
+        double impuesto = Double.parseDouble(jTextField8.getText());
+        double precioCompra = Double.parseDouble(jTextField6.getText());
+        double precioVenta = Double.parseDouble(jTextField2.getText());
+        double utilidad = Double.parseDouble(jTextField7.getText());
+
+// Asignar valores al producto
+        producto.setCodigo(codigo);
+        producto.setNombre(nombre);
+        producto.setDescripcion(descripcion);
+        producto.setPrecio_mayoreo(precioMayoreo);
+        producto.setImpuesto(impuesto);
+        producto.setPrecio_compra(precioCompra);
+        producto.setPrecio_venta(precioVenta);
+        producto.setUtilidad(utilidad);
+
+// Asignar una imagen por defecto (o manejar imágenes si es necesario)
+        producto.setImagen_producto("default_image.jpg");
+
+// Registrar el producto
+        SistemaPrincipal.getProductoService().registrarProducto(producto);
+
+// Confirmación al usuario
+        JOptionPane.showMessageDialog(this, "Producto registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -356,7 +413,6 @@ public class Formulario_Producto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -18,4 +18,5 @@ public interface CategoriaService {
     void reporteCategoriasPDF(String destino) throws SQLException;
     void cargarTabla(JTable tabla) throws SQLException;
     void cargarTabla(JTable tabla, String palabraClave) throws SQLException;
+    void cargarComboBox(JComboBox comboBox);
 }

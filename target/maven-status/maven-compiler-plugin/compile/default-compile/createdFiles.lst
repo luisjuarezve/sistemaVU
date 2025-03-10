@@ -117,6 +117,7 @@ com\luisjuarez\sistemavu\persistence\EmpleadoHasPermisoDAO.class
 com\luisjuarez\sistemavu\service\EmpleadoService.class
 com\luisjuarez\sistemavu\view\formulario\FormularioTasaDolar.class
 com\luisjuarez\sistemavu\persistence\impl\InventarioDAOImplMariaDB.class
+com\luisjuarez\sistemavu\persistence\ComboItem.class
 com\luisjuarez\sistemavu\persistence\impl\ProductoDAOImplMariaDB.class
 com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl$1.class
 com\luisjuarez\sistemavu\utils\ImagesUtils.class

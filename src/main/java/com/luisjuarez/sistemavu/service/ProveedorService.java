@@ -1,8 +1,10 @@
 package com.luisjuarez.sistemavu.service;
 
 import com.luisjuarez.sistemavu.model.Proveedor;
+import com.luisjuarez.sistemavu.persistence.ComboItem;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 public interface ProveedorService {
@@ -16,4 +18,5 @@ public interface ProveedorService {
     void reporteProveedorPDF(String destino) throws SQLException;
     void cargarTabla(JTable tabla) throws SQLException;
     void cargarTabla(JTable tabla, String palabraClave) throws SQLException;
+    void cargarComboBox(JComboBox comboBox);
 }

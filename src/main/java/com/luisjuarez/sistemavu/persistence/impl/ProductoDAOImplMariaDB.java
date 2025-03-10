@@ -12,7 +12,7 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
 
     @Override
     public void registrar(Producto producto) {
-        String sql = "INSERT INTO producto (codigo, nombre, descripcion, imagen_producto, precio_compra, precio_venta, precio_mayoreo, utilidad, impuesto, fecha_registro, Proveedor_idProveedor, Categoria_idCategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto (codigo, nombre, descripcion, imagen_producto, precio_compra, precio_venta, precio_mayoreo, utilidad, impuesto, Proveedor_idProveedor, Categoria_idCategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBDDMysql.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, producto.getCodigo());
@@ -24,9 +24,8 @@ public class ProductoDAOImplMariaDB implements ProductoDAO {
             stmt.setDouble(7, producto.getPrecio_mayoreo());
             stmt.setDouble(8, producto.getUtilidad());
             stmt.setDouble(9, producto.getImpuesto());
-            stmt.setTimestamp(10, producto.getFecha_registro());
-            stmt.setInt(11, producto.getProveedor_idProveedor());
-            stmt.setInt(12, producto.getCategoria_idCategoria());
+            stmt.setInt(10, producto.getProveedor_idProveedor());
+            stmt.setInt(11, producto.getCategoria_idCategoria());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
