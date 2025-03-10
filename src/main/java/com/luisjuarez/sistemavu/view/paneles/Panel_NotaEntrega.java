@@ -57,7 +57,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         ContenedorBotones = new javax.swing.JPanel();
         roundedPanel2 = new com.luisjuarez.sistemavu.view.components.RoundedPanel();
         btn_Anular = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Modificar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -157,7 +156,7 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         btn_Anular.setText("Anular");
         btn_Anular.setFocusable(false);
         btn_Anular.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Anular.setPreferredSize(new java.awt.Dimension(120, 140));
+        btn_Anular.setPreferredSize(new java.awt.Dimension(120, 80));
         btn_Anular.setRoundBottomLeft(10);
         btn_Anular.setRoundBottomRight(10);
         btn_Anular.setRoundTopLeft(10);
@@ -170,21 +169,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
         roundedPanel2.add(btn_Anular, gridBagConstraints);
-
-        btn_Modificar.setBackground(new java.awt.Color(0, 0, 102));
-        btn_Modificar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Modificar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Modificar.setText("Modificar");
-        btn_Modificar.setFocusable(false);
-        btn_Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Modificar.setPreferredSize(new java.awt.Dimension(120, 140));
-        btn_Modificar.setRoundBottomLeft(10);
-        btn_Modificar.setRoundBottomRight(10);
-        btn_Modificar.setRoundTopLeft(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
-        roundedPanel2.add(btn_Modificar, gridBagConstraints);
 
         ContenedorBotones.add(roundedPanel2, new java.awt.GridBagConstraints());
 
@@ -235,7 +219,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
     private javax.swing.JPanel ContenedorTable;
     private com.luisjuarez.sistemavu.view.components.CustomTable TableNotaEntrega;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Anular;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Modificar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
