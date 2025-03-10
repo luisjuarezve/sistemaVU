@@ -30,6 +30,7 @@ import com.luisjuarez.sistemavu.view.paneles.Panel_Ayuda;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Categoria;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Cliente;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Configuracion;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Facturar;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Inventario;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Mantenimiento;
 import com.luisjuarez.sistemavu.view.paneles.Panel_NotaEntrega;
@@ -522,6 +523,10 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_configuracionActionPerformed
 
     private void btn_facturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturarActionPerformed
+        Seccion.removeAll();
+        Seccion.add(new Panel_Facturar(Seccion.getSize()),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_facturarActionPerformed
 

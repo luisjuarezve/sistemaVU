@@ -123,6 +123,7 @@ com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl$1.class
 com\luisjuarez\sistemavu\utils\ImagesUtils.class
 com\luisjuarez\sistemavu\view\Login$3.class
 com\luisjuarez\sistemavu\model\Compra.class
+com\luisjuarez\sistemavu\view\components\Item.class
 com\luisjuarez\sistemavu\view\formulario\FormularioRecuperarContrasena.class
 com\luisjuarez\sistemavu\service\DetalleCompraService.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$2.class
@@ -137,6 +138,7 @@ com\luisjuarez\sistemavu\view\formulario\Formulario_empleado$3.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$7.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$3.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor.class
+com\luisjuarez\sistemavu\view\components\ItemInvoice.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$6.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Categoria$4.class
@@ -203,6 +205,7 @@ com\luisjuarez\sistemavu\persistence\CategoriaDAO.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$6.class
 com\luisjuarez\sistemavu\config\ConfigProperties.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empleado$2.class
+com\luisjuarez\sistemavu\view\components\SearchBar.class
 com\luisjuarez\sistemavu\persistence\PermisoDAO.class
 com\luisjuarez\sistemavu\persistence\impl\CategoriaDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$3.class

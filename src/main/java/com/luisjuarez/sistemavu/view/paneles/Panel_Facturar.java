@@ -1,5 +1,7 @@
 package com.luisjuarez.sistemavu.view.paneles;
 
+import java.awt.Dimension;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -14,7 +16,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
     /**
      * Creates new form Panel_Facturar
      */
-    public Panel_Facturar() {
+    public Panel_Facturar(Dimension Size) {
         initComponents();
     }
 
@@ -26,22 +28,411 @@ public class Panel_Facturar extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        setPreferredSize(new java.awt.Dimension(1100, 550));
+        Articulos = new javax.swing.JPanel();
+        Buscador = new javax.swing.JPanel();
+        searchBar1 = new com.luisjuarez.sistemavu.view.components.SearchBar();
+        Productos = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        Factura = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        lbl_NotaEntrega = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lbl_NombreCliente = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lbl_CedulaCliente = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel5 = new javax.swing.JPanel();
+        itemInvoice4 = new com.luisjuarez.sistemavu.view.components.ItemInvoice();
+        itemInvoice5 = new com.luisjuarez.sistemavu.view.components.ItemInvoice();
+        itemInvoice6 = new com.luisjuarez.sistemavu.view.components.ItemInvoice();
+        itemInvoice7 = new com.luisjuarez.sistemavu.view.components.ItemInvoice();
+        itemInvoice8 = new com.luisjuarez.sistemavu.view.components.ItemInvoice();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        roundedButton1 = new com.luisjuarez.sistemavu.view.components.RoundedButton();
+        jPanel7 = new javax.swing.JPanel();
+        lbl_Exento = new javax.swing.JLabel();
+        lbl_ExentoDolar = new javax.swing.JLabel();
+        Guion = new javax.swing.JLabel();
+        lbl_ExentoBs = new javax.swing.JLabel();
+        lbl_BIG = new javax.swing.JLabel();
+        lbl_BigDolar = new javax.swing.JLabel();
+        Guionbig = new javax.swing.JLabel();
+        lbl_BigBs = new javax.swing.JLabel();
+        lbl_Iva = new javax.swing.JLabel();
+        lbl_IvaDolar = new javax.swing.JLabel();
+        GuionIva = new javax.swing.JLabel();
+        lbl_IvaBs = new javax.swing.JLabel();
+        lbl_Total = new javax.swing.JLabel();
+        lbl_TotalDolar = new javax.swing.JLabel();
+        GuionTotal = new javax.swing.JLabel();
+        lbl_TotalBs = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        setPreferredSize(new java.awt.Dimension(920, 550));
+        setLayout(new java.awt.BorderLayout());
+
+        Articulos.setBackground(new java.awt.Color(255, 255, 255));
+        Articulos.setPreferredSize(new java.awt.Dimension(644, 550));
+        Articulos.setLayout(new java.awt.BorderLayout());
+
+        Buscador.setOpaque(false);
+        Buscador.setLayout(new java.awt.GridBagLayout());
+
+        searchBar1.setText("ESCRIBE EL NOMBRE O CODIGO DEL PRODUCTO A BUSCAR");
+        searchBar1.setPreferredSize(new java.awt.Dimension(550, 40));
+        Buscador.add(searchBar1, new java.awt.GridBagConstraints());
+
+        Articulos.add(Buscador, java.awt.BorderLayout.PAGE_START);
+
+        Productos.setOpaque(false);
+        Productos.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(550, 400));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 550, Short.MAX_VALUE)
         );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel1);
+
+        Productos.add(jScrollPane1, new java.awt.GridBagConstraints());
+
+        Articulos.add(Productos, java.awt.BorderLayout.CENTER);
+
+        add(Articulos, java.awt.BorderLayout.LINE_START);
+
+        Factura.setBackground(new java.awt.Color(255, 255, 255));
+        Factura.setPreferredSize(new java.awt.Dimension(276, 550));
+        Factura.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel2.setPreferredSize(new java.awt.Dimension(276, 120));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Nota de Entrega:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        jPanel2.add(jLabel3, gridBagConstraints);
+
+        lbl_NotaEntrega.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_NotaEntrega.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_NotaEntrega.setText("001201201");
+        jPanel2.add(lbl_NotaEntrega, new java.awt.GridBagConstraints());
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Nombre Cliente:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        jPanel2.add(jLabel5, gridBagConstraints);
+
+        lbl_NombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_NombreCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_NombreCliente.setText("MIGUEL TURITO");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        jPanel2.add(lbl_NombreCliente, gridBagConstraints);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Cedula Cliente:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        jPanel2.add(jLabel7, gridBagConstraints);
+
+        lbl_CedulaCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_CedulaCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_CedulaCliente.setText("45678987654");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        jPanel2.add(lbl_CedulaCliente, gridBagConstraints);
+
+        Factura.add(jPanel2, java.awt.BorderLayout.PAGE_START);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Articulos Seleccionados");
+        jPanel4.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        java.awt.GridBagLayout jPanel5Layout = new java.awt.GridBagLayout();
+        jPanel5Layout.columnWidths = new int[] {272};
+        jPanel5Layout.rowHeights = new int[] {70};
+        jPanel5Layout.columnWeights = new double[] {0.0};
+        jPanel5Layout.rowWeights = new double[] {0.0};
+        jPanel5.setLayout(jPanel5Layout);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel5.add(itemInvoice4, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel5.add(itemInvoice5, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel5.add(itemInvoice6, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel5.add(itemInvoice7, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel5.add(itemInvoice8, gridBagConstraints);
+
+        jScrollPane2.setViewportView(jPanel5);
+
+        jPanel4.add(jScrollPane2, java.awt.BorderLayout.LINE_END);
+
+        Factura.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel3.setPreferredSize(new java.awt.Dimension(276, 150));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Monto a pagar");
+        jPanel3.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+
+        jPanel6.setOpaque(false);
+        jPanel6.setPreferredSize(new java.awt.Dimension(276, 50));
+        jPanel6.setRequestFocusEnabled(false);
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        roundedButton1.setBackground(new java.awt.Color(153, 204, 255));
+        roundedButton1.setBorder(null);
+        roundedButton1.setText("Cobrar");
+        roundedButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        roundedButton1.setPreferredSize(new java.awt.Dimension(200, 40));
+        roundedButton1.setRoundBottomLeft(10);
+        roundedButton1.setRoundBottomRight(10);
+        roundedButton1.setRoundTopLeft(10);
+        roundedButton1.setRoundTopRight(10);
+        jPanel6.add(roundedButton1, new java.awt.GridBagConstraints());
+
+        jPanel3.add(jPanel6, java.awt.BorderLayout.SOUTH);
+
+        jPanel7.setOpaque(false);
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
+        lbl_Exento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_Exento.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Exento.setText("Exento:");
+        lbl_Exento.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel7.add(lbl_Exento, gridBagConstraints);
+
+        lbl_ExentoDolar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_ExentoDolar.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_ExentoDolar.setText("100$");
+        jPanel7.add(lbl_ExentoDolar, new java.awt.GridBagConstraints());
+
+        Guion.setForeground(new java.awt.Color(255, 255, 255));
+        Guion.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        jPanel7.add(Guion, gridBagConstraints);
+
+        lbl_ExentoBs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_ExentoBs.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_ExentoBs.setText("8000Bs");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        jPanel7.add(lbl_ExentoBs, gridBagConstraints);
+
+        lbl_BIG.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_BIG.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_BIG.setText("BIG:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel7.add(lbl_BIG, gridBagConstraints);
+
+        lbl_BigDolar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_BigDolar.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_BigDolar.setText("500$");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        jPanel7.add(lbl_BigDolar, gridBagConstraints);
+
+        Guionbig.setForeground(new java.awt.Color(255, 255, 255));
+        Guionbig.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        jPanel7.add(Guionbig, gridBagConstraints);
+
+        lbl_BigBs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_BigBs.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_BigBs.setText("15000Bs");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        jPanel7.add(lbl_BigBs, gridBagConstraints);
+
+        lbl_Iva.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_Iva.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Iva.setText("IVA 16%:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel7.add(lbl_Iva, gridBagConstraints);
+
+        lbl_IvaDolar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_IvaDolar.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_IvaDolar.setText("200$");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        jPanel7.add(lbl_IvaDolar, gridBagConstraints);
+
+        GuionIva.setForeground(new java.awt.Color(255, 255, 255));
+        GuionIva.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanel7.add(GuionIva, gridBagConstraints);
+
+        lbl_IvaBs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_IvaBs.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_IvaBs.setText("100Bs");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        jPanel7.add(lbl_IvaBs, gridBagConstraints);
+
+        lbl_Total.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_Total.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Total.setText("TOTAL:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel7.add(lbl_Total, gridBagConstraints);
+
+        lbl_TotalDolar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_TotalDolar.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_TotalDolar.setText("400$");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        jPanel7.add(lbl_TotalDolar, gridBagConstraints);
+
+        GuionTotal.setForeground(new java.awt.Color(255, 255, 255));
+        GuionTotal.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        jPanel7.add(GuionTotal, gridBagConstraints);
+
+        lbl_TotalBs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_TotalBs.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_TotalBs.setText("3000Bs");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        jPanel7.add(lbl_TotalBs, gridBagConstraints);
+
+        jPanel3.add(jPanel7, java.awt.BorderLayout.CENTER);
+
+        Factura.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        add(Factura, java.awt.BorderLayout.LINE_END);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Articulos;
+    private javax.swing.JPanel Buscador;
+    private javax.swing.JPanel Factura;
+    private javax.swing.JLabel Guion;
+    private javax.swing.JLabel GuionIva;
+    private javax.swing.JLabel GuionTotal;
+    private javax.swing.JLabel Guionbig;
+    private javax.swing.JPanel Productos;
+    private com.luisjuarez.sistemavu.view.components.ItemInvoice itemInvoice4;
+    private com.luisjuarez.sistemavu.view.components.ItemInvoice itemInvoice5;
+    private com.luisjuarez.sistemavu.view.components.ItemInvoice itemInvoice6;
+    private com.luisjuarez.sistemavu.view.components.ItemInvoice itemInvoice7;
+    private com.luisjuarez.sistemavu.view.components.ItemInvoice itemInvoice8;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_BIG;
+    private javax.swing.JLabel lbl_BigBs;
+    private javax.swing.JLabel lbl_BigDolar;
+    private javax.swing.JLabel lbl_CedulaCliente;
+    private javax.swing.JLabel lbl_Exento;
+    private javax.swing.JLabel lbl_ExentoBs;
+    private javax.swing.JLabel lbl_ExentoDolar;
+    private javax.swing.JLabel lbl_Iva;
+    private javax.swing.JLabel lbl_IvaBs;
+    private javax.swing.JLabel lbl_IvaDolar;
+    private javax.swing.JLabel lbl_NombreCliente;
+    private javax.swing.JLabel lbl_NotaEntrega;
+    private javax.swing.JLabel lbl_Total;
+    private javax.swing.JLabel lbl_TotalBs;
+    private javax.swing.JLabel lbl_TotalDolar;
+    private com.luisjuarez.sistemavu.view.components.RoundedButton roundedButton1;
+    private com.luisjuarez.sistemavu.view.components.SearchBar searchBar1;
     // End of variables declaration//GEN-END:variables
 }
