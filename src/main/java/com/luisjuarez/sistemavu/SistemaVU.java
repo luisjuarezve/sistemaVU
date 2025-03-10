@@ -13,6 +13,7 @@ public class SistemaVU {
         lg.setVisible(true);
         lg.add(new ItemInvoice());
         lg.add(new Item());
-                
+        lg.add(new SearchBar());
+        
     }
 }

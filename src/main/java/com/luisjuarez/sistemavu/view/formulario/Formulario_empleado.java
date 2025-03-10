@@ -6,15 +6,19 @@ package com.luisjuarez.sistemavu.view.formulario;
 
 import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-   
 public class Formulario_empleado extends javax.swing.JFrame {
 
-     private JTable JtableEmpleado;
+    private JTable JtableEmpleado;
+
     public Formulario_empleado(JTable table) {
         initComponents();
-        JtableEmpleado= table;
+        JtableEmpleado = table;
         setLocationRelativeTo(null);
     }
 
@@ -227,17 +231,62 @@ public class Formulario_empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Empleado empleado= new Empleado();
-       empleado.setNombre(jTextField1.getText());
-       empleado.setApellido(jTextField2.getText());
-       empleado.setUsuario(jTextField3.getText());
-       empleado.setContrasena(jTextField4.getText());
-       empleado.setCorreo(jTextField5.getText());
-       
-       
+        Empleado empleado = new Empleado();
+
+// Validate nombre
+        String nombre = jTextField1.getText();
+        if (nombre.isEmpty() || !nombre.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(null, "Nombre no puede estar vacío y no debe contener números");
+            return;
+        }
+        empleado.setNombre(nombre);
+
+// Validate apellido
+        String apellido = jTextField2.getText();
+        if (apellido.isEmpty() || !apellido.matches("^[a-zA-Z]+$")) {
+            JOptionPane.showMessageDialog(null, "Apellido no puede estar vacío y no debe contener números");
+            return;
+        }
+        empleado.setApellido(apellido);
+
+// Validate usuario
+        String usuario = jTextField3.getText();
+        if (usuario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Usuario no puede estar vacío");
+            return;
+        }
+        empleado.setUsuario(usuario);
+
+// Validate contrasena
+        String contrasena = jTextField4.getText();
+        if (contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Contraseña no puede estar vacía");
+            return;
+        }
+        empleado.setContrasena(contrasena);
+
+// Validate correo
+        String correo = jTextField5.getText();
+        if (correo.isEmpty() || !(correo.endsWith("@gmail.com") || correo.endsWith("@hotmail.com"))) {
+            JOptionPane.showMessageDialog(null, "Correo no puede estar vacío y debe tener el formato @gmail.com o @hotmail.com");
+            return;
+        }
+        empleado.setCorreo(correo);
+
+// Register the employee
         SistemaPrincipal.getEmpleadoService().registrarEmpleado(empleado);
-       
-     
+
+// Notify successful creation
+        JOptionPane.showMessageDialog(null, "Empleado creado exitosamente");
+
+        try {
+            SistemaPrincipal.getEmpleadoService().cargarTabla(JtableEmpleado);
+        } catch (SQLException ex) {
+            Logger.getLogger(Formulario_empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.dispose();
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -247,7 +296,7 @@ public class Formulario_empleado extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;

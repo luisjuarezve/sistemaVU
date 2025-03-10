@@ -4,6 +4,7 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_Producto_Modificar;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_Producto;
 import java.awt.Dimension;
@@ -184,6 +185,11 @@ public class Panel_Productos extends javax.swing.JPanel {
         btn_Modificar.setRoundBottomLeft(10);
         btn_Modificar.setRoundBottomRight(10);
         btn_Modificar.setRoundTopLeft(10);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -199,6 +205,11 @@ public class Panel_Productos extends javax.swing.JPanel {
         btn_Eliminar.setRoundBottomLeft(10);
         btn_Eliminar.setRoundBottomRight(10);
         btn_Eliminar.setRoundTopLeft(10);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -258,6 +269,41 @@ public class Panel_Productos extends javax.swing.JPanel {
         pro.setVisible(true);
                 
     }//GEN-LAST:event_btn_NuevoActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+         if (TableProductos.getRowCount() > 0) {
+            if (TableProductos.getSelectedRow() != -1) {
+                String id = String.valueOf(TableProductos.getValueAt(TableProductos.getSelectedRow(), 0));
+                Formulario_Producto_Modificar fp = new Formulario_Producto_Modificar(TableProductos, SistemaPrincipal.getProductoService().buscarProductoPorId(Integer.parseInt(id)));
+                fp.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La tabla de producto está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+       if (TableProductos.getRowCount() > 0) {
+            if (TableProductos.getSelectedRow() != -1) {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar el producto?", "Confirmación de eliminación", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    String id = String.valueOf(TableProductos.getValueAt(TableProductos.getSelectedRow(), 0));
+                    SistemaPrincipal.getProductoService().eliminarProducto(Integer.parseInt(id));
+                    JOptionPane.showMessageDialog(null, "Producto eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+                    try {
+                        SistemaPrincipal.getProductoService().cargarTabla(TableProductos);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Panel_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Eliminación cancelada", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_EliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

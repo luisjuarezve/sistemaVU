@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexionBDDMysql {
     private static final String URL = "jdbc:mariadb://localhost:3306/sistemavu";
     private static final String USER = "root";
-    private static final String PASSWORD = "1234";
+    private static final String PASSWORD = "123456";
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);

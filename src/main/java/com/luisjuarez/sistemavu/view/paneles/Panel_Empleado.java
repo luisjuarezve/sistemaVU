@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.luisjuarez.sistemavu.view.paneles;
+import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_categorias_Modificar;
+import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_empleado_Modificar;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_Permisos;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_empleado;
@@ -182,6 +184,11 @@ public class Panel_Empleado extends javax.swing.JPanel {
         btn_Modificar.setRoundBottomLeft(10);
         btn_Modificar.setRoundBottomRight(10);
         btn_Modificar.setRoundTopLeft(10);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -197,6 +204,11 @@ public class Panel_Empleado extends javax.swing.JPanel {
         btn_Eliminar.setRoundBottomLeft(10);
         btn_Eliminar.setRoundBottomRight(10);
         btn_Eliminar.setRoundTopLeft(10);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -266,6 +278,41 @@ public class Panel_Empleado extends javax.swing.JPanel {
       fp.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_PermisosActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+                   if (TableEmpleados.getRowCount() > 0) {
+            if (TableEmpleados.getSelectedRow() != -1) {
+                String Id_empleado = String.valueOf(TableEmpleados.getValueAt(TableEmpleados.getSelectedRow(), 0));
+                Formulario_empleado_Modificar fe = new Formulario_empleado_Modificar(TableEmpleados, SistemaPrincipal.getEmpleadoService().buscarEmpleadoPorId(Integer.parseInt(Id_empleado)));
+                fe.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un empleado", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La tabla de empleado está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        if (TableEmpleados.getRowCount() > 0) {
+            if (TableEmpleados.getSelectedRow() != -1) {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar el empleado?", "Confirmación de eliminación", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    String id = String.valueOf(TableEmpleados.getValueAt(TableEmpleados.getSelectedRow(), 0));
+                    SistemaPrincipal.getEmpleadoService().eliminarEmpleado(Integer.parseInt(id));
+                    JOptionPane.showMessageDialog(null, "Empleado eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+                    try {
+                        SistemaPrincipal.getCategoriaService().cargarTabla(TableEmpleados);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Panel_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Eliminación cancelada", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_EliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

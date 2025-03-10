@@ -57,8 +57,6 @@ public class Panel_Inventario extends javax.swing.JPanel {
         ContenedorBotones = new javax.swing.JPanel();
         roundedPanel2 = new com.luisjuarez.sistemavu.view.components.RoundedPanel();
         btn_Modificar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Aumentar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Disminuir = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Regresar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -160,44 +158,14 @@ public class Panel_Inventario extends javax.swing.JPanel {
         btn_Modificar.setText("Modificar");
         btn_Modificar.setFocusable(false);
         btn_Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Modificar.setPreferredSize(new java.awt.Dimension(120, 60));
+        btn_Modificar.setPreferredSize(new java.awt.Dimension(120, 140));
         btn_Modificar.setRoundBottomLeft(10);
         btn_Modificar.setRoundBottomRight(10);
         btn_Modificar.setRoundTopLeft(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
         roundedPanel2.add(btn_Modificar, gridBagConstraints);
-
-        btn_Aumentar.setBackground(new java.awt.Color(0, 0, 102));
-        btn_Aumentar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Aumentar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Aumentar.setText("Aumentar");
-        btn_Aumentar.setFocusable(false);
-        btn_Aumentar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Aumentar.setPreferredSize(new java.awt.Dimension(120, 60));
-        btn_Aumentar.setRoundBottomLeft(10);
-        btn_Aumentar.setRoundBottomRight(10);
-        btn_Aumentar.setRoundTopLeft(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
-        roundedPanel2.add(btn_Aumentar, gridBagConstraints);
-
-        btn_Disminuir.setBackground(new java.awt.Color(0, 0, 102));
-        btn_Disminuir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Disminuir.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Disminuir.setText("Disminuir");
-        btn_Disminuir.setFocusable(false);
-        btn_Disminuir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Disminuir.setPreferredSize(new java.awt.Dimension(120, 60));
-        btn_Disminuir.setRoundBottomLeft(10);
-        btn_Disminuir.setRoundBottomRight(10);
-        btn_Disminuir.setRoundTopLeft(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
-        roundedPanel2.add(btn_Disminuir, gridBagConstraints);
 
         btn_Regresar.setBackground(new java.awt.Color(0, 0, 102));
         btn_Regresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -205,13 +173,13 @@ public class Panel_Inventario extends javax.swing.JPanel {
         btn_Regresar.setText("Regresar");
         btn_Regresar.setFocusable(false);
         btn_Regresar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Regresar.setPreferredSize(new java.awt.Dimension(120, 60));
+        btn_Regresar.setPreferredSize(new java.awt.Dimension(120, 140));
         btn_Regresar.setRoundBottomLeft(10);
         btn_Regresar.setRoundBottomRight(10);
         btn_Regresar.setRoundTopLeft(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
         roundedPanel2.add(btn_Regresar, gridBagConstraints);
 
         ContenedorBotones.add(roundedPanel2, new java.awt.GridBagConstraints());
@@ -254,8 +222,6 @@ public class Panel_Inventario extends javax.swing.JPanel {
     private javax.swing.JPanel ContenedorBotones;
     private javax.swing.JPanel ContenedorTable;
     private com.luisjuarez.sistemavu.view.components.CustomTable TableInventario;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Aumentar;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Disminuir;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Modificar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Regresar;
     private javax.swing.JButton btn_buscar;

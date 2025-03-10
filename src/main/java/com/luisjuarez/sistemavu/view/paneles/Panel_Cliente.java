@@ -1,14 +1,19 @@
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_Cliente_Modificar;
+import com.luisjuarez.sistemavu.model.Cliente;
+import com.luisjuarez.sistemavu.persistence.ClienteDAO;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_Cliente;
 import java.awt.Dimension;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
 /**
@@ -18,13 +23,14 @@ import javax.swing.SwingUtilities;
 public class Panel_Cliente extends javax.swing.JPanel {
 
     private Timer timer = new Timer();
-    
+
     /**
      * Creates new form Panel_Cliente
      */
     public Panel_Cliente(Dimension Size) {
         try {
             initComponents();
+
             SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
         } catch (SQLException ex) {
             Logger.getLogger(Panel_Cliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -180,6 +186,11 @@ public class Panel_Cliente extends javax.swing.JPanel {
         btn_Modificar.setRoundBottomLeft(10);
         btn_Modificar.setRoundBottomRight(10);
         btn_Modificar.setRoundTopLeft(10);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -195,6 +206,11 @@ public class Panel_Cliente extends javax.swing.JPanel {
         btn_Eliminar.setRoundBottomLeft(10);
         btn_Eliminar.setRoundBottomRight(10);
         btn_Eliminar.setRoundTopLeft(10);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -227,7 +243,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_buscadorFocusGained
 
     private void txt_buscadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_buscadorFocusLost
-         if (txt_buscador.getText().isEmpty()) {
+        if (txt_buscador.getText().isEmpty()) {
             txt_buscador.setText("Introduce el rif o nombre del cliente");
         }
     }//GEN-LAST:event_txt_buscadorFocusLost
@@ -250,9 +266,48 @@ public class Panel_Cliente extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_buscadorKeyReleased
 
     private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
-       Formulario_Cliente cp = new Formulario_Cliente(TableClientes);
-       cp.setVisible(true);
+        Formulario_Cliente cliente = new Formulario_Cliente(TableClientes);
+        cliente.setVisible(true);
     }//GEN-LAST:event_btn_NuevoActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+        System.out.println("activo");
+              
+        if (TableClientes.getRowCount() > 0) {
+            if (TableClientes.getSelectedRow() != -1) {
+                String Id_cliente = String.valueOf(TableClientes.getValueAt(TableClientes.getSelectedRow(), 0));
+                Formulario_Cliente_Modificar fc = new Formulario_Cliente_Modificar(TableClientes, SistemaPrincipal.getClienteService().buscarClientePorId(Id_cliente));
+                fc.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un cliente", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La tabla de clientes está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        if (TableClientes.getRowCount() > 0) {
+            if (TableClientes.getSelectedRow() != -1) {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar al cliente?", "Confirmación de eliminación", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    String id = String.valueOf(TableClientes.getValueAt(TableClientes.getSelectedRow(), 0));
+                    SistemaPrincipal.getClienteService().eliminarCliente(id);
+                    JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+                    try {
+                        SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Panel_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Eliminación cancelada", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+
+    }//GEN-LAST:event_btn_EliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,6 +328,5 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private javax.swing.JPanel separador;
     private javax.swing.JTextField txt_buscador;
     // End of variables declaration//GEN-END:variables
-
 
 }

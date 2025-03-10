@@ -4,6 +4,7 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_categorias_Modificar;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_categorias;
 import java.awt.Dimension;
@@ -184,6 +185,11 @@ public class Panel_Categoria extends javax.swing.JPanel {
         btn_Modificar.setRoundBottomLeft(10);
         btn_Modificar.setRoundBottomRight(10);
         btn_Modificar.setRoundTopLeft(10);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -199,6 +205,11 @@ public class Panel_Categoria extends javax.swing.JPanel {
         btn_Eliminar.setRoundBottomLeft(10);
         btn_Eliminar.setRoundBottomRight(10);
         btn_Eliminar.setRoundTopLeft(10);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -257,6 +268,41 @@ public class Panel_Categoria extends javax.swing.JPanel {
        Formulario_categorias cat= new Formulario_categorias(TableCategoria);
        cat.setVisible(true);
     }//GEN-LAST:event_btn_NuevoActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+           if (TableCategoria.getRowCount() > 0) {
+            if (TableCategoria.getSelectedRow() != -1) {
+                String Id_categoria = String.valueOf(TableCategoria.getValueAt(TableCategoria.getSelectedRow(), 0));
+                Formulario_categorias_Modificar fc = new Formulario_categorias_Modificar(TableCategoria, SistemaPrincipal.getCategoriaService().mostrarCategoria(Id_categoria));
+                fc.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una categoria", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La tabla de categoria está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        if (TableCategoria.getRowCount() > 0) {
+            if (TableCategoria.getSelectedRow() != -1) {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar la categoria?", "Confirmación de eliminación", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    String id = String.valueOf(TableCategoria.getValueAt(TableCategoria.getSelectedRow(), 0));
+                    SistemaPrincipal.getCategoriaService().eliminarCategoria(id);
+                    JOptionPane.showMessageDialog(null, "Categoria eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+                    try {
+                        SistemaPrincipal.getCategoriaService().cargarTabla(TableCategoria);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Panel_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Eliminación cancelada", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_EliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

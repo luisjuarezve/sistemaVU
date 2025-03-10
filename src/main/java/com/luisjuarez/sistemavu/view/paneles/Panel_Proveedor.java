@@ -4,6 +4,7 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_proveedor_Modificar;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_proveedor;
 import java.awt.Dimension;
@@ -181,6 +182,11 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         btn_Modificar.setRoundBottomLeft(10);
         btn_Modificar.setRoundBottomRight(10);
         btn_Modificar.setRoundTopLeft(10);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -196,6 +202,11 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         btn_Eliminar.setRoundBottomLeft(10);
         btn_Eliminar.setRoundBottomRight(10);
         btn_Eliminar.setRoundTopLeft(10);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -254,6 +265,43 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         Formulario_proveedor pro= new Formulario_proveedor(TableProveedor);
         pro.setVisible(true);
     }//GEN-LAST:event_btn_NuevoActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+        
+        if (TableProveedor.getRowCount() > 0) {
+            if (TableProveedor.getSelectedRow() != -1) {
+                String Id_proveedor = String.valueOf(TableProveedor.getValueAt(TableProveedor.getSelectedRow(), 0));
+                Formulario_proveedor_Modificar fm = new Formulario_proveedor_Modificar(TableProveedor, SistemaPrincipal.getProveedorService().buscarProveedorPorId(Integer.parseInt(Id_proveedor)));
+                fm.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un proveedor", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La tabla de proveedor está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+       if (TableProveedor.getRowCount() > 0) {
+            if (TableProveedor.getSelectedRow() != -1) {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar el proveedor?", "Confirmación de eliminación", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    String id = String.valueOf(TableProveedor.getValueAt(TableProveedor.getSelectedRow(), 0));
+                    SistemaPrincipal.getProveedorService().eliminarProveedor(Integer.parseInt(id));
+                    JOptionPane.showMessageDialog(null, "Proveedor eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+                    try {
+                        SistemaPrincipal.getProveedorService().cargarTabla(TableProveedor);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Panel_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Eliminación cancelada", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_EliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
