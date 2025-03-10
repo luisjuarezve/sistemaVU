@@ -37,6 +37,7 @@ com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_empleado_Modificar
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_proveedor_Modificar$6.class
 com\luisjuarez\sistemavu\service\DetalleFacturaService.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Producto_Modificar.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Ayuda$4.class
 com\luisjuarez\sistemavu\view\Login$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Empleado$4.class
 com\luisjuarez\sistemavu\service\impl\CompraServiceImpl.class
@@ -46,6 +47,7 @@ com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoServiceImpl$1.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$1.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$4.class
+com\luisjuarez\sistemavu\model\Ayuda.class
 com\luisjuarez\sistemavu\service\impl\ClienteServiceImpl$1.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_proveedor_Modificar$5.class
 com\luisjuarez\sistemavu\view\formulario\FormularioAjusteIva$1.class
@@ -76,7 +78,6 @@ com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$1.class
 com\luisjuarez\sistemavu\view\formulario\FormularioAjusteIva$2.class
 com\luisjuarez\sistemavu\persistence\impl\ClienteDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$1.class
-com\luisjuarez\sistemavu\persistence\Ayuda.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$6.class
 com\luisjuarez\sistemavu\model\Proveedor.class
 com\luisjuarez\sistemavu\view\formulario\FormularioAjusteIva.class
@@ -285,6 +286,7 @@ com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_empresa_Modificar$
 com\luisjuarez\sistemavu\view\Login.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$3.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_proveedor_Modificar$1.class
+com\luisjuarez\sistemavu\persistence\AyudaDAO.class
 com\luisjuarez\sistemavu\persistence\impl\ProveedorDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$3.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$2.class

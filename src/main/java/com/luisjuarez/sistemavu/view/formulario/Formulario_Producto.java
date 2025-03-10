@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -36,6 +37,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         SistemaPrincipal.getProveedorService().cargarComboBox(jComboBox3);
         SistemaPrincipal.getCategoriaService().cargarComboBox(jComboBox1);
         jLabel15.setIcon(ImagesUtils.redimensionarIcon(getClass().getResource("/images/No image.png"), 150, 150));
+        setProductoFields();
         setLocationRelativeTo(null);
     }
 
@@ -593,7 +595,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        setProductoFields();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_impuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_impuestoActionPerformed
@@ -683,4 +685,32 @@ public class Formulario_Producto extends javax.swing.JFrame {
     private javax.swing.JTextField txt_precioVenta;
     private javax.swing.JTextField txt_utilidad;
     // End of variables declaration//GEN-END:variables
+    public void setProductoFields() {
+        // Setear los valores de los campos de texto
+        txt_codigo.setText("");
+        txt_nombre.setText("");
+        txt_descrip.setText("");
+        txt_precioMayoreo.setText("");
+        txt_impuesto.setText("");
+        txt_precioCompra.setText("");
+        txt_precioVenta.setText("");
+        txt_utilidad.setText("");
+        setComboBoxValue(jComboBox3, 0);
+        setComboBoxValue(jComboBox1, 0);
+
+    }
+    
+     public void setComboBoxValue(JComboBox comboBox, int id) {
+        for (int i = 0; i < comboBox.getItemCount(); i++) {
+            Object item = comboBox.getItemAt(i);
+            if (item instanceof ComboItem) {
+                ComboItem comboItem = (ComboItem) item;
+                if (comboItem.getId() == id) {
+                    comboBox.setSelectedItem(comboItem);
+                    return; // Salir del método una vez que se encuentra el valor
+                }
+            }
+        }
+        System.out.println("No se encontró un ComboItem con el ID: " + id);
+    }
 }

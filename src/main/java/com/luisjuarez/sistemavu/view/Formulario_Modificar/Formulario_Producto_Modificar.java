@@ -481,7 +481,7 @@ public class Formulario_Producto_Modificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        setProductoFields(producto);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_impuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_impuestoActionPerformed

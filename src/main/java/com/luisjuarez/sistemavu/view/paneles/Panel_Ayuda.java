@@ -4,14 +4,15 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
-import com.luisjuarez.sistemavu.persistence.Ayuda;
+import com.luisjuarez.sistemavu.persistence.AyudaDAO;
+import com.luisjuarez.sistemavu.utils.ImagesUtils;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 /**
@@ -19,7 +20,7 @@ import javax.swing.SwingUtilities;
  * @author Usuario
  */
 public class Panel_Ayuda extends javax.swing.JPanel {
-
+    private AyudaDAO ayudaDAO = new AyudaDAO();
     private Timer timer = new Timer();
 
     /**
@@ -27,7 +28,7 @@ public class Panel_Ayuda extends javax.swing.JPanel {
      */
     public Panel_Ayuda(Dimension Size) {
         initComponents();
-        jScrollPane1.getVerticalScrollBar().setUnitIncrement(6);
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**
@@ -43,12 +44,10 @@ public class Panel_Ayuda extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txt_buscador = new javax.swing.JTextField();
-        roundedButton1 = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         lbl_pregunta = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         lbl_imagen = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -56,7 +55,8 @@ public class Panel_Ayuda extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         roundedPanel1.setBackground(new java.awt.Color(0, 0, 102));
-        roundedPanel1.setPreferredSize(new java.awt.Dimension(850, 400));
+        roundedPanel1.setMinimumSize(new java.awt.Dimension(850, 68));
+        roundedPanel1.setPreferredSize(new java.awt.Dimension(850, 520));
         roundedPanel1.setRoundBottomLeft(20);
         roundedPanel1.setRoundBottomRight(20);
         roundedPanel1.setRoundTopLeft(20);
@@ -83,6 +83,11 @@ public class Panel_Ayuda extends javax.swing.JPanel {
                 txt_buscadorFocusLost(evt);
             }
         });
+        txt_buscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscadorActionPerformed(evt);
+            }
+        });
         txt_buscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_buscadorKeyReleased(evt);
@@ -90,19 +95,13 @@ public class Panel_Ayuda extends javax.swing.JPanel {
         });
         jPanel1.add(txt_buscador);
 
-        roundedButton1.setBackground(new java.awt.Color(153, 204, 255));
-        roundedButton1.setText("Buscar");
-        roundedButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        roundedButton1.setPreferredSize(new java.awt.Dimension(80, 30));
-        roundedButton1.setRoundTopLeft(10);
-        jPanel1.add(roundedButton1);
-
         jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(900, 300));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setPreferredSize(new java.awt.Dimension(900, 530));
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 280));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(880, 10));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 800));
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setLayout(new java.awt.BorderLayout());
@@ -113,17 +112,12 @@ public class Panel_Ayuda extends javax.swing.JPanel {
         lbl_pregunta.setText("Pregunta");
         jPanel3.add(lbl_pregunta, java.awt.BorderLayout.NORTH);
 
-        jPanel4.setOpaque(false);
-        jPanel4.setLayout(new java.awt.BorderLayout());
-
-        lbl_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ayuda 1.png"))); // NOI18N
-        jPanel4.add(lbl_imagen, java.awt.BorderLayout.CENTER);
-
-        jPanel3.add(jPanel4, java.awt.BorderLayout.CENTER);
+        lbl_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ayuda/Recuperar contraseña.png"))); // NOI18N
+        jPanel3.add(lbl_imagen, java.awt.BorderLayout.CENTER);
 
         jScrollPane1.setViewportView(jPanel3);
 
-        jPanel2.add(jScrollPane1, new java.awt.GridBagConstraints());
+        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel2);
 
@@ -139,53 +133,8 @@ public class Panel_Ayuda extends javax.swing.JPanel {
             @Override
             public void run() {
                 SwingUtilities.invokeLater(() -> {
-                    String textoBusqueda = txt_buscador.getText().trim(); // Captura el texto del buscador
-
-                    if (!textoBusqueda.isEmpty()) { // Verifica que hay texto en el buscador
-                        Ayuda ayuda = new Ayuda(); // Instancia la clase Ayuda
-
-                        // Obtener todas las preguntas y respuestas de la base de datos
-                        List<String> preguntas = ayuda.obtenerRespuestasPorPregunta(textoBusqueda);
-
-                        // Filtrar las preguntas que coincidan con el texto ingresado
-                        preguntas.stream()
-                                .filter(pregunta -> pregunta.toLowerCase().contains(textoBusqueda.toLowerCase()))
-                                .forEach(pregunta -> {
-                                    // Actualizar jLabel2 con la primera pregunta encontrada
-                                    lbl_pregunta.setText("Resultados para: " + textoBusqueda);
-
-                                    // Obtener las respuestas relacionadas con la pregunta
-                                    List<String> respuestas = ayuda.obtenerRespuestasPorPregunta(pregunta);
-
-                                    // Limpiar jPanel4 antes de llenarlo con nuevo contenido
-                                    jPanel4.removeAll();
-
-                                    // Configurar el GridBagLayout para jPanel4
-                                    GridBagConstraints gbc = new GridBagConstraints();
-                                    gbc.gridx = 0; // Todo en la primera columna
-                                    gbc.weightx = 0; // Expandir horizontalmente
-                                    gbc.fill = GridBagConstraints.HORIZONTAL; // Ocupa todo el espacio horizontalmente
-                                    gbc.insets = new Insets(5, 5, 5, 5); // Espaciado entre las etiquetas
-
-                                    // Agregar las preguntas como etiquetas (una para cada pregunta y su respuesta)
-                                    int row = 0;
-                                    for (String respuesta : respuestas) {
-                                        gbc.gridy = row++; // Incrementar la fila para cada nueva etiqueta
-                                        JLabel labelRespuesta = new JLabel("<html><b>" + pregunta + "</b>: " + respuesta + "</html>");
-                                        jPanel4.add(labelRespuesta, gbc);
-                                    }
-
-                                    // Actualizar jPanel4 para reflejar los cambios
-                                    jPanel4.revalidate();
-                                    jPanel4.repaint();
-                                });
-                    } else {
-                        // Si no hay texto en el buscador, limpia jLabel2 y jPanel4
-                        lbl_pregunta.setText("Introduce una búsqueda");
-                        jPanel4.removeAll();
-                        jPanel4.revalidate();
-                        jPanel4.repaint();
-                    }
+                    lbl_pregunta.setText(ayudaDAO.buscarAyudasPorTexto(txt_buscador.getText()).getLast().getTitulo());
+                    lbl_imagen.setIcon(ImagesUtils.redimensionarIcon(getClass().getResource(ayudaDAO.buscarAyudasPorTexto(txt_buscador.getText()).getLast().getDescripcion()), 900, 2000));
                 });
             }
         }, 300); // Retraso de 300ms para evitar búsquedas innecesarias
@@ -204,17 +153,19 @@ public class Panel_Ayuda extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txt_buscadorFocusLost
 
+    private void txt_buscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscadorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_imagen;
     private javax.swing.JLabel lbl_pregunta;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton roundedButton1;
     private com.luisjuarez.sistemavu.view.components.RoundedPanel roundedPanel1;
     private javax.swing.JTextField txt_buscador;
     // End of variables declaration//GEN-END:variables
