@@ -274,8 +274,9 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
                 }
             }
             // Crear tabla de encabezados
-            Color orange = new Color(0xFF8900);
-            Color black = new Color(0x000000);
+            Color orange = Color.decode("#" + config.getProperty("configuracion.colorEncabezado").toUpperCase());
+            Color white = Color.decode("#" + config.getProperty("configuracion.colorTitulo").toUpperCase());
+            Color black = Color.decode("#" + config.getProperty("configuracion.colorRegistros").toUpperCase());
             String[] headers = {"Cod", "Producto", "Und", "Precio unitario", "IVA 16%", "Monto"};
             float tableWidth = pageWidth - 2 * margin;
             float[] columnWidths = {
@@ -288,7 +289,7 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
             };
             float yPosition = 655;
             int fontSize = 8;
-            PDFboxUtils.drawTableHeaders(contentStream, segoeUIFontBold, fontSize, headers, columnWidths, margin, yPosition, orange, black, rowHeight);
+            PDFboxUtils.drawTableHeaders(contentStream, segoeUIFontBold, fontSize, headers, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
 
             List<DetalleFactura> detallesFacturas = detalleFacturaDAO.buscarPorFacturaId(idFactura);
@@ -347,7 +348,7 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
             double totalf = factura.getTotalFactura();
             String totalString = String.format("%.2f Bs (%.2f USD)", totalf, totalf * tasa);
             String[] total = {"", "TOTAL", cantidadString, subtotalString, ivaString, totalString};
-            PDFboxUtils.drawTableFactura(contentStream, segoeUIFontBold, fontSize, total, columnWidths, margin, yPosition, orange, black, rowHeight);
+            PDFboxUtils.drawTableFactura(contentStream, segoeUIFontBold, fontSize, total, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
 
             // Autor

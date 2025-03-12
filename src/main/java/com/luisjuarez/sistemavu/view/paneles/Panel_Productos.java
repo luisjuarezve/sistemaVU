@@ -79,7 +79,7 @@ public class Panel_Productos extends javax.swing.JPanel {
 
         txt_buscador.setBackground(new java.awt.Color(153, 204, 255));
         txt_buscador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txt_buscador.setForeground(new java.awt.Color(255, 255, 255));
+        txt_buscador.setForeground(new java.awt.Color(0, 0, 0));
         txt_buscador.setText("Introduce el codigo o nombre del producto");
         txt_buscador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         txt_buscador.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -291,7 +291,6 @@ public class Panel_Productos extends javax.swing.JPanel {
                     String id = String.valueOf(TableProductos.getValueAt(TableProductos.getSelectedRow(), 0));
                     SistemaPrincipal.getProductoService().eliminarProducto(Integer.parseInt(id));
                     JOptionPane.showMessageDialog(null, "Producto eliminado exitosamente", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
-
                     try {
                         SistemaPrincipal.getProductoService().cargarTabla(TableProductos);
                     } catch (SQLException ex) {

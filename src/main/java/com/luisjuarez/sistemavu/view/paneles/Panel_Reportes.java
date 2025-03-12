@@ -67,7 +67,7 @@ public class Panel_Reportes extends javax.swing.JPanel {
 
         btn_facturar.setBackground(new java.awt.Color(153, 204, 255));
         btn_facturar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_facturar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_facturar.setForeground(new java.awt.Color(0, 0, 0));
         btn_facturar.setText("Ventas");
         btn_facturar.setFocusable(false);
         btn_facturar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -88,7 +88,7 @@ public class Panel_Reportes extends javax.swing.JPanel {
 
         btn_inventario.setBackground(new java.awt.Color(153, 204, 255));
         btn_inventario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_inventario.setForeground(new java.awt.Color(255, 255, 255));
+        btn_inventario.setForeground(new java.awt.Color(0, 0, 0));
         btn_inventario.setText("Inventario");
         btn_inventario.setFocusable(false);
         btn_inventario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -111,7 +111,7 @@ public class Panel_Reportes extends javax.swing.JPanel {
 
         btn_empleados.setBackground(new java.awt.Color(153, 204, 255));
         btn_empleados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_empleados.setForeground(new java.awt.Color(255, 255, 255));
+        btn_empleados.setForeground(new java.awt.Color(0, 0, 0));
         btn_empleados.setText("Empleados");
         btn_empleados.setFocusable(false);
         btn_empleados.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -134,7 +134,7 @@ public class Panel_Reportes extends javax.swing.JPanel {
 
         btn_clientes.setBackground(new java.awt.Color(153, 204, 255));
         btn_clientes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_clientes.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clientes.setForeground(new java.awt.Color(0, 0, 0));
         btn_clientes.setText("Clientes");
         btn_clientes.setFocusable(false);
         btn_clientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

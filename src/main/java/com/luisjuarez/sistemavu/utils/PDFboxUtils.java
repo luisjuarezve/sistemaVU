@@ -47,7 +47,6 @@ public class PDFboxUtils {
 
     public static void drawTableFactura(PDPageContentStream contentStream, PDType0Font font, int fontSize, String[] headers, float[] columnWidths, float margin, float yPosition, Color headerColor, Color textColor, float rowHeight) throws IOException {
         float headerXPosition = margin; // Inicializar headerXPosition con margin
-        Color random;
         for (int i = 0; i < headers.length; i++) {
             if (i>=1) {
                 contentStream.setNonStrokingColor(headerColor); // Color del encabezado

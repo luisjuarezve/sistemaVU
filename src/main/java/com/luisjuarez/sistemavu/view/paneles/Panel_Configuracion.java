@@ -52,7 +52,7 @@ public class Panel_Configuracion extends javax.swing.JPanel {
 
         btn_Respaldar.setBackground(new java.awt.Color(153, 204, 255));
         btn_Respaldar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Respaldar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Respaldar.setForeground(new java.awt.Color(0, 0, 0));
         btn_Respaldar.setText("Tasa del día");
         btn_Respaldar.setFocusable(false);
         btn_Respaldar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -72,7 +72,7 @@ public class Panel_Configuracion extends javax.swing.JPanel {
 
         btn_Restaurar.setBackground(new java.awt.Color(153, 204, 255));
         btn_Restaurar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Restaurar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Restaurar.setForeground(new java.awt.Color(0, 0, 0));
         btn_Restaurar.setText("Datos Empresa");
         btn_Restaurar.setFocusable(false);
         btn_Restaurar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -92,7 +92,7 @@ public class Panel_Configuracion extends javax.swing.JPanel {
 
         btn_Empleado.setBackground(new java.awt.Color(153, 204, 255));
         btn_Empleado.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Empleado.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Empleado.setForeground(new java.awt.Color(0, 0, 0));
         btn_Empleado.setText("Impuestos");
         btn_Empleado.setFocusable(false);
         btn_Empleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

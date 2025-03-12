@@ -272,11 +272,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         body.setPreferredSize(new java.awt.Dimension(1024, 550));
         body.setLayout(new java.awt.BorderLayout());
 
-        Menu.setBackground(new java.awt.Color(255, 255, 255));
+        Menu.setBackground(new java.awt.Color(0, 0, 102));
         Menu.setPreferredSize(new java.awt.Dimension(180, 100));
         Menu.setLayout(new java.awt.GridBagLayout());
 
-        roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        roundedPanel1.setBackground(new java.awt.Color(0, 0, 102));
         roundedPanel1.setPreferredSize(new java.awt.Dimension(160, 550));
         roundedPanel1.setRoundBottomLeft(20);
         roundedPanel1.setRoundBottomRight(20);
@@ -286,7 +286,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_facturar.setBackground(new java.awt.Color(153, 204, 255));
         btn_facturar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_facturar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_facturar.setForeground(new java.awt.Color(0, 0, 0));
         btn_facturar.setText("Facturar");
         btn_facturar.setFocusable(false);
         btn_facturar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -306,7 +306,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_clientes.setBackground(new java.awt.Color(153, 204, 255));
         btn_clientes.setBorder(null);
-        btn_clientes.setForeground(new java.awt.Color(255, 255, 255));
+        btn_clientes.setForeground(new java.awt.Color(0, 0, 0));
         btn_clientes.setText("Clientes");
         btn_clientes.setFocusable(false);
         btn_clientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -325,7 +325,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_proveedor.setBackground(new java.awt.Color(153, 204, 255));
         btn_proveedor.setBorder(null);
-        btn_proveedor.setForeground(new java.awt.Color(255, 255, 255));
+        btn_proveedor.setForeground(new java.awt.Color(0, 0, 0));
         btn_proveedor.setText("Proveedor");
         btn_proveedor.setFocusable(false);
         btn_proveedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -344,7 +344,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_categoria.setBackground(new java.awt.Color(153, 204, 255));
         btn_categoria.setBorder(null);
-        btn_categoria.setForeground(new java.awt.Color(255, 255, 255));
+        btn_categoria.setForeground(new java.awt.Color(0, 0, 0));
         btn_categoria.setText("Categoría");
         btn_categoria.setFocusable(false);
         btn_categoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -363,7 +363,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_producto.setBackground(new java.awt.Color(153, 204, 255));
         btn_producto.setBorder(null);
-        btn_producto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_producto.setForeground(new java.awt.Color(0, 0, 0));
         btn_producto.setText("Producto");
         btn_producto.setFocusable(false);
         btn_producto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -382,7 +382,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_inventario.setBackground(new java.awt.Color(153, 204, 255));
         btn_inventario.setBorder(null);
-        btn_inventario.setForeground(new java.awt.Color(255, 255, 255));
+        btn_inventario.setForeground(new java.awt.Color(0, 0, 0));
         btn_inventario.setText("Inventario");
         btn_inventario.setFocusable(false);
         btn_inventario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -401,7 +401,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_notaentrega.setBackground(new java.awt.Color(153, 204, 255));
         btn_notaentrega.setBorder(null);
-        btn_notaentrega.setForeground(new java.awt.Color(255, 255, 255));
+        btn_notaentrega.setForeground(new java.awt.Color(0, 0, 0));
         btn_notaentrega.setText("Nota de Entrega");
         btn_notaentrega.setFocusable(false);
         btn_notaentrega.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -420,7 +420,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_mantenimiento.setBackground(new java.awt.Color(153, 204, 255));
         btn_mantenimiento.setBorder(null);
-        btn_mantenimiento.setForeground(new java.awt.Color(255, 255, 255));
+        btn_mantenimiento.setForeground(new java.awt.Color(0, 0, 0));
         btn_mantenimiento.setText("Mantenimiento");
         btn_mantenimiento.setFocusable(false);
         btn_mantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -439,7 +439,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_reportes.setBackground(new java.awt.Color(153, 204, 255));
         btn_reportes.setBorder(null);
-        btn_reportes.setForeground(new java.awt.Color(255, 255, 255));
+        btn_reportes.setForeground(new java.awt.Color(0, 0, 0));
         btn_reportes.setText("Reportes");
         btn_reportes.setFocusable(false);
         btn_reportes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -458,7 +458,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_configuracion.setBackground(new java.awt.Color(153, 204, 255));
         btn_configuracion.setBorder(null);
-        btn_configuracion.setForeground(new java.awt.Color(255, 255, 255));
+        btn_configuracion.setForeground(new java.awt.Color(0, 0, 0));
         btn_configuracion.setText("Configuración");
         btn_configuracion.setFocusable(false);
         btn_configuracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -477,7 +477,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_ayuda.setBackground(new java.awt.Color(153, 204, 255));
         btn_ayuda.setBorder(null);
-        btn_ayuda.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ayuda.setForeground(new java.awt.Color(0, 0, 0));
         btn_ayuda.setText("Ayuda");
         btn_ayuda.setFocusable(false);
         btn_ayuda.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -496,7 +496,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
 
         btn_salir.setBackground(new java.awt.Color(153, 204, 255));
         btn_salir.setBorder(null);
-        btn_salir.setForeground(new java.awt.Color(255, 255, 255));
+        btn_salir.setForeground(new java.awt.Color(0, 0, 0));
         btn_salir.setText("Salir");
         btn_salir.setFocusable(false);
         btn_salir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

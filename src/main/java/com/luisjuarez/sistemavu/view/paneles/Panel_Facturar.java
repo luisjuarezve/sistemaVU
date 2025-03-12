@@ -415,12 +415,13 @@ public class Panel_Facturar extends javax.swing.JPanel {
                 ArrayList<CarritoProducto> listaProductos = carrito.getItems();
                 for (CarritoProducto Producto : listaProductos) {
                     DetalleFactura dnt = new DetalleFactura();
-                    dnt.setIdDetalleFactura(Integer.parseInt(lbl_NotaEntrega.getText()));
+                    dnt.setFactura_idFactura(Integer.parseInt(lbl_NotaEntrega.getText()));
                     dnt.setProducto_idProducto(Producto.getProducto().getIdProducto());
                     dnt.setCantidad(Producto.getCantidad());
                     dnt.setPrecioUnitario(Producto.getProducto().getPrecio_venta());
                     SistemaPrincipal.getDetalleFacturaService().registrarDetalleFactura(dnt);
                     SistemaPrincipal.getInventarioService().disminuirInventario(Producto.getInventario().getIdInventario(), Producto.getCantidad());
+                    SistemaPrincipal.detalleFacturaService.generarFacturaPDF("C:\\Users\\conta\\OneDrive\\Escritorio\\factura.pdf", Integer.parseInt(lbl_NotaEntrega.getText()));
                 }
                 cliente.limpiar();
                 carrito.limpiarCarrito();
