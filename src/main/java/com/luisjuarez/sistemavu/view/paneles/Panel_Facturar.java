@@ -10,7 +10,12 @@ import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.components.Item;
 import com.luisjuarez.sistemavu.view.components.ItemInvoice;
+import com.luisjuarez.sistemavu.view.formulario.Formulario_Buscar_Cliente;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +24,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -27,7 +33,6 @@ import javax.swing.SwingUtilities;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
 /**
  *
  * @author Usuario
@@ -37,6 +42,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
     private Cliente cliente = SistemaPrincipal.getCliente();
     private Carrito carrito = SistemaPrincipal.getCarrito();
     private Timer timer = new Timer();
+
     /**
      * Creates new form Panel_Facturar
      */
@@ -44,7 +50,8 @@ public class Panel_Facturar extends javax.swing.JPanel {
         initComponents();
         cargarMontoFactura(carrito);
         cargarProductos(SistemaPrincipal.getProductoService().mostrarListaProductos());
-        lbl_NotaEntrega.setText(String.valueOf(SistemaPrincipal.getFacturaService().contarFacturas()+ 1));
+        cargarCliente();
+        lbl_NotaEntrega.setText(String.valueOf(SistemaPrincipal.getFacturaService().contarFacturas() + 1));
     }
 
     /**
@@ -71,6 +78,8 @@ public class Panel_Facturar extends javax.swing.JPanel {
         lbl_cliente_nombre = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lbl_cedula_cliente = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -101,7 +110,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         Articulos.setBackground(new java.awt.Color(255, 255, 255));
-        Articulos.setPreferredSize(new java.awt.Dimension(644, 550));
+        Articulos.setPreferredSize(new java.awt.Dimension(598, 550));
         Articulos.setLayout(new java.awt.BorderLayout());
 
         Buscador.setOpaque(false);
@@ -152,28 +161,33 @@ public class Panel_Facturar extends javax.swing.JPanel {
 
         Articulos.add(Productos, java.awt.BorderLayout.CENTER);
 
-        add(Articulos, java.awt.BorderLayout.LINE_START);
+        add(Articulos, java.awt.BorderLayout.CENTER);
 
         Factura.setBackground(new java.awt.Color(255, 255, 255));
-        Factura.setPreferredSize(new java.awt.Dimension(276, 550));
+        Factura.setPreferredSize(new java.awt.Dimension(322, 550));
         Factura.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel2.setPreferredSize(new java.awt.Dimension(276, 120));
+        jPanel2.setPreferredSize(new java.awt.Dimension(276, 110));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nota de Entrega:");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel2.add(jLabel3, gridBagConstraints);
 
         lbl_NotaEntrega.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_NotaEntrega.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_NotaEntrega.setText("001201201");
-        jPanel2.add(lbl_NotaEntrega, new java.awt.GridBagConstraints());
+        lbl_NotaEntrega.setText("0");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        jPanel2.add(lbl_NotaEntrega, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,19 +195,19 @@ public class Panel_Facturar extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new java.awt.Insets(-5, 0, 0, 20);
         jPanel2.add(jLabel5, gridBagConstraints);
 
-        lbl_cliente_nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_cliente_nombre.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_cliente_nombre.setText("MIGUEL TURITO");
+        lbl_cliente_nombre.setText("SIN ASIGNAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(-5, 0, 0, 0);
         jPanel2.add(lbl_cliente_nombre, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Cedula Cliente:");
+        jLabel7.setText("Documento:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -202,10 +216,36 @@ public class Panel_Facturar extends javax.swing.JPanel {
 
         lbl_cedula_cliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_cedula_cliente.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_cedula_cliente.setText("45678987654");
+        lbl_cedula_cliente.setText("V-12345678");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         jPanel2.add(lbl_cedula_cliente, gridBagConstraints);
+
+        jButton1.setBackground(new java.awt.Color(102, 204, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile.png"))); // NOI18N
+        jButton1.setPreferredSize(new java.awt.Dimension(30, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        jPanel2.add(jButton1, gridBagConstraints);
+
+        jButton2.setBackground(new java.awt.Color(102, 204, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        jButton2.setPreferredSize(new java.awt.Dimension(30, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        jPanel2.add(jButton2, gridBagConstraints);
 
         Factura.add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
@@ -213,6 +253,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         jPanel4.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Articulos Seleccionados");
         jPanel4.add(jLabel1, java.awt.BorderLayout.PAGE_START);
@@ -230,7 +271,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         items.setLayout(jPanel5Layout);
         jScrollPane2.setViewportView(items);
 
-        jPanel4.add(jScrollPane2, java.awt.BorderLayout.LINE_END);
+        jPanel4.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         Factura.add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -251,9 +292,11 @@ public class Panel_Facturar extends javax.swing.JPanel {
 
         btn_pagar.setBackground(new java.awt.Color(153, 204, 255));
         btn_pagar.setBorder(null);
+        btn_pagar.setForeground(new java.awt.Color(30, 30, 30));
         btn_pagar.setText("Cobrar");
+        btn_pagar.setEnabled(false);
         btn_pagar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_pagar.setPreferredSize(new java.awt.Dimension(200, 40));
+        btn_pagar.setPreferredSize(new java.awt.Dimension(200, 30));
         btn_pagar.setRoundBottomLeft(10);
         btn_pagar.setRoundBottomRight(10);
         btn_pagar.setRoundTopLeft(10);
@@ -404,32 +447,70 @@ public class Panel_Facturar extends javax.swing.JPanel {
 
         Factura.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        add(Factura, java.awt.BorderLayout.LINE_END);
+        add(Factura, java.awt.BorderLayout.EAST);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_pagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pagarActionPerformed
-         try {
-            SistemaPrincipal.getFacturaService().registrarFactura(new Factura(0, carrito.calcularBIG()+carrito.calcularExcento(), carrito.calcularIVA(), SistemaPrincipal.getTasa(), carrito.calcularBIG()+carrito.calcularExcento()+carrito.calcularIVA(), carrito.getCantidadTotal(), new Timestamp(System.currentTimeMillis()), SistemaPrincipal.getCliente().getIdCliente(), SistemaPrincipal.getEmpleado().getIdEmpleado()));
-            JOptionPane.showMessageDialog(this, "Nota de entrega registrada Exitosamente!", "Registro Exitoso!", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            SistemaPrincipal.getFacturaService().registrarFactura(new Factura(
+                    0,
+                    carrito.calcularBIG() + carrito.calcularExcento(),
+                    carrito.calcularIVA(),
+                    SistemaPrincipal.getTasa(),
+                    carrito.calcularBIG() + carrito.calcularExcento() + carrito.calcularIVA(),
+                    carrito.getCantidadTotal(), //cantidad
+                    new Timestamp(System.currentTimeMillis()), //fecha
+                    SistemaPrincipal.getCliente().getIdCliente(), //cliente
+                    SistemaPrincipal.getEmpleado().getIdEmpleado()) //empleado
+            );
             try {
                 ArrayList<CarritoProducto> listaProductos = carrito.getItems();
                 for (CarritoProducto Producto : listaProductos) {
                     DetalleFactura dnt = new DetalleFactura();
-                    dnt.setFactura_idFactura(Integer.parseInt(lbl_NotaEntrega.getText()));
-                    dnt.setProducto_idProducto(Producto.getProducto().getIdProducto());
                     dnt.setCantidad(Producto.getCantidad());
                     dnt.setPrecioUnitario(Producto.getProducto().getPrecio_venta());
+                    dnt.setSubtotal(Producto.getProducto().getPrecio_venta() * Producto.getCantidad());
+                    dnt.setFactura_idFactura(Integer.parseInt(lbl_NotaEntrega.getText()));
+                    dnt.setProducto_idProducto(Producto.getProducto().getIdProducto());
                     SistemaPrincipal.getDetalleFacturaService().registrarDetalleFactura(dnt);
                     SistemaPrincipal.getInventarioService().disminuirInventario(Producto.getInventario().getIdInventario(), Producto.getCantidad());
-                    SistemaPrincipal.detalleFacturaService.generarFacturaPDF("C:\\Users\\conta\\OneDrive\\Escritorio\\factura.pdf", Integer.parseInt(lbl_NotaEntrega.getText()));
                 }
-                cliente.limpiar();
+                JOptionPane.showMessageDialog(this, "Nota de entrega registrada Exitosamente en la base de datos!", "Registro Exitoso!", JOptionPane.INFORMATION_MESSAGE);
+                int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas guardar la factura en pdf?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Seleccione la ubicación para guardar la factura");
+                    fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+                    fileChooser.setSelectedFile(new File("factura.pdf"));
+                    int userSelection = fileChooser.showSaveDialog(null);
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        File archivoSeleccionado = fileChooser.getSelectedFile();
+                        try {
+                            SistemaPrincipal.detalleFacturaService.generarFacturaPDF(archivoSeleccionado.getAbsolutePath(), Integer.parseInt(lbl_NotaEntrega.getText()));
+                            JOptionPane.showMessageDialog(null, "Factura guardada exitosamente en: " + archivoSeleccionado.getAbsolutePath());
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Error al generar la factura: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            e.printStackTrace();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El guardado de la factura fue cancelado.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "La factura no será guardada.");
+                }
+                SistemaPrincipal.setCliente(null);
+                cliente = null;
                 carrito.limpiarCarrito();
                 verificarEstadoBotonPagar();
                 cargarProductosFactura(carrito);
+                cargarCliente();
+                Factura.revalidate();
+                Factura.repaint();
             } catch (Exception e) {
+                e.printStackTrace(); // Esto te dará más información sobre el problema.
                 JOptionPane.showMessageDialog(this, "Error al insertar los detalles!", "Error de registro", JOptionPane.INFORMATION_MESSAGE);
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -463,6 +544,18 @@ public class Panel_Facturar extends javax.swing.JPanel {
         }, 300);
     }//GEN-LAST:event_searchBar1KeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Formulario_Buscar_Cliente fbc = new Formulario_Buscar_Cliente(this);
+        fbc.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cliente = null;
+        SistemaPrincipal.setCliente(cliente);
+        cargarCliente();
+        verificarEstadoBotonPagar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Articulos;
@@ -475,6 +568,8 @@ public class Panel_Facturar extends javax.swing.JPanel {
     private javax.swing.JPanel Productos;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_pagar;
     private javax.swing.JPanel items;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -509,7 +604,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
     public void cargarProductosFactura(Carrito carrito) {
         items.removeAll();
         int cant_prod = carrito.getItems().size();
-        if (cant_prod<3) {
+        if (cant_prod < 3) {
             GridLayout gl = new GridLayout(3, 1, 10, 10);
             items.setLayout(gl);
             for (CarritoProducto item : carrito.getItems()) {
@@ -517,7 +612,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
                 items.revalidate();
                 items.repaint();
             }
-        }else{
+        } else {
             GridLayout gl = new GridLayout(cant_prod, 1, 10, 10);
             items.setLayout(gl);
             for (CarritoProducto item : carrito.getItems()) {
@@ -529,15 +624,25 @@ public class Panel_Facturar extends javax.swing.JPanel {
         cargarMontoFactura(carrito);
         verificarEstadoBotonPagar();
     }
-    
-    private void verificarEstadoBotonPagar() {
+
+    public void verificarEstadoBotonPagar() {
+        cliente = SistemaPrincipal.getCliente();
+        double monto_total = carrito.calcularBIG() + carrito.calcularExcento() + carrito.calcularIVA();
         if (SistemaPrincipal.getCliente() != null) {
-            lbl_cliente_nombre.setText(cliente.getNombre().toUpperCase() + " " + cliente.getApellido().toUpperCase());
-            lbl_cedula_cliente.setText(cliente.getTipo_doc()+".-" + cliente.getNro_doc());
-            double monto_total = carrito.calcularBIG()+carrito.calcularExcento()+carrito.calcularIVA();
-            if (monto_total > 0 && !lbl_cliente_nombre.getText().isBlank()) {
+            lbl_cliente_nombre.setText(cliente.getNombre() + (cliente.getApellido() != null ? " " + cliente.getApellido() : ""));
+            lbl_cedula_cliente.setText(cliente.getTipo_doc() + ".-" + cliente.getNro_doc());
+            if (monto_total > 0 && !lbl_cliente_nombre.getText().equals("SIN ASIGNAR")) {
                 btn_pagar.setEnabled(true);
                 btn_pagar.setText("Cobrar (" + String.format("%.2f", monto_total) + ") $");
+            } else {
+                btn_pagar.setText("Cobrar");
+                btn_pagar.setEnabled(false);
+            }
+        } else {
+            if (monto_total > 0 && !lbl_cliente_nombre.getText().equals("SIN ASIGNAR")) {
+                btn_pagar.setEnabled(true);
+                btn_pagar.setText("Cobrar (" + String.format("%.2f", monto_total) + ") $");
+                System.out.println("este xd");
             } else {
                 btn_pagar.setText("Cobrar");
                 btn_pagar.setEnabled(false);
@@ -546,36 +651,36 @@ public class Panel_Facturar extends javax.swing.JPanel {
     }
 
     private void cargarMontoFactura(Carrito carrito) {
-        lbl_exento_dolar.setText(String.format(Locale.US,"%.2f", carrito.calcularExcento())+" $");
-        lbl_exento_bs.setText(String.format(Locale.US,"%.2f", carrito.calcularExcento()*SistemaPrincipal.getTasa())+" Bs");
-        lbl_big_dolar.setText(String.format(Locale.US,"%.2f", carrito.calcularBIG())+" $");
-        lbl_big_bs.setText(String.format(Locale.US,"%.2f", carrito.calcularBIG()*SistemaPrincipal.getTasa())+" Bs");
-        lbl_iva_dolar.setText(String.format(Locale.US,"%.2f", carrito.calcularIVA())+" $");
-        lbl_iva_bs.setText(String.format(Locale.US,"%.2f", carrito.calcularIVA())+" Bs");
-        lbl_precioTotalapagarDolares.setText(String.format(Locale.US,"%.2f", carrito.calcularBIG()+carrito.calcularExcento()+carrito.calcularIVA())+" $");
-        lbl_PrecioTotalapagarBolivares.setText(String.format(Locale.US,"%.2f", carrito.calcularBIG()+carrito.calcularExcento()+carrito.calcularIVA()*SistemaPrincipal.getTasa())+" Bs");
+        lbl_exento_dolar.setText(String.format(Locale.US, "%.2f", carrito.calcularExcento()) + " $");
+        lbl_exento_bs.setText(String.format(Locale.US, "%.2f", carrito.calcularExcento() * SistemaPrincipal.getTasa()) + " Bs");
+        lbl_big_dolar.setText(String.format(Locale.US, "%.2f", carrito.calcularBIG()) + " $");
+        lbl_big_bs.setText(String.format(Locale.US, "%.2f", carrito.calcularBIG() * SistemaPrincipal.getTasa()) + " Bs");
+        lbl_iva_dolar.setText(String.format(Locale.US, "%.2f", carrito.calcularIVA()) + " $");
+        lbl_iva_bs.setText(String.format(Locale.US, "%.2f", carrito.calcularIVA()) + " Bs");
+        lbl_precioTotalapagarDolares.setText(String.format(Locale.US, "%.2f", carrito.calcularBIG() + carrito.calcularExcento() + carrito.calcularIVA()) + " $");
+        lbl_PrecioTotalapagarBolivares.setText(String.format(Locale.US, "%.2f", carrito.calcularBIG() + carrito.calcularExcento() + carrito.calcularIVA() * SistemaPrincipal.getTasa()) + " Bs");
     }
-    
-    private void cargarProductos(List<Producto> listaProductos){
-        int cant_prod = listaProductos.size()-1;
-        int row_prod = (cant_prod/6);
+
+    private void cargarProductos(List<Producto> listaProductos) {
+        int cant_prod = listaProductos.size() - 1;
+        int row_prod = (cant_prod / 6);
         if (cant_prod <= 17) {
             GridLayout gl = new GridLayout(3, 6, 10, 10);
             row_items.setLayout(gl);
             for (int i = 0; i <= 17; i++) {
-                if (i<=cant_prod) {
+                if (i <= cant_prod) {
                     Inventario inventario = SistemaPrincipal.getInventarioService().buscarInventarioPorId(listaProductos.get(i).getIdProducto());
-                    if (inventario.getCantidad()>0) {
+                    if (inventario.getCantidad() > 0) {
                         Item item = new Item(listaProductos.get(i), inventario, carrito, this, items);
                         row_items.add(item);
                     }
-                }else{
+                } else {
                     JPanel njp = new JPanel();
                     njp.setOpaque(false);
                     row_items.add(njp);
                 }
             }
-        }else{
+        } else {
             if (row_prod % 2 != 0) {
                 row_prod += 1;
             }
@@ -583,11 +688,20 @@ public class Panel_Facturar extends javax.swing.JPanel {
             row_items.setLayout(gl);
             for (int i = 0; i < cant_prod; i++) {
                 Inventario inventario = SistemaPrincipal.getInventarioService().buscarInventarioPorId(listaProductos.get(i).getIdProducto());
-                if (inventario.getCantidad()>0) {
+                if (inventario.getCantidad() > 0) {
                     row_items.add(new Item(listaProductos.get(i), inventario, carrito, this, items));
                 }
             }
         }
     }
-    
+
+    public void cargarCliente() {
+        if (cliente != null) {
+            lbl_cliente_nombre.setText(cliente.getNombre() + (cliente.getApellido() != null ? " " + cliente.getApellido() : ""));
+            lbl_cedula_cliente.setText(cliente.getTipo_doc() + "-" + cliente.getNro_doc());
+        } else {
+            lbl_cliente_nombre.setText("SIN ASIGNAR");
+            lbl_cedula_cliente.setText("V-12345678");
+        }
+    }
 }

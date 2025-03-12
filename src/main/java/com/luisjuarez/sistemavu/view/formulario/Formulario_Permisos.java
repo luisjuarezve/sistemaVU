@@ -49,11 +49,12 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(508, 581));
         setResizable(false);
 
-        Header.setBackground(new java.awt.Color(153, 204, 255));
+        Header.setBackground(new java.awt.Color(0, 255, 255));
         Header.setPreferredSize(new java.awt.Dimension(100, 100));
         Header.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Permisos de Empleado");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -62,11 +63,12 @@ public class Formulario_Permisos extends javax.swing.JFrame {
 
         getContentPane().add(Header, java.awt.BorderLayout.PAGE_START);
 
-        Corpus.setBackground(new java.awt.Color(153, 204, 255));
+        Corpus.setBackground(new java.awt.Color(0, 255, 255));
         Corpus.setPreferredSize(new java.awt.Dimension(508, 0));
         Corpus.setLayout(new java.awt.GridBagLayout());
 
         Facturar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Facturar.setForeground(new java.awt.Color(30, 30, 30));
         Facturar.setText("Facturar");
         Facturar.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -76,6 +78,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Facturar, gridBagConstraints);
 
         Cliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Cliente.setForeground(new java.awt.Color(30, 30, 30));
         Cliente.setText("Clientes");
         Cliente.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -85,6 +88,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Cliente, gridBagConstraints);
 
         Proveedor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Proveedor.setForeground(new java.awt.Color(30, 30, 30));
         Proveedor.setText("Proveedor");
         Proveedor.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -94,7 +98,8 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Proveedor, gridBagConstraints);
 
         Categoria.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Categoria.setText("Categoria");
+        Categoria.setForeground(new java.awt.Color(30, 30, 30));
+        Categoria.setText("Categoría");
         Categoria.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -103,6 +108,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Categoria, gridBagConstraints);
 
         Producto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Producto.setForeground(new java.awt.Color(30, 30, 30));
         Producto.setText("Producto");
         Producto.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -112,6 +118,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Producto, gridBagConstraints);
 
         Inventario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Inventario.setForeground(new java.awt.Color(30, 30, 30));
         Inventario.setText("Inventario");
         Inventario.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -121,6 +128,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Inventario, gridBagConstraints);
 
         NotadeEntrega.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        NotadeEntrega.setForeground(new java.awt.Color(30, 30, 30));
         NotadeEntrega.setText("Nota de Entrega");
         NotadeEntrega.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -130,6 +138,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(NotadeEntrega, gridBagConstraints);
 
         Mantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Mantenimiento.setForeground(new java.awt.Color(30, 30, 30));
         Mantenimiento.setText("Mantenimiento");
         Mantenimiento.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -140,6 +149,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Mantenimiento, gridBagConstraints);
 
         Reporte.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Reporte.setForeground(new java.awt.Color(30, 30, 30));
         Reporte.setText("Reportes");
         Reporte.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -149,6 +159,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
         Corpus.add(Reporte, gridBagConstraints);
 
         Configuracion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Configuracion.setForeground(new java.awt.Color(30, 30, 30));
         Configuracion.setText("Configuración");
         Configuracion.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -159,7 +170,7 @@ public class Formulario_Permisos extends javax.swing.JFrame {
 
         getContentPane().add(Corpus, java.awt.BorderLayout.CENTER);
 
-        Footer.setBackground(new java.awt.Color(153, 204, 255));
+        Footer.setBackground(new java.awt.Color(0, 255, 255));
         Footer.setMinimumSize(new java.awt.Dimension(0, 39));
         Footer.setPreferredSize(new java.awt.Dimension(250, 100));
         Footer.setLayout(new java.awt.GridBagLayout());

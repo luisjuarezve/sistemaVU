@@ -37,18 +37,20 @@ public class FormularioTasaDolar extends javax.swing.JFrame {
         roundedButton1 = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 255, 255));
         setMinimumSize(new java.awt.Dimension(300, 300));
         setPreferredSize(new java.awt.Dimension(300, 300));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Tasa del dia");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel1.setText("Tasa del día");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jTextField1.setPreferredSize(new java.awt.Dimension(100, 25));

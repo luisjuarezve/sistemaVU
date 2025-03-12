@@ -46,11 +46,11 @@ public class FormularioRecuperarContrasena extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(300, 300));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Recuperar Contraseña");
         jLabel1.setPreferredSize(new java.awt.Dimension(173, 100));
@@ -60,7 +60,7 @@ public class FormularioRecuperarContrasena extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(312, 100));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setText("Contraseña: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -80,7 +80,7 @@ public class FormularioRecuperarContrasena extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(jPasswordField1, gridBagConstraints);
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(30, 30, 30));
         jLabel3.setText("Repetir Contraseña:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

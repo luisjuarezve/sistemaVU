@@ -54,20 +54,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     private static Empleado empleado;
     private static Double tasa;
     private static Carrito carrito = new Carrito();
-    
-    private static Cliente cliente = new Cliente(
-        1, // idCliente
-        "V", // tipo_doc: 'V' para venezolano, 'E' para extranjero
-        "12345678", // nro_doc
-        "Luis", // nombre
-        "Gómez", // apellido
-        "04141234567", // telefono
-        "Calle Principal #123, Ciudad", // direccion
-        "lgomez@example.com", // correo_electronico
-        new Timestamp(System.currentTimeMillis()), // fecha_registro
-        "Cliente preferencial" // notas
-    );
-
+    private static Cliente cliente = null;
     public static InventarioService inventarioService = new InventarioServiceImpl(new InventarioDAOImplMariaDB());
     public static ClienteService clienteService = new ClienteServiceImpl(new ClienteDAOImplMariaDB());
     public static ProductoService productoService = new ProductoServiceImpl(new ProductoDAOImplMariaDB());

@@ -91,7 +91,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(0, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
         jLabel1.setText("Nuevo Producto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -107,7 +108,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Codigo");
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel2.setText("Código");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -123,6 +125,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_codigo, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(30, 30, 30));
         jLabel3.setText("Nombre:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -145,7 +148,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_nombre, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Descripcion:");
+        jLabel5.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel5.setText("Descripción:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -162,7 +166,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_descrip, gridBagConstraints);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("Precio compra");
+        jLabel11.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel11.setText("Precio de compra");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -184,6 +189,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_precioCompra, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(30, 30, 30));
         jLabel9.setText("Utilidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -200,6 +206,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_utilidad, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(30, 30, 30));
         jLabel4.setText("Precio venta:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -222,7 +229,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_precioVenta, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Precio mayoreo:");
+        jLabel7.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel7.setText("Precio al mayor:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -244,6 +252,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_precioMayoreo, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(30, 30, 30));
         jLabel8.setText("Impuesto:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -264,6 +273,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_impuesto, gridBagConstraints);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(30, 30, 30));
         jLabel13.setText("Cantidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -284,7 +294,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_cantidad, gridBagConstraints);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel14.setText("Inv. Minimo:");
+        jLabel14.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel14.setText("Inv. Mínimo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -304,7 +315,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_invMin, gridBagConstraints);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel17.setText("Inv. Maximo:");
+        jLabel17.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel17.setText("Inv. Máximo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -324,7 +336,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(txt_invMax, gridBagConstraints);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("Proveedor ID");
+        jLabel10.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel10.setText("Proveedor:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
@@ -341,7 +354,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         jPanel2.add(jComboBox3, gridBagConstraints);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel12.setText("Categoria ID:");
+        jLabel12.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel12.setText("Categoría:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
@@ -371,7 +385,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         jPanel4.add(jLabel15, gridBagConstraints);
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(30, 30, 30));
         jLabel16.setText("Foto producto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

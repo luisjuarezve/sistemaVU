@@ -61,8 +61,9 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(0, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Registrar categoria");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel1.setText("Modificar Categoría");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -105,6 +106,7 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(30, 30, 30));
         jLabel11.setText("Nombre:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -126,7 +128,8 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
         jPanel2.add(jTextField6, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Descripcion:");
+        jLabel3.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel3.setText("Descripción:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

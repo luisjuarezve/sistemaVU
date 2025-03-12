@@ -62,7 +62,7 @@ public class Carrito {
     public double calcularIVA() {
         double total = 0.0;
         for (CarritoProducto item : items) {
-            total += item.getCantidad() * item.getProducto().getPrecio_venta() * item.getProducto().getImpuesto();
+            total += item.getCantidad() * item.getProducto().getPrecio_venta() * (item.getProducto().getImpuesto()/100);
         }
         return total;
     }

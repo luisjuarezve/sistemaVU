@@ -23,6 +23,7 @@ public class DetalleFacturaDAOImplMariaDB implements DetalleFacturaDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("error "+e.getMessage());
         }
     }
 
