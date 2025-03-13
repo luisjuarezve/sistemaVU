@@ -116,7 +116,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         Buscador.setOpaque(false);
         Buscador.setLayout(new java.awt.GridBagLayout());
 
-        searchBar1.setText("ESCRIBE EL NOMBRE O CODIGO DEL PRODUCTO A BUSCAR");
+        searchBar1.setText("ESCRIBE EL NOMBRE O CÓDIGO DEL PRODUCTO A BUSCAR");
         searchBar1.setPreferredSize(new java.awt.Dimension(550, 40));
         searchBar1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -255,7 +255,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(30, 30, 30));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Articulos Seleccionados");
+        jLabel1.setText("Artículos Seleccionados");
         jPanel4.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -315,7 +315,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
 
         lbl_Exento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbl_Exento.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_Exento.setText("Exento:");
+        lbl_Exento.setText("EXCENTO:");
         lbl_Exento.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -334,6 +334,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
         jPanel7.add(Guion, gridBagConstraints);
 
         lbl_exento_bs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -367,6 +368,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
         jPanel7.add(Guionbig, gridBagConstraints);
 
         lbl_big_bs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -400,6 +402,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
         jPanel7.add(GuionIva, gridBagConstraints);
 
         lbl_iva_bs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -433,6 +436,7 @@ public class Panel_Facturar extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
         jPanel7.add(GuionTotal, gridBagConstraints);
 
         lbl_PrecioTotalapagarBolivares.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -517,14 +521,14 @@ public class Panel_Facturar extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_pagarActionPerformed
 
     private void searchBar1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchBar1FocusGained
-        if (searchBar1.getText().equals("ESCRIBE EL NOMBRE O CODIGO DEL PRODUCTO A BUSCAR")) {
+        if (searchBar1.getText().equals("ESCRIBE EL NOMBRE O CÓDIGO DEL PRODUCTO A BUSCAR")) {
             searchBar1.setText("");
         }
     }//GEN-LAST:event_searchBar1FocusGained
 
     private void searchBar1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchBar1FocusLost
         if (searchBar1.getText().equals("")) {
-            searchBar1.setText("ESCRIBE EL NOMBRE O CODIGO DEL PRODUCTO A BUSCAR");
+            searchBar1.setText("ESCRIBE EL NOMBRE O CÓDIGO DEL PRODUCTO A BUSCAR");
         }
     }//GEN-LAST:event_searchBar1FocusLost
 

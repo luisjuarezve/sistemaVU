@@ -80,7 +80,7 @@ public class Panel_Categoria extends javax.swing.JPanel {
         txt_buscador.setBackground(new java.awt.Color(153, 204, 255));
         txt_buscador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txt_buscador.setForeground(new java.awt.Color(0, 0, 0));
-        txt_buscador.setText("Introduce el id o nombre de la categoria");
+        txt_buscador.setText("Introduce el id o nombre de la categoría");
         txt_buscador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         txt_buscador.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_buscador.setPreferredSize(new java.awt.Dimension(400, 30));
@@ -112,7 +112,8 @@ public class Panel_Categoria extends javax.swing.JPanel {
         roundedPanel1.add(separador);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setText("Categoria");
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
+        jLabel2.setText("Categoría");
         roundedPanel1.add(jLabel2);
 
         ContenedorBarraBusqueda.add(roundedPanel1, new java.awt.GridBagConstraints());
@@ -236,14 +237,14 @@ public class Panel_Categoria extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_buscadorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_buscadorFocusGained
-         if (txt_buscador.getText().equalsIgnoreCase("Introduce el id o nombre de la categoria")) {
+         if (txt_buscador.getText().equalsIgnoreCase("Introduce el id o nombre de la categoría")) {
             txt_buscador.setText("");
         }
     }//GEN-LAST:event_txt_buscadorFocusGained
 
     private void txt_buscadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_buscadorFocusLost
         if (txt_buscador.getText().isEmpty()) {
-            txt_buscador.setText("Introduce el id o nombre de la categoria");
+            txt_buscador.setText("Introduce el id o nombre de la categoría");
         }
     }//GEN-LAST:event_txt_buscadorFocusLost
 
@@ -257,7 +258,7 @@ public class Panel_Categoria extends javax.swing.JPanel {
                     try {
                         SistemaPrincipal.getCategoriaService().cargarTabla(TableCategoria, txt_buscador.getText());
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Error al cargar la tabla de Clientes: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Error al cargar la tabla de categoría: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 });
             }
@@ -276,17 +277,17 @@ public class Panel_Categoria extends javax.swing.JPanel {
                 Formulario_categorias_Modificar fc = new Formulario_categorias_Modificar(TableCategoria, SistemaPrincipal.getCategoriaService().mostrarCategoria(Id_categoria));
                 fc.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(null, "Debes seleccionar una categoria", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una categoría", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "La tabla de categoria está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "La tabla de categoría está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
         if (TableCategoria.getRowCount() > 0) {
             if (TableCategoria.getSelectedRow() != -1) {
-                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar la categoria?", "Confirmación de eliminación", JOptionPane.YES_NO_OPTION);
+                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar la categoría?", "Confirmación de eliminación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
                     String id = String.valueOf(TableCategoria.getValueAt(TableCategoria.getSelectedRow(), 0));
                     SistemaPrincipal.getCategoriaService().eliminarCategoria(id);
