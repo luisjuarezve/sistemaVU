@@ -358,7 +358,9 @@ public class Formulario_Cliente extends javax.swing.JFrame {
 
         try {
             SistemaPrincipal.getClienteService().registrarCliente(cliente);
-            SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
+            if (TableClientes != null) {
+                SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
+            }
             JOptionPane.showMessageDialog(null, "El cliente ha sido registrado exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (SQLException ex) {
