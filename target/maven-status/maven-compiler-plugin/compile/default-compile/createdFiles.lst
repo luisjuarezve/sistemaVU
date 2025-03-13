@@ -191,6 +191,7 @@ com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor.class
 com\luisjuarez\sistemavu\view\components\ItemInvoice.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$6.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_empleado_Modificar$5.class
+com\luisjuarez\sistemavu\view\Login$9.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Cliente$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Categoria$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento$3.class
@@ -266,6 +267,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$4.class
 com\luisjuarez\sistemavu\utils\JTableUtils.class
 com\luisjuarez\sistemavu\service\impl\FacturaServiceImpl$1.class
 com\luisjuarez\sistemavu\view\components\CustomTable$1.class
+com\luisjuarez\sistemavu\view\Login$10.class
 com\luisjuarez\sistemavu\persistence\CategoriaDAO.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$6.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$6.class

@@ -1,11 +1,13 @@
 package com.luisjuarez.sistemavu.view;
 
-//import com.luisjuarez.sistemavu.persistence.impl.sqlite3.EmpleadosDAOSqlite3;
-//import com.luisjuarez.sistemavu.service.impl.EmpleadoServiceImpl;
 import com.luisjuarez.sistemavu.model.Empleado;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -13,8 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    //private EmpleadosDAOSqlite3 empleadoDAO = new EmpleadosDAOSqlite3();
-    //private EmpleadoServiceImpl empleadoService = new EmpleadoServiceImpl(empleadoDAO);
+    private int intentos = 0;
     /**
      * Creates new form NewJFrame
      */
@@ -47,6 +48,7 @@ public class Login extends javax.swing.JFrame {
         txt_password = new javax.swing.JPasswordField();
         btn_login = new javax.swing.JButton();
         lbl_error = new javax.swing.JLabel();
+        lbl_error1 = new javax.swing.JLabel();
         btn_forgotPassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +70,7 @@ public class Login extends javax.swing.JFrame {
 
         lbl_title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lbl_title.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_title.setText("Sistema Ferreteria");
+        lbl_title.setText("Sistema Ferretería");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -84,7 +86,7 @@ public class Login extends javax.swing.JFrame {
         header.add(lbl_author, gridBagConstraints);
 
         lbl_copyright.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_copyright.setText("Todos los derechos reservados © 2024");
+        lbl_copyright.setText("Todos los derechos reservados © 2025");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -110,7 +112,7 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 30, 0);
         body.add(btn_close, gridBagConstraints);
 
         lbl_userImg.setBackground(new java.awt.Color(255, 255, 255));
@@ -118,7 +120,7 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(30, 60, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 60, 10, 0);
         body.add(lbl_userImg, gridBagConstraints);
 
         lbl_logIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -142,6 +144,11 @@ public class Login extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_userFocusLost(evt);
+            }
+        });
+        txt_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_userActionPerformed(evt);
             }
         });
         txt_user.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -169,6 +176,11 @@ public class Login extends javax.swing.JFrame {
                 txt_passwordFocusLost(evt);
             }
         });
+        txt_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_passwordActionPerformed(evt);
+            }
+        });
         txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_passwordKeyPressed(evt);
@@ -181,6 +193,7 @@ public class Login extends javax.swing.JFrame {
         body.add(txt_password, gridBagConstraints);
 
         btn_login.setText("Iniciar");
+        btn_login.setFocusable(false);
         btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_loginActionPerformed(evt);
@@ -201,13 +214,21 @@ public class Login extends javax.swing.JFrame {
         lbl_error.setText("Usuario o contraseña incorecto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.insets = new java.awt.Insets(0, 60, 15, 0);
         body.add(lbl_error, gridBagConstraints);
 
+        lbl_error1.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_error1.setText("Usuario o contraseña incorecto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.insets = new java.awt.Insets(0, 60, 15, 0);
+        body.add(lbl_error1, gridBagConstraints);
+
         btn_forgotPassword.setBackground(new java.awt.Color(69, 69, 69));
         btn_forgotPassword.setForeground(new java.awt.Color(69, 69, 69));
-        btn_forgotPassword.setText("Olvide mi contraseña");
+        btn_forgotPassword.setText("Olvidé mi contraseña");
         btn_forgotPassword.setBorder(null);
         btn_forgotPassword.setBorderPainted(false);
         btn_forgotPassword.setContentAreaFilled(false);
@@ -218,8 +239,8 @@ public class Login extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.insets = new java.awt.Insets(0, 60, 40, 0);
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(0, 60, 10, 0);
         body.add(btn_forgotPassword, gridBagConstraints);
 
         getContentPane().add(body, java.awt.BorderLayout.EAST);
@@ -258,59 +279,54 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordFocusLost
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        if (!txt_user.getText().equalsIgnoreCase("usuario") && !txt_user.getText().isEmpty() && !new String(txt_password.getPassword()).equalsIgnoreCase("contrasena") && !new String(txt_password.getPassword()).isEmpty()) {
-            Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
-            if (empleado != null) {
-                lbl_error.setForeground(Color.white);
-                SistemaPrincipal sp = new SistemaPrincipal(empleado);
-                sp.setVisible(true);
-                this.dispose();
-            } else {
-                lbl_error.setForeground(Color.red);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Debes ingresar el usuario y la contraseña", "Información", JOptionPane.INFORMATION_MESSAGE);
+       Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
+        if (empleado!=null) {
+            SistemaPrincipal sp = new SistemaPrincipal(empleado);
+            sp.setVisible(true);
+            this.dispose();
+        }else{
+            manejarIntentos();
+            lbl_error1.setText("Usuario o contraseña incorrectos.");
+            lbl_error.setText("Intento: "+intentos);
+            lbl_error.setForeground(Color.red);
+            lbl_error1.setForeground(Color.red);
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void txt_userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_userKeyPressed
+        
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String username = txt_user.getText();
-            String password = new String(txt_password.getPassword());
-            if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
-                if (empleado != null) {
-                    lbl_error.setForeground(Color.white);
-                    SistemaPrincipal sp = new SistemaPrincipal(empleado);
-                    sp.setVisible(true);
-                    this.dispose();
-                } else {
-                    lbl_error.setForeground(Color.red);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Debes ingresar el usuario y la contraseña", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
+            Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
+        if (empleado!=null) {
+            SistemaPrincipal sp = new SistemaPrincipal(empleado);
+            sp.setVisible(true);
+            this.dispose();
+        }else{
+            manejarIntentos();
+            lbl_error1.setText("Usuario o contraseña incorrectos.");
+            lbl_error.setText("Intento: "+intentos);
+            lbl_error.setForeground(Color.red);
+            lbl_error1.setForeground(Color.red);
+        }
         }
     }//GEN-LAST:event_txt_userKeyPressed
 
 
     private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String username = txt_user.getText();
-            String password = new String(txt_password.getPassword());
-            if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
-                Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
-                if (empleado != null) {
-                    lbl_error.setForeground(Color.white);
-                    SistemaPrincipal sp = new SistemaPrincipal(empleado);
-                    sp.setVisible(true);
-                    this.dispose();
-                } else {
-                    lbl_error.setForeground(Color.red);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Debes ingresar el usuario y la contraseña", "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
+        
+          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
+        if (empleado!=null) {
+            SistemaPrincipal sp = new SistemaPrincipal(empleado);
+            sp.setVisible(true);
+            this.dispose();
+        }else{
+            manejarIntentos();
+            lbl_error1.setText("Usuario o contraseña incorrectos.");
+            lbl_error.setText("Intento: "+intentos);
+            lbl_error.setForeground(Color.red);
+            lbl_error1.setForeground(Color.red);
+        }
         }
     }//GEN-LAST:event_txt_passwordKeyPressed
 
@@ -321,7 +337,7 @@ public class Login extends javax.swing.JFrame {
             if (!username.equalsIgnoreCase("usuario") && !username.isEmpty() && !password.equalsIgnoreCase("contrasena") && !password.isEmpty()) {
                 Empleado empleado = SistemaPrincipal.getEmpleadoService().autenticar(txt_user.getText(), new String(txt_password.getPassword()));
                 if (empleado != null) {
-                    lbl_error.setForeground(Color.white);
+                    lbl_error.setForeground(Color.red);
                     SistemaPrincipal sp = new SistemaPrincipal(empleado);
                     sp.setVisible(true);
                     this.dispose();
@@ -340,6 +356,14 @@ public class Login extends javax.swing.JFrame {
         rc.setVisible(true);
     }//GEN-LAST:event_btn_forgotPasswordActionPerformed
 
+    private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_userActionPerformed
+
+    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_passwordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,6 +377,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_author;
     private javax.swing.JLabel lbl_copyright;
     private javax.swing.JLabel lbl_error;
+    private javax.swing.JLabel lbl_error1;
     private javax.swing.JLabel lbl_logIn;
     private javax.swing.JLabel lbl_logo;
     private javax.swing.JLabel lbl_title;
@@ -360,4 +385,59 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
+    public void manejarIntentos() {
+        intentos++;
+        int tiempoEspera = 0;
+
+        if (intentos == 3) {
+            tiempoEspera = 1;
+        } else if (intentos == 4) {
+            tiempoEspera = 3;
+        } else if (intentos == 5) {
+            tiempoEspera = 5;
+        } else if (intentos >= 6) {
+            JOptionPane.showMessageDialog(null, "Haz llegado al límite de intentos posibles", "Información", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            //tiempoEspera = 10;
+        }
+
+        if (tiempoEspera > 0) {
+            final int finalTiempoEspera = tiempoEspera * 60; // Tiempo en segundos
+
+            // Desactiva el botón de inicio de sesión
+            btn_login.setEnabled(false);
+            btn_close.setEnabled(false);
+            txt_user.setEnabled(false);
+            txt_password.setEnabled(false);
+            btn_forgotPassword.setEnabled(false);
+            // Variables para el tiempo restante
+            final int[] segundosRestantes = {finalTiempoEspera};
+
+            // Timer para actualizar lbl_error y reactivar el botón después de esperar
+            Timer countDownTimer = new Timer(1000, e -> {
+                if (segundosRestantes[0] > 0) {
+                    lbl_error.setText("Espera " + (segundosRestantes[0] / 60) + " minutos y " + (segundosRestantes[0] % 60) + " segundos");
+                    segundosRestantes[0]--;
+                } else {
+                    // Reactivar el botón y detener el temporizador cuando el tiempo se agote
+                    ((Timer) e.getSource()).stop();
+                    lbl_error.setText("");
+                    btn_login.setEnabled(true);
+                    btn_close.setEnabled(true);
+                    txt_password.setEnabled(true);
+                    txt_user.setEnabled(true);
+                }
+            });
+            countDownTimer.start();
+
+            // Simula el tiempo de espera sin bloquear el hilo de la interfaz gráfica
+            new Thread(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(finalTiempoEspera);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
+        }
+    }
 }

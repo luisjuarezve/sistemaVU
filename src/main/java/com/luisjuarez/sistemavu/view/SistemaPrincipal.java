@@ -7,7 +7,6 @@ import com.luisjuarez.sistemavu.model.Empleado;
 import com.luisjuarez.sistemavu.persistence.impl.CategoriaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.ClienteDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.CompraDAOImplMariaDB;
-import com.luisjuarez.sistemavu.persistence.impl.DetalleCompraDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.DetalleFacturaDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.EmpleadoDAOImplMariaDB;
 import com.luisjuarez.sistemavu.persistence.impl.FacturaDAOImplMariaDB;
@@ -43,7 +42,6 @@ import com.luisjuarez.sistemavu.view.paneles.Panel_NotaEntrega;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Productos;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Proveedor;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Reportes;
-import java.sql.Timestamp;
 
 /**
  *
