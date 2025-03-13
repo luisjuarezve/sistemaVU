@@ -104,6 +104,7 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         roundedPanel1.add(separador);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setText("Proveedor");
         roundedPanel1.add(jLabel2);
 

@@ -241,7 +241,6 @@ public class Formulario_empleado_Modificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Empleado empleado = new Empleado();
 
 // Validate nombre
         String nombre = jTextField1.getText();
@@ -259,7 +258,6 @@ public class Formulario_empleado_Modificar extends javax.swing.JFrame {
         }
         empleado.setApellido(apellido);
 
-// Validate usuario
         String usuario = jTextField3.getText();
         if (usuario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Usuario no puede estar vacío");
@@ -267,7 +265,6 @@ public class Formulario_empleado_Modificar extends javax.swing.JFrame {
         }
         empleado.setUsuario(usuario);
 
-// Validate contrasena
         String contrasena = jTextField4.getText();
         if (contrasena.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Contraseña no puede estar vacía");
@@ -277,14 +274,10 @@ public class Formulario_empleado_Modificar extends javax.swing.JFrame {
 
 // Validate correo
         String correo = jTextField5.getText();
-        if (correo.isEmpty() || !(correo.endsWith("@gmail.com") || correo.endsWith("@hotmail.com"))) {
-            JOptionPane.showMessageDialog(null, "Correo no puede estar vacío y debe tener el formato @gmail.com o @hotmail.com");
-            return;
-        }
         empleado.setCorreo(correo);
 
 // Register the employee
-        SistemaPrincipal.getEmpleadoService().registrarEmpleado(empleado);
+        SistemaPrincipal.getEmpleadoService().modificarEmpleado(empleado);
 
 // Notify successful creation
         JOptionPane.showMessageDialog(null, "Empleado creado exitosamente");

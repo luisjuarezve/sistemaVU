@@ -78,6 +78,7 @@ public class Panel_Categoria extends javax.swing.JPanel {
 
         txt_buscador.setBackground(new java.awt.Color(153, 204, 255));
         txt_buscador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_buscador.setForeground(new java.awt.Color(30, 30, 30));
         txt_buscador.setText("Introduce el id o nombre de la categoría");
         txt_buscador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         txt_buscador.setDisabledTextColor(new java.awt.Color(0, 0, 0));
