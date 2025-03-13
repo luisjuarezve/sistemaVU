@@ -13,6 +13,7 @@ com\luisjuarez\sistemavu\view\formulario\FormularioRecuperarContrasena$1.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_empresa_Modificar$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Reportes.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Cliente_Modificar.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_inventario_Modificar$1.class
 com\luisjuarez\sistemavu\view\components\CustomTable$2.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoHasPermisoServiceImpl.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Cliente_Modificar$2.class
@@ -20,6 +21,7 @@ com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_categorias_Modific
 com\luisjuarez\sistemavu\persistence\DetalleFacturaDAO.class
 com\luisjuarez\sistemavu\service\impl\FacturaServiceImpl$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$4.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Disminuir_inventario$3.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Empleado$3.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$1.class
 com\luisjuarez\sistemavu\service\impl\InventarioServiceImpl$1.class
@@ -120,6 +122,7 @@ com\luisjuarez\sistemavu\view\RecuperarContraseña$3.class
 com\luisjuarez\sistemavu\persistence\ProductoDAO.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Facturar$6.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_empleado_Modificar.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_inventario_Modificar.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Ayuda.class
 com\luisjuarez\sistemavu\utils\StringUtil.class
 com\luisjuarez\sistemavu\persistence\InventarioDAO.class
@@ -155,12 +158,14 @@ com\luisjuarez\sistemavu\persistence\EmpleadoHasPermisoDAO.class
 com\luisjuarez\sistemavu\service\EmpleadoService.class
 com\luisjuarez\sistemavu\view\formulario\FormularioTasaDolar.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Buscar_Cliente.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Aumentar_inventario$1.class
 com\luisjuarez\sistemavu\persistence\impl\InventarioDAOImplMariaDB.class
 com\luisjuarez\sistemavu\persistence\ComboItem.class
 com\luisjuarez\sistemavu\persistence\impl\ProductoDAOImplMariaDB.class
 com\luisjuarez\sistemavu\service\impl\CategoriaServiceImpl$1.class
 com\luisjuarez\sistemavu\utils\ImagesUtils.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Facturar$4.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$5.class
 com\luisjuarez\sistemavu\view\Login$3.class
 com\luisjuarez\sistemavu\model\Compra.class
 com\luisjuarez\sistemavu\view\components\Item.class
@@ -210,8 +215,10 @@ com\luisjuarez\sistemavu\view\SistemaPrincipal$10.class
 com\luisjuarez\sistemavu\view\Login$8.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empresa$5.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Producto_Modificar$8.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_inventario_Modificar$3.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$11.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Aumentar_inventario.class
 com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$2.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Proveedor$1.class
@@ -225,6 +232,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Productos$1.class
 com\luisjuarez\sistemavu\model\DetalleFactura.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_proveedor_Modificar$4.class
 com\luisjuarez\sistemavu\view\RecuperarContraseña$6.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$6.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Permisos.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Producto_Modificar$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$3.class
@@ -236,6 +244,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento$1.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoServiceImpl.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Reportes$3.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Disminuir_inventario$2.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empleado.class
 com\luisjuarez\sistemavu\persistence\impl\FacturaDAOImplMariaDB.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$5.class
@@ -264,8 +273,10 @@ com\luisjuarez\sistemavu\service\impl\ProveedorServiceImpl$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$1.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Cliente_Modificar$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$4.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Aumentar_inventario$2.class
 com\luisjuarez\sistemavu\utils\JTableUtils.class
 com\luisjuarez\sistemavu\service\impl\FacturaServiceImpl$1.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_inventario_Modificar$2.class
 com\luisjuarez\sistemavu\view\components\CustomTable$1.class
 com\luisjuarez\sistemavu\view\Login$10.class
 com\luisjuarez\sistemavu\persistence\CategoriaDAO.class
@@ -275,6 +286,7 @@ com\luisjuarez\sistemavu\config\ConfigProperties.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empleado$2.class
 com\luisjuarez\sistemavu\view\components\SearchBar.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_proveedor_Modificar$2.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Aumentar_inventario$3.class
 com\luisjuarez\sistemavu\view\components\Item$1.class
 com\luisjuarez\sistemavu\persistence\PermisoDAO.class
 com\luisjuarez\sistemavu\persistence\impl\CategoriaDAOImplMariaDB.class
@@ -283,7 +295,9 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Ayuda$3.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Empleado$7.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Disminuir_inventario.class
 com\luisjuarez\sistemavu\persistence\DetalleCompraDAO.class
+com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$4.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_categorias$2.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$1.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$4.class
@@ -291,6 +305,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento$2.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_categorias_Modificar.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$5.class
 com\luisjuarez\sistemavu\model\EmpleadoHasPermiso.class
+com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Disminuir_inventario$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Productos$4.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$5.class
 com\luisjuarez\sistemavu\service\ProductoService.class
