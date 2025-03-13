@@ -171,7 +171,7 @@ public class ProveedorServiceImpl implements ProveedorService {
                         yPosition -= rowHeight; // Ajuste posterior a la creación de encabezados
                         //Copyright
                         contentStream.setNonStrokingColor(Color.BLACK);
-                        String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2024");
+                        String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2025");
                         PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer2, 8, 10, pageWidth);
                         contentStream.close();
 
@@ -195,7 +195,7 @@ public class ProveedorServiceImpl implements ProveedorService {
             yPosition -= rowHeight + 20; // Ajuste posterior a la creación de encabezados
             //Copyright
             contentStream.setNonStrokingColor(Color.BLACK);
-            String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2024");
+            String footer2 = StringUtil.toCapitalize("Todos los derechos reservados © 2025");
             PDFboxUtils.addTextCenter(contentStream, segoeUIFontBold, footer2, 8, 10, pageWidth);
             //page num
             PDFboxUtils.addPageNumber(contentStream, segoeUIFont, 10, pageNum++, pageWidth, 20);
