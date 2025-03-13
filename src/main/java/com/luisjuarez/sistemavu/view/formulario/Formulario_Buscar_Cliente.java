@@ -158,7 +158,7 @@ public class Formulario_Buscar_Cliente extends javax.swing.JFrame {
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Cédula no registrada en el Sistema", "Registrar cliente", JOptionPane.QUESTION_MESSAGE);
-            Formulario_Cliente fr = new Formulario_Cliente(tipo_doc, nro_doc);
+            Formulario_Cliente fr = new Formulario_Cliente(tipo_doc, nro_doc, panel_facturar);
             fr.setVisible(true);
             this.dispose();
         }

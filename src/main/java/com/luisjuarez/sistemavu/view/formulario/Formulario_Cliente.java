@@ -6,6 +6,7 @@ package com.luisjuarez.sistemavu.view.formulario;
 
 import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import com.luisjuarez.sistemavu.view.paneles.Panel_Facturar;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,17 +20,18 @@ import javax.swing.JTable;
 public class Formulario_Cliente extends javax.swing.JFrame {
 
     private JTable TableClientes;
-
+    private Panel_Facturar panel_facturar;
     public Formulario_Cliente(JTable table) {
         initComponents();
         TableClientes = table;
         setLocationRelativeTo(null);
     }
 
-    public Formulario_Cliente(String tipo_doc, String nro_doc) {
+    public Formulario_Cliente(String tipo_doc, String nro_doc, Panel_Facturar panel_facturar) {
         initComponents();
         cmb_tipoDoc.setSelectedItem(tipo_doc);
         txt_nroDoc.setText(nro_doc);
+        this.panel_facturar = panel_facturar;
         setLocationRelativeTo(null);
     }
     
@@ -366,6 +368,9 @@ public class Formulario_Cliente extends javax.swing.JFrame {
             SistemaPrincipal.getClienteService().registrarCliente(cliente);
             if (TableClientes != null) {
                 SistemaPrincipal.getClienteService().cargarTabla(TableClientes);
+            }else{
+                SistemaPrincipal.setCliente(cliente);
+                panel_facturar.verificarEstadoBotonPagar();
             }
             JOptionPane.showMessageDialog(null, "El cliente ha sido registrado exitosamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
