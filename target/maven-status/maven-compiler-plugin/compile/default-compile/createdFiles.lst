@@ -15,6 +15,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Reportes.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Cliente_Modificar.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_inventario_Modificar$1.class
 com\luisjuarez\sistemavu\view\components\CustomTable$2.class
+com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$5.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoHasPermisoServiceImpl.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Cliente_Modificar$2.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_categorias_Modificar$1.class
@@ -239,6 +240,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$3.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$11.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_empresa_Modificar$4.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Empleado$5.class
+com\luisjuarez\sistemavu\service\impl\DetalleFacturaServiceImpl$1.class
 com\luisjuarez\sistemavu\service\impl\InventarioServiceImpl$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Cliente$2.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento$1.class
@@ -262,6 +264,7 @@ com\luisjuarez\sistemavu\model\Carrito.class
 com\luisjuarez\sistemavu\view\components\ItemInvoice$2.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$4.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$3.class
+com\luisjuarez\sistemavu\view\formulario\FormularioVerDetalles.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$7.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Configuracion$1.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$12.class
@@ -301,6 +304,7 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Inventario$4.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_categorias$2.class
 com\luisjuarez\sistemavu\view\SistemaPrincipal$1.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_Producto$4.class
+com\luisjuarez\sistemavu\view\formulario\FormularioVerDetalles$1.class
 com\luisjuarez\sistemavu\view\paneles\Panel_Mantenimiento$2.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_categorias_Modificar.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_proveedor$5.class

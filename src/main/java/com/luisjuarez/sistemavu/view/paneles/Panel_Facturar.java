@@ -480,24 +480,24 @@ public class Panel_Facturar extends javax.swing.JPanel {
                     SistemaPrincipal.getInventarioService().disminuirInventario(Producto.getInventario().getIdInventario(), Producto.getCantidad());
                 }
                 JOptionPane.showMessageDialog(this, "Nota de entrega registrada Exitosamente en la base de datos!", "Registro Exitoso!", JOptionPane.INFORMATION_MESSAGE);
-                int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas guardar la factura en pdf?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas guardar la nota de entrega en pdf?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (respuesta == JOptionPane.YES_OPTION) {
                     JFileChooser fileChooser = new JFileChooser();
-                    fileChooser.setDialogTitle("Seleccione la ubicación para guardar la factura");
+                    fileChooser.setDialogTitle("Seleccione la ubicación para guardar la nota de entrega");
                     fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-                    fileChooser.setSelectedFile(new File("factura.pdf"));
+                    fileChooser.setSelectedFile(new File("nota de entrega.pdf"));
                     int userSelection = fileChooser.showSaveDialog(null);
                     if (userSelection == JFileChooser.APPROVE_OPTION) {
                         File archivoSeleccionado = fileChooser.getSelectedFile();
                         try {
                             SistemaPrincipal.detalleFacturaService.generarFacturaPDF(archivoSeleccionado.getAbsolutePath(), Integer.parseInt(lbl_NotaEntrega.getText()));
-                            JOptionPane.showMessageDialog(null, "Factura guardada exitosamente en: " + archivoSeleccionado.getAbsolutePath());
+                            JOptionPane.showMessageDialog(null, "Nota de entrega guardada exitosamente en: " + archivoSeleccionado.getAbsolutePath());
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Error al generar la factura: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Error al generar la Nota de entrega: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                             e.printStackTrace();
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "El guardado de la factura fue cancelado.");
+                        JOptionPane.showMessageDialog(null, "El guardado de la Nota de entrega fue cancelado.");
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "La factura no será guardada.");

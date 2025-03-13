@@ -4,7 +4,9 @@
  */
 package com.luisjuarez.sistemavu.view.paneles;
 
+import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_Aumentar_inventario;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
+import com.luisjuarez.sistemavu.view.formulario.FormularioVerDetalles;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.Timer;
@@ -56,7 +58,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         TableNotaEntrega = new com.luisjuarez.sistemavu.view.components.CustomTable();
         ContenedorBotones = new javax.swing.JPanel();
         roundedPanel2 = new com.luisjuarez.sistemavu.view.components.RoundedPanel();
-        btn_Anular = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Modificar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setLayout(new java.awt.BorderLayout());
@@ -74,7 +75,7 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
 
         txt_buscador.setBackground(new java.awt.Color(153, 204, 255));
         txt_buscador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txt_buscador.setForeground(new java.awt.Color(0, 0, 0));
+        txt_buscador.setForeground(new java.awt.Color(30, 30, 30));
         txt_buscador.setText("Introduce el id de la nota de entrega");
         txt_buscador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         txt_buscador.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -108,6 +109,7 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         roundedPanel1.add(separador);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(30, 30, 30));
         jLabel2.setText("Nota de Entrega");
         roundedPanel1.add(jLabel2);
 
@@ -151,36 +153,21 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         roundedPanel2.setRoundTopRight(15);
         roundedPanel2.setLayout(new java.awt.GridBagLayout());
 
-        btn_Anular.setBackground(new java.awt.Color(0, 0, 102));
-        btn_Anular.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Anular.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Anular.setText("Anular");
-        btn_Anular.setFocusable(false);
-        btn_Anular.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Anular.setPreferredSize(new java.awt.Dimension(120, 140));
-        btn_Anular.setRoundBottomLeft(10);
-        btn_Anular.setRoundBottomRight(10);
-        btn_Anular.setRoundTopLeft(10);
-        btn_Anular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AnularActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
-        roundedPanel2.add(btn_Anular, gridBagConstraints);
-
         btn_Modificar.setBackground(new java.awt.Color(0, 0, 102));
         btn_Modificar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_Modificar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Modificar.setText("Modificar");
+        btn_Modificar.setText("Ver detalles");
         btn_Modificar.setFocusable(false);
         btn_Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_Modificar.setPreferredSize(new java.awt.Dimension(120, 140));
         btn_Modificar.setRoundBottomLeft(10);
         btn_Modificar.setRoundBottomRight(10);
         btn_Modificar.setRoundTopLeft(10);
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
@@ -203,10 +190,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txt_buscadorFocusLost
 
-    private void btn_AnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AnularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_AnularActionPerformed
-
     private void txt_buscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscadorKeyReleased
         timer.cancel(); // Cancelar el temporizador anterior
         timer = new Timer(); // Crear un nuevo temporizador
@@ -228,13 +211,27 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         }, 300);
     }//GEN-LAST:event_txt_buscadorKeyReleased
 
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
+        if (TableNotaEntrega.getRowCount() > 0) {
+            if (TableNotaEntrega.getSelectedRow() != -1) {
+                String Id_NotaEntrega = String.valueOf(TableNotaEntrega.getValueAt(TableNotaEntrega.getSelectedRow(), 0));
+                FormularioVerDetalles fv = new FormularioVerDetalles(SistemaPrincipal.getFacturaService().buscarFacturaPorId(Integer.parseInt(Id_NotaEntrega)));
+                fv.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar una nota de entrega", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La tabla de notas de entrega está vacía", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btn_ModificarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ContenedorBarraBusqueda;
     private javax.swing.JPanel ContenedorBotones;
     private javax.swing.JPanel ContenedorTable;
     private com.luisjuarez.sistemavu.view.components.CustomTable TableNotaEntrega;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Anular;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Modificar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;

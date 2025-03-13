@@ -1,11 +1,13 @@
 package com.luisjuarez.sistemavu.service.impl;
 
 import com.luisjuarez.sistemavu.config.ConfigProperties;
+import com.luisjuarez.sistemavu.model.Cliente;
 import com.luisjuarez.sistemavu.model.DetalleFactura;
 import com.luisjuarez.sistemavu.model.Factura;
 import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.persistence.DetalleFacturaDAO;
 import com.luisjuarez.sistemavu.service.DetalleFacturaService;
+import com.luisjuarez.sistemavu.utils.JTableUtils;
 import com.luisjuarez.sistemavu.utils.PDFboxUtils;
 import com.luisjuarez.sistemavu.utils.StringUtil;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
@@ -20,6 +22,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -195,7 +199,7 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
             double totalf = factura.getTotalFactura();
             String totalString = String.format("%.2f Bs (%.2f USD)", totalf, totalf * tasa);
             String[] total = {"", "TOTAL", cantidadString, subtotalString, ivaString, totalString};
-            PDFboxUtils.drawTableFactura(contentStream, segoeUIFontBold, fontSize, total, columnWidths, margin, yPosition, orange, black, rowHeight);
+            PDFboxUtils.drawTableFactura(contentStream, segoeUIFontBold, fontSize, total, columnWidths, margin, yPosition, orange, white, rowHeight);
             yPosition -= rowHeight;
             // Autor
             contentStream.setNonStrokingColor(Color.BLACK);
@@ -370,5 +374,37 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al crear el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public void cargarTabla(JTable tabla, int facturaID) throws SQLException {
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "código", "Producto", "Cantidad", "Precio Unitario", "Monto"
+                }
+        ) {
+
+            public boolean isCellEditable(int row, int column) {
+                return false; // Todas las celdas no son editables
+            }
+        };
+
+        tabla.setModel(model);
+        model.setRowCount(0);
+
+        List<DetalleFactura> listaDetallesFactura = buscarDetallesPorFacturaId(facturaID);
+        for (DetalleFactura detalleFactura : listaDetallesFactura) {
+            Producto producto = SistemaPrincipal.getProductoService().buscarProductoPorId(detalleFactura.getProducto_idProducto());
+            Object[] fila = new Object[11];
+            fila[0] = producto.getCodigo();
+            fila[1] = producto.getNombre();
+            fila[2] = String.format("%.2f", detalleFactura.getCantidad());
+            fila[3] = String.format("%.2f", detalleFactura.getPrecioUnitario());
+            fila[4] = String.format("%.2f", detalleFactura.getSubtotal());
+            model.addRow(fila);
+        }
+        JTableUtils.centrarTitulosEncabezado(tabla);
+        JTableUtils.ajustarAnchoCelda(tabla);
     }
 }
