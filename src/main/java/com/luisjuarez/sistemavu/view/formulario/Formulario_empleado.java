@@ -219,21 +219,20 @@ public class Formulario_empleado extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Empleado empleado = new Empleado();
 
-// Validate nombre
-        String nombre = jTextField1.getText();
-        if (nombre.isEmpty() || !nombre.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(null, "Nombre no puede estar vacío y no debe contener números");
+        String apellido = jTextField1.getText().trim(); // Suponiendo que jTextField1 contiene el apellido
+        if (apellido.isEmpty() || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío y debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        empleado.setApellido(apellido); // Asignar el apellido al empleado
+
+// Obtener y validar nombre
+        String nombre = jTextField2.getText().trim(); // Suponiendo que jTextField2 contiene el nombre
+        if (nombre.isEmpty() || !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío y debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
         empleado.setNombre(nombre);
-
-// Validate apellido
-        String apellido = jTextField2.getText();
-        if (apellido.isEmpty() || !apellido.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(null, "Apellido no puede estar vacío y no debe contener números");
-            return;
-        }
-        empleado.setApellido(apellido);
 
 // Validate usuario
         String usuario = jTextField3.getText();
@@ -252,12 +251,13 @@ public class Formulario_empleado extends javax.swing.JFrame {
         empleado.setContrasena(contrasena);
 
 // Validate correo
-        String correo = jTextField5.getText();
-        if (correo.isEmpty() || !(correo.endsWith("@gmail.com") || correo.endsWith("@hotmail.com"))) {
-            JOptionPane.showMessageDialog(null, "Correo no puede estar vacío y debe tener el formato @gmail.com o @hotmail.com");
+        // Obtener y validar correo electrónico
+        String correoElectronico = jTextField5.getText().trim(); // Suponiendo que jTextField5 contiene el correo
+        if (correoElectronico.isEmpty() || !correoElectronico.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un correo electrónico válido. El campo no puede estar vacío y debe tener un formato correcto.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        empleado.setCorreo(correo);
+        empleado.setCorreo(correoElectronico); // Asignar correo electrónico al empleado
 
 // Register the employee
         SistemaPrincipal.getEmpleadoService().registrarEmpleado(empleado);
@@ -270,9 +270,9 @@ public class Formulario_empleado extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Formulario_empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         this.dispose();
-         
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

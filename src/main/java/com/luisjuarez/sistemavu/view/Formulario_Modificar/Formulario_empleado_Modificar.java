@@ -17,11 +17,11 @@ public class Formulario_empleado_Modificar extends javax.swing.JFrame {
 
     private JTable TableEmpleado;
     private Empleado empleado;
-   
+
     public Formulario_empleado_Modificar(JTable table, Empleado empleado) {
         initComponents();
-        this.TableEmpleado= table;
-        this.empleado=empleado;
+        this.TableEmpleado = table;
+        this.empleado = empleado;
         setEmpleadoData();
         setLocationRelativeTo(null);
     }
@@ -242,54 +242,69 @@ public class Formulario_empleado_Modificar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-// Validate nombre
-        String nombre = jTextField1.getText();
-        if (nombre.isEmpty() || !nombre.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(null, "Nombre no puede estar vacío y no debe contener números");
-            return;
-        }
-        empleado.setNombre(nombre);
+        // Preguntar al usuario si desea guardar los cambios realizados al empleado
+int opcion = JOptionPane.showConfirmDialog(null, "¿Desea modificar el empleado?", "Confirmación", JOptionPane.YES_NO_OPTION);
 
-// Validate apellido
-        String apellido = jTextField2.getText();
-        if (apellido.isEmpty() || !apellido.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(null, "Apellido no puede estar vacío y no debe contener números");
-            return;
-        }
-        empleado.setApellido(apellido);
+if (opcion == JOptionPane.YES_OPTION) {
+    // Obtener y validar apellido
+    String apellido = jTextField1.getText().trim(); // Suponiendo que jTextField1 contiene el apellido
+    if (apellido.isEmpty() || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+        JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío y debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    empleado.setApellido(apellido); // Asignar el apellido al empleado
 
-        String usuario = jTextField3.getText();
-        if (usuario.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Usuario no puede estar vacío");
-            return;
-        }
-        empleado.setUsuario(usuario);
+    // Obtener y validar nombre
+    String nombre = jTextField2.getText().trim(); // Suponiendo que jTextField2 contiene el nombre
+    if (nombre.isEmpty() || !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+        JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío y debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    empleado.setNombre(nombre); // Asignar el nombre al empleado
 
-        String contrasena = jTextField4.getText();
-        if (contrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Contraseña no puede estar vacía");
-            return;
-        }
-        empleado.setContrasena(contrasena);
+    // Validar usuario
+    String usuario = jTextField3.getText().trim();
+    if (usuario.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "El usuario no puede estar vacío", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    empleado.setUsuario(usuario); // Asignar el usuario
 
-// Validate correo
-        String correo = jTextField5.getText();
-        empleado.setCorreo(correo);
+    // Validar contraseña
+    String contrasena = jTextField4.getText().trim();
+    if (contrasena.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    empleado.setContrasena(contrasena); // Asignar la contraseña
 
-// Register the employee
-        SistemaPrincipal.getEmpleadoService().modificarEmpleado(empleado);
+    // Validar correo
+    String correoElectronico = jTextField5.getText().trim(); // Suponiendo que jTextField5 contiene el correo
+    if (correoElectronico.isEmpty() || !correoElectronico.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+        JOptionPane.showMessageDialog(null, "Ingrese un correo electrónico válido. El campo no puede estar vacío y debe tener un formato correcto.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    empleado.setCorreo(correoElectronico); // Asignar correo electrónico al empleado
 
-// Notify successful creation
-        JOptionPane.showMessageDialog(null, "Empleado creado exitosamente");
+    // Registrar el empleado
+    SistemaPrincipal.getEmpleadoService().modificarEmpleado(empleado);
 
-        try {
-            SistemaPrincipal.getEmpleadoService().cargarTabla(TableEmpleado);
-        } catch (SQLException ex) {
-            Logger.getLogger(Formulario_empleado_Modificar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        this.dispose();
-         
+    // Cargar la tabla de empleados
+    try {
+        SistemaPrincipal.getEmpleadoService().cargarTabla(TableEmpleado);
+    } catch (SQLException ex) {
+        Logger.getLogger(Formulario_empleado_Modificar.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    // Notificar modificación exitosa
+    JOptionPane.showMessageDialog(null, "Empleado modificado exitosamente.");
+} else {
+    JOptionPane.showMessageDialog(null, "Los cambios no han sido confirmados.", "Información", JOptionPane.INFORMATION_MESSAGE);
+}
+
+// Cerrar formulario
+this.dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
