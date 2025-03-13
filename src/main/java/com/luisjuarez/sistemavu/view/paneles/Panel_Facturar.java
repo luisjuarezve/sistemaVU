@@ -13,6 +13,7 @@ import com.luisjuarez.sistemavu.view.components.ItemInvoice;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_Buscar_Cliente;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -127,6 +128,9 @@ public class Panel_Facturar extends javax.swing.JPanel {
             }
         });
         searchBar1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchBar1KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchBar1KeyReleased(evt);
             }
@@ -559,6 +563,14 @@ public class Panel_Facturar extends javax.swing.JPanel {
         cargarCliente();
         verificarEstadoBotonPagar();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void searchBar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBar1KeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if (SistemaPrincipal.getProductoService().buscarProductosPorPalabraClave(searchBar1.getText()).isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Producto no registrado en la base de datos", "Busqueda Fallida", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_searchBar1KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

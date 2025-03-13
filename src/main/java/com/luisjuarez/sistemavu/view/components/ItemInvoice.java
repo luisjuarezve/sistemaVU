@@ -192,7 +192,9 @@ public class ItemInvoice extends javax.swing.JPanel {
 
         btn_Mas.setBackground(new java.awt.Color(0, 0, 102));
         btn_Mas.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Mas.setText("-");
+        btn_Mas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
+        btn_Mas.setBorderPainted(false);
+        btn_Mas.setContentAreaFilled(false);
         btn_Mas.setPreferredSize(new java.awt.Dimension(30, 30));
         btn_Mas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,7 +211,9 @@ public class ItemInvoice extends javax.swing.JPanel {
         Botones.add(btn_Mas, gridBagConstraints);
 
         btn_Menos.setBackground(new java.awt.Color(153, 204, 255));
-        btn_Menos.setText("+");
+        btn_Menos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minus-button.png"))); // NOI18N
+        btn_Menos.setBorderPainted(false);
+        btn_Menos.setContentAreaFilled(false);
         btn_Menos.setPreferredSize(new java.awt.Dimension(30, 30));
         btn_Menos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

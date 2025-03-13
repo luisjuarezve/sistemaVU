@@ -8,6 +8,7 @@ import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_proveedor_M
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.formulario.Formulario_proveedor;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -47,7 +48,6 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         roundedPanel1 = new com.luisjuarez.sistemavu.view.components.RoundedPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_buscador = new javax.swing.JTextField();
-        btn_buscar = new javax.swing.JButton();
         separador = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         ContenedorTable = new javax.swing.JPanel();
@@ -76,6 +76,7 @@ public class Panel_Proveedor extends javax.swing.JPanel {
 
         txt_buscador.setBackground(new java.awt.Color(153, 204, 255));
         txt_buscador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_buscador.setForeground(new java.awt.Color(30, 30, 30));
         txt_buscador.setText("Introduce el rif o nombre del proveedor");
         txt_buscador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         txt_buscador.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -89,18 +90,14 @@ public class Panel_Proveedor extends javax.swing.JPanel {
             }
         });
         txt_buscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_buscadorKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_buscadorKeyReleased(evt);
             }
         });
         roundedPanel1.add(txt_buscador);
-
-        btn_buscar.setBackground(new java.awt.Color(0, 0, 102));
-        btn_buscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setText("Buscar");
-        btn_buscar.setPreferredSize(new java.awt.Dimension(90, 32));
-        roundedPanel1.add(btn_buscar);
 
         separador.setOpaque(false);
         separador.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -286,6 +283,14 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
+    private void txt_buscadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscadorKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if (SistemaPrincipal.getProductoService().buscarProductosPorPalabraClave(txt_buscador.getText()).isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Proveedor no registrado en la base de datos", "Busqueda Fallida", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_txt_buscadorKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ContenedorBarraBusqueda;
@@ -295,7 +300,6 @@ public class Panel_Proveedor extends javax.swing.JPanel {
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Eliminar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Modificar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Nuevo;
-    private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

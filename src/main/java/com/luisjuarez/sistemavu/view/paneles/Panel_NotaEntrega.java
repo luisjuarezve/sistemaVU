@@ -8,6 +8,7 @@ import com.luisjuarez.sistemavu.view.Formulario_Modificar.Formulario_Aumentar_in
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.formulario.FormularioVerDetalles;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -89,6 +90,9 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
             }
         });
         txt_buscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_buscadorKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_buscadorKeyReleased(evt);
             }
@@ -225,6 +229,14 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void txt_buscadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscadorKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if (SistemaPrincipal.getProductoService().buscarProductosPorPalabraClave(txt_buscador.getText()).isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nota de entrega no registrada en la base de datos", "Busqueda Fallida", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_txt_buscadorKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
