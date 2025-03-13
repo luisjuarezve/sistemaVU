@@ -308,8 +308,14 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
             return;
         }
 
-        if (!apellido.isEmpty() && !apellido.matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+         if (!apellido.isEmpty() && !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+// Validar nombre (no vacío, permitiendo tildes y espacios)
+        if (!nombre.isEmpty() && !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -336,7 +342,7 @@ public class Formulario_proveedor_Modificar extends javax.swing.JFrame {
         try {
             SistemaPrincipal.getProveedorService().modificarProveedor(proveedor);
             SistemaPrincipal.getProveedorService().cargarTabla(TableProveedor);
-            JOptionPane.showMessageDialog(null, "El usuario se ha modificado exitosamente.", "Modificación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El proveedor se ha modificado exitosamente.", "Modificación Exitosa", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Formulario_proveedor_Modificar.class.getName()).log(Level.SEVERE, null, ex);

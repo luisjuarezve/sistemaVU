@@ -318,8 +318,14 @@ public class Formulario_Cliente_Modificar extends javax.swing.JFrame {
             return;
         }
 
-        if (!apellido.matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(null, "El apellido solo debe contener letras.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+         if (!apellido.isEmpty() && !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+// Validar nombre (no vacío, permitiendo tildes y espacios)
+        if (!nombre.isEmpty() && !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 

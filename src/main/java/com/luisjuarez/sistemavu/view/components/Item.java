@@ -10,6 +10,7 @@ import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.utils.ImagesUtils;
 import com.luisjuarez.sistemavu.view.SistemaPrincipal;
 import com.luisjuarez.sistemavu.view.paneles.Panel_Facturar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -17,12 +18,13 @@ import javax.swing.JPanel;
  * @author Usuario
  */
 public class Item extends javax.swing.JPanel {
+
     private Producto producto;
     private Inventario inventario;
     private Carrito carrito;
     private JPanel panel;
-    private Panel_Facturar panelFacturar; 
-    
+    private Panel_Facturar panelFacturar;
+
     /**
      * Creates new form Item
      */
@@ -35,8 +37,8 @@ public class Item extends javax.swing.JPanel {
         this.panel = panel;
         jLabel1.setIcon(ImagesUtils.redimensionarIcon(getClass().getResource(producto.getImagen_producto()), 150, 150));
         lbl_NombreProducto.setText(producto.getNombre());
-        lbl_PrecioProductoBs.setText(String.format("%.2f",producto.getPrecio_venta()*SistemaPrincipal.getTasa())+" Bs");
-        lbl_PrecioProductoDolar.setText(String.format("%.2f", producto.getPrecio_venta())+" $");
+        lbl_PrecioProductoBs.setText(String.format("%.2f", producto.getPrecio_venta() * SistemaPrincipal.getTasa()) + " Bs");
+        lbl_PrecioProductoDolar.setText(String.format("%.2f", producto.getPrecio_venta()) + " $");
     }
 
     /**
@@ -123,8 +125,17 @@ public class Item extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
-        carrito.agregarProducto(producto, inventario, 1);
-        panelFacturar.cargarProductosFactura(carrito);
+
+        int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione la cantidad de productos a ingresar:"));
+
+// Validar que la cantidad sea positiva y menor o igual al inventario
+        if (cantidad > 0 && cantidad <= inventario.getCantidad()) {
+            carrito.agregarProducto(producto, inventario, cantidad);
+            panelFacturar.cargarProductosFactura(carrito);
+        } else {
+            JOptionPane.showMessageDialog(null, "La cantidad ingresada no es válida. Asegúrese de que sea un valor positivo y no exceda el inventario disponible.");
+        }
+
     }//GEN-LAST:event_roundedButton1ActionPerformed
 
 

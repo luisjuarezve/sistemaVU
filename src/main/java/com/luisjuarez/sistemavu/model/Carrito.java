@@ -24,16 +24,17 @@ public class Carrito {
         }
     }
 
-    public void disminuirProducto(Producto producto, int cantidad) {
+    public void disminuirProducto(Producto producto, Inventario inventario, int cantidad) {
         for (CarritoProducto item : items) {
             if (item.getProducto().getCodigo().equals(producto.getCodigo())) {
                 if (item.getCantidad() > cantidad) {
                     item.setCantidad(item.getCantidad() - cantidad);
+                    item.getInventario().setCantidad(item.getInventario().getCantidad() + cantidad); // Restaurar al inventario específico
                 } else {
                     cantidad = item.getCantidad();
                     items.remove(item);
+                    inventario.setCantidad(inventario.getCantidad() + cantidad); // Restaurar al inventario
                 }
-                item.getInventario().setCantidad(item.getInventario().getCantidad() + cantidad); // Restaurar la cantidad en inventario específico
                 return;
             }
         }
@@ -62,7 +63,7 @@ public class Carrito {
     public double calcularIVA() {
         double total = 0.0;
         for (CarritoProducto item : items) {
-            total += item.getCantidad() * item.getProducto().getPrecio_venta() * (item.getProducto().getImpuesto()/100);
+            total += item.getCantidad() * item.getProducto().getPrecio_venta() * (item.getProducto().getImpuesto() / 100);
         }
         return total;
     }

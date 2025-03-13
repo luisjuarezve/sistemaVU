@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -106,13 +107,25 @@ public class Formulario_Aumentar_inventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
-        try {
-            SistemaPrincipal.getInventarioService().aumentarInventario(inventario.getIdInventario(), Double.valueOf(jTextField1.getText()));
+         try {
+            // Validar que el texto en jTextField1 contiene solo números, puntos y comas
+            String textoCantidad = jTextField1.getText();
+            if (textoCantidad.isEmpty() || !textoCantidad.matches("^[0-9]+([.,][0-9]+)?$")) { // Acepta números decimales con punto o coma
+                JOptionPane.showMessageDialog(null, "La cantidad ingresada debe ser un número válido (puede usar punto o coma para decimales).");
+                return;
+            }
+
+            // Convertir la coma a punto para manejar el formato de decimales correctamente
+            double cantidad = Double.valueOf(textoCantidad.replace(",", "."));
+
+            // Continuar con la lógica si la validación pasa
+            SistemaPrincipal.getInventarioService().aumentarInventario(inventario.getIdInventario(), cantidad);
             SistemaPrincipal.getInventarioService().cargarTabla(table);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Formulario_Aumentar_inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
+         this.dispose();
     }//GEN-LAST:event_roundedButton1ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed

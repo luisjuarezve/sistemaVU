@@ -5,6 +5,7 @@
 package com.luisjuarez.sistemavu.view.components;
 
 import com.luisjuarez.sistemavu.model.Carrito;
+import com.luisjuarez.sistemavu.model.CarritoProducto;
 import com.luisjuarez.sistemavu.model.Inventario;
 import com.luisjuarez.sistemavu.model.Producto;
 import com.luisjuarez.sistemavu.utils.ImagesUtils;
@@ -226,13 +227,49 @@ public class ItemInvoice extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_MasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MasActionPerformed
-        carrito.agregarProducto(producto, inventario, 1);
-        panelFacturar.cargarProductosFactura(carrito);
+
+        int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione la cantidad de productos a aumentar:"));
+
+// Validar que la cantidad sea positiva y menor o igual al inventario
+        if (cantidad > 0 && cantidad <= inventario.getCantidad()) {
+            carrito.agregarProducto(producto, inventario, cantidad);
+            panelFacturar.cargarProductosFactura(carrito);
+        } else {
+            JOptionPane.showMessageDialog(null, "La cantidad ingresada no es válida. Asegúrese de que sea un valor positivo y no exceda el inventario disponible.");
+        }
+
     }//GEN-LAST:event_btn_MasActionPerformed
 
     private void btn_MenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MenosActionPerformed
-        carrito.disminuirProducto(producto, 1);
-        panelFacturar.cargarProductosFactura(carrito);
+
+        try {
+            String input = JOptionPane.showInputDialog(null, "Seleccione la cantidad de productos a disminuir:");
+            if (input == null || input.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No se ingresó ninguna cantidad.");
+                return;
+            }
+
+            int cantidad = Integer.parseInt(input);
+
+            for (CarritoProducto item : carrito.getItems()) {
+                if (item.getProducto().getCodigo().equals(producto.getCodigo())) {
+                    if (cantidad > 0 && cantidad <= item.getCantidad()) {
+                        carrito.disminuirProducto(producto, item.getInventario(), cantidad);
+                        panelFacturar.cargarProductosFactura(carrito);
+                        return;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La cantidad ingresada no es válida. Asegúrese de que sea un valor positivo y no exceda la cantidad en el carrito.");
+                        return;
+                    }
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "El producto no existe en el carrito.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Entrada no válida. Por favor, ingrese un número entero positivo.");
+        }
+
+
     }//GEN-LAST:event_btn_MenosActionPerformed
 
 

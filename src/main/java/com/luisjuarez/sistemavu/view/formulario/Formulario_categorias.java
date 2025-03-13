@@ -18,10 +18,12 @@ import javax.swing.JTable;
  * @author Helen
  */
 public class Formulario_categorias extends javax.swing.JFrame {
-          private JTable tableCategoria;
+
+    private JTable tableCategoria;
+
     public Formulario_categorias(JTable table) {
         initComponents();
-        tableCategoria= table;
+        tableCategoria = table;
         setLocationRelativeTo(null);
     }
 
@@ -147,37 +149,21 @@ public class Formulario_categorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-
 
         String nombre = jTextField6.getText();
         String descripcion = jTextField1.getText();
 
-        
-        
-        
-        if (nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El nombre no debe estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (!nombre.isEmpty() && !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "La descripción no debe estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (!descripcion.isEmpty() && !descripcion.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "La descripcion no puede estar vacía, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        Pattern pattern = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$");
-
-        if (!pattern.matcher(nombre).matches()) {
-            JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; 
-        }
-
-        if (!pattern.matcher(descripcion).matches()) {
-            JOptionPane.showMessageDialog(this, "La descripción solo debe contener letras.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; 
-        }
-
+        
 
         Categoria categoria = new Categoria();
         categoria.setNombre(nombre);
@@ -196,8 +182,8 @@ public class Formulario_categorias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       jTextField6.setText("");
-       jTextField1.setText("");
+        jTextField6.setText("");
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -208,7 +194,6 @@ public class Formulario_categorias extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

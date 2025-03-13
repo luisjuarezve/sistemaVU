@@ -60,7 +60,6 @@ public class Panel_Empleado extends javax.swing.JPanel {
         btn_Nuevo = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Modificar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Eliminar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Permisos = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setPreferredSize(new java.awt.Dimension(920, 550));
         setLayout(new java.awt.BorderLayout());
@@ -78,7 +77,6 @@ public class Panel_Empleado extends javax.swing.JPanel {
 
         txt_buscador.setBackground(new java.awt.Color(153, 204, 255));
         txt_buscador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txt_buscador.setForeground(new java.awt.Color(0, 0, 0));
         txt_buscador.setText("Introduce el rif o nombre del empleado");
         txt_buscador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         txt_buscador.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -214,26 +212,6 @@ public class Panel_Empleado extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
         roundedPanel2.add(btn_Eliminar, gridBagConstraints);
 
-        btn_Permisos.setBackground(new java.awt.Color(0, 0, 102));
-        btn_Permisos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Permisos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Permisos.setText("Permisos");
-        btn_Permisos.setFocusable(false);
-        btn_Permisos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Permisos.setPreferredSize(new java.awt.Dimension(120, 60));
-        btn_Permisos.setRoundBottomLeft(10);
-        btn_Permisos.setRoundBottomRight(10);
-        btn_Permisos.setRoundTopLeft(10);
-        btn_Permisos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_PermisosActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
-        roundedPanel2.add(btn_Permisos, gridBagConstraints);
-
         ContenedorBotones.add(roundedPanel2, new java.awt.GridBagConstraints());
 
         add(ContenedorBotones, java.awt.BorderLayout.EAST);
@@ -272,12 +250,6 @@ public class Panel_Empleado extends javax.swing.JPanel {
         Formulario_empleado cp = new Formulario_empleado(TableEmpleados);
         cp.setVisible(true);
     }//GEN-LAST:event_btn_NuevoActionPerformed
-
-    private void btn_PermisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PermisosActionPerformed
-      Formulario_Permisos fp = new Formulario_Permisos();
-      fp.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_PermisosActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarActionPerformed
                    if (TableEmpleados.getRowCount() > 0) {
@@ -323,7 +295,6 @@ public class Panel_Empleado extends javax.swing.JPanel {
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Eliminar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Modificar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Nuevo;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Permisos;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

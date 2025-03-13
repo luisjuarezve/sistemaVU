@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -105,13 +106,35 @@ public class Formulario_Disminuir_inventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
-        try {
-            SistemaPrincipal.getInventarioService().disminuirInventario(inventario.getIdInventario(), Double.valueOf(jTextField1.getText()));
+         try {
+            // Validar que el texto en jTextField1 contiene solo números, comas y puntos
+            String textoCantidad = jTextField1.getText();
+            if (textoCantidad.isEmpty() || !textoCantidad.matches("^[0-9]+([.,][0-9]+)?$")) { // Acepta números decimales con punto o coma
+                JOptionPane.showMessageDialog(null, "La cantidad ingresada debe ser un número válido (puede usar punto o coma para decimales).");
+                return;
+            }
+
+            // Convertir coma a punto para manejar los decimales correctamente
+            double cantidad = Double.valueOf(textoCantidad.replace(",", "."));
+
+            // Obtener el inventario actual
+            double inventarioActual = inventario.getCantidad();
+
+            // Validar que la cantidad no sea mayor al inventario actual
+            if (cantidad > inventarioActual) {
+                JOptionPane.showMessageDialog(null, "No es posible disminuir el inventario. La cantidad ingresada excede el inventario actual y no puede ser negativa.");
+                return;
+            }
+
+            // Continuar con la lógica si la validación pasa
+            SistemaPrincipal.getInventarioService().disminuirInventario(inventario.getIdInventario(), cantidad);
             SistemaPrincipal.getInventarioService().cargarTabla(table);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Formulario_Disminuir_inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
+         this.dispose();
+
     }//GEN-LAST:event_roundedButton1ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed

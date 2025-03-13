@@ -158,10 +158,14 @@ public class Formulario_categorias_Modificar extends javax.swing.JFrame {
         String nombre = jTextField6.getText();
         String descripcion = jTextField1.getText();
 
-        if (nombre.isEmpty() || descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacíos");
-        } else if (nombre.matches(".*\\d.*") || descripcion.matches(".*\\d.*")) {
-            JOptionPane.showMessageDialog(null, "Los campos no deben contener números");
+        if (!nombre.isEmpty() && !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!descripcion.isEmpty() && !descripcion.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+            JOptionPane.showMessageDialog(null, "La descripcion no puede estar vacía, debe contener solo letras, tildes y espacios.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            return;
         } else {
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas modifcar esta categoría?", "Confirmación", JOptionPane.YES_NO_OPTION);
 

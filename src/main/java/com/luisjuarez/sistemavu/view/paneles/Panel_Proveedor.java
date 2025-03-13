@@ -58,7 +58,6 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         btn_Nuevo = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Modificar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
         btn_Eliminar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
-        btn_Regresar = new com.luisjuarez.sistemavu.view.components.RoundedButton();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setPreferredSize(new java.awt.Dimension(1100, 550));
@@ -77,7 +76,6 @@ public class Panel_Proveedor extends javax.swing.JPanel {
 
         txt_buscador.setBackground(new java.awt.Color(153, 204, 255));
         txt_buscador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txt_buscador.setForeground(new java.awt.Color(0, 0, 0));
         txt_buscador.setText("Introduce el rif o nombre del proveedor");
         txt_buscador.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         txt_buscador.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -212,21 +210,6 @@ public class Panel_Proveedor extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
         roundedPanel2.add(btn_Eliminar, gridBagConstraints);
 
-        btn_Regresar.setBackground(new java.awt.Color(0, 0, 102));
-        btn_Regresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_Regresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Regresar.setText("Regresar");
-        btn_Regresar.setFocusable(false);
-        btn_Regresar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Regresar.setPreferredSize(new java.awt.Dimension(120, 60));
-        btn_Regresar.setRoundBottomLeft(10);
-        btn_Regresar.setRoundBottomRight(10);
-        btn_Regresar.setRoundTopLeft(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
-        roundedPanel2.add(btn_Regresar, gridBagConstraints);
-
         ContenedorBotones.add(roundedPanel2, new java.awt.GridBagConstraints());
 
         add(ContenedorBotones, java.awt.BorderLayout.EAST);
@@ -312,7 +295,6 @@ public class Panel_Proveedor extends javax.swing.JPanel {
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Eliminar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Modificar;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Nuevo;
-    private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Regresar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
