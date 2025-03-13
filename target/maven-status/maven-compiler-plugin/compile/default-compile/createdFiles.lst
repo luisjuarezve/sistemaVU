@@ -15,7 +15,6 @@ com\luisjuarez\sistemavu\view\paneles\Panel_Reportes.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Cliente_Modificar.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_inventario_Modificar$1.class
 com\luisjuarez\sistemavu\view\components\CustomTable$2.class
-com\luisjuarez\sistemavu\view\paneles\Panel_NotaEntrega$5.class
 com\luisjuarez\sistemavu\service\impl\EmpleadoHasPermisoServiceImpl.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Cliente_Modificar$2.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_categorias_Modificar$1.class

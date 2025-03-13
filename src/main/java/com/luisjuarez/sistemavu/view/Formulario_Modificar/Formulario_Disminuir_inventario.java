@@ -47,7 +47,7 @@ public class Formulario_Disminuir_inventario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(30, 30, 30));
-        jLabel1.setText("Aumentar Inventario");
+        jLabel1.setText("Disminuir Inventario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
