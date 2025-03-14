@@ -246,7 +246,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
                 TokenManager.deleteToken(token);
             } else {
                 JOptionPane.showMessageDialog(null,
-                        "El correo electrónico no está registrado en nuestra base de datos. Por favor, verifica e inténtalo nuevamente.",
+                        "El correo electrónico no está registrado en nuestra base de datos. Por favor, verifica e inténtalo nuebamente.",
                         "Correo no registrado",
                         JOptionPane.ERROR_MESSAGE);
             }

@@ -445,11 +445,6 @@ public class Formulario_Producto_Modificar extends javax.swing.JFrame {
             return; // Detener ejecución
         }
 
-        if (!txt_impuesto.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_impuesto.getText()) <= 0) {
-            JOptionPane.showMessageDialog(null, "El impuesto debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-            return; // Detener ejecución
-        }
-
         ComboItem selectedItemProveedor = (ComboItem) jComboBox3.getSelectedItem();
         if (selectedItemProveedor == null || selectedItemProveedor.getId() == 0) {
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un proveedor válido.", "Error de Validación", JOptionPane.ERROR_MESSAGE);

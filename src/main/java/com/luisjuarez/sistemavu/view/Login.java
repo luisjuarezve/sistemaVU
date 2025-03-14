@@ -70,7 +70,7 @@ public class Login extends javax.swing.JFrame {
 
         lbl_title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lbl_title.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_title.setText("Sistema Ferretería");
+        lbl_title.setText("Sistema VU");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -134,7 +134,7 @@ public class Login extends javax.swing.JFrame {
 
         txt_user.setBackground(new java.awt.Color(69, 69, 69));
         txt_user.setForeground(new java.awt.Color(255, 255, 255));
-        txt_user.setText("Usuario");
+        txt_user.setText("retewrt");
         txt_user.setMargin(new java.awt.Insets(2, 10, 2, 6));
         txt_user.setMinimumSize(new java.awt.Dimension(180, 26));
         txt_user.setPreferredSize(new java.awt.Dimension(180, 26));

@@ -51,7 +51,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
         roundedPanel1 = new com.luisjuarez.sistemavu.view.components.RoundedPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_buscador = new javax.swing.JTextField();
-        btn_buscar = new javax.swing.JButton();
         separador = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         ContenedorTable = new javax.swing.JPanel();
@@ -98,14 +97,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
             }
         });
         roundedPanel1.add(txt_buscador);
-
-        btn_buscar.setBackground(new java.awt.Color(0, 0, 102));
-        btn_buscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setText("Buscar");
-        btn_buscar.setFocusable(false);
-        btn_buscar.setPreferredSize(new java.awt.Dimension(90, 32));
-        roundedPanel1.add(btn_buscar);
 
         separador.setOpaque(false);
         separador.setPreferredSize(new java.awt.Dimension(20, 50));
@@ -245,7 +236,6 @@ public class Panel_NotaEntrega extends javax.swing.JPanel {
     private javax.swing.JPanel ContenedorTable;
     private com.luisjuarez.sistemavu.view.components.CustomTable TableNotaEntrega;
     private com.luisjuarez.sistemavu.view.components.RoundedButton btn_Modificar;
-    private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

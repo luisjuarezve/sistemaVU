@@ -143,7 +143,6 @@ public class Panel_Facturar extends javax.swing.JPanel {
         Productos.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane1.setBorder(null);
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(550, 400));
 
         row_items.setBackground(new java.awt.Color(255, 255, 255));

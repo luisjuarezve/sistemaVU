@@ -288,6 +288,7 @@ com\luisjuarez\sistemavu\config\ConfigProperties.class
 com\luisjuarez\sistemavu\view\formulario\Formulario_empleado$2.class
 com\luisjuarez\sistemavu\view\components\SearchBar.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_proveedor_Modificar$2.class
+com\luisjuarez\sistemavu\view\SistemaPrincipal$13.class
 com\luisjuarez\sistemavu\view\Formulario_Modificar\Formulario_Aumentar_inventario$3.class
 com\luisjuarez\sistemavu\view\components\Item$1.class
 com\luisjuarez\sistemavu\persistence\PermisoDAO.class

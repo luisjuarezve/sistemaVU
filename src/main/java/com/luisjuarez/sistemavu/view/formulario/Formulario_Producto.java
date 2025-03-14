@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -514,8 +515,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
             return; // Detener ejecución
         }
 
-        if (!txt_impuesto.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_impuesto.getText()) <= 0) {
-            JOptionPane.showMessageDialog(null, "El impuesto debe ser un número positivo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+        if (!txt_impuesto.getText().matches("\\d+(\\.\\d+)?") || Double.parseDouble(txt_impuesto.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "El impuesto debe ser un número mayor o igual a 0.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
             return; // Detener ejecución
         }
 
@@ -702,7 +703,7 @@ public class Formulario_Producto extends javax.swing.JFrame {
         txt_nombre.setText("");
         txt_descrip.setText("");
         txt_precioMayoreo.setText("");
-        txt_impuesto.setText("");
+        txt_impuesto.setText(String.format(Locale.US, "%.2f", SistemaPrincipal.getImpuesto()));
         txt_precioCompra.setText("");
         txt_precioVenta.setText("");
         txt_utilidad.setText("");
@@ -710,8 +711,8 @@ public class Formulario_Producto extends javax.swing.JFrame {
         setComboBoxValue(jComboBox1, 0);
 
     }
-    
-     public void setComboBoxValue(JComboBox comboBox, int id) {
+
+    public void setComboBoxValue(JComboBox comboBox, int id) {
         for (int i = 0; i < comboBox.getItemCount(); i++) {
             Object item = comboBox.getItemAt(i);
             if (item instanceof ComboItem) {

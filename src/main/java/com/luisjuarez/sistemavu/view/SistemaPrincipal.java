@@ -51,6 +51,7 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     private ConfigProperties config = new ConfigProperties();
     private static Empleado empleado;
     private static Double tasa;
+    private static double impuesto;
     private static Carrito carrito = new Carrito();
     private static Cliente cliente = null;
     public static InventarioService inventarioService = new InventarioServiceImpl(new InventarioDAOImplMariaDB());
@@ -168,6 +169,15 @@ public class SistemaPrincipal extends javax.swing.JFrame {
     public static void setCarrito(Carrito carrito) {
         SistemaPrincipal.carrito = carrito;
     }
+
+    public static double getImpuesto() {
+        return impuesto;
+    }
+
+    public static void setImpuesto(double impuesto) {
+        SistemaPrincipal.impuesto = impuesto;
+    }
+
     
     /**
      * Creates new form SistemaVU
@@ -177,6 +187,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         this.empleado = empleado;
         jLabel2.setText(empleado.getNombre() + (empleado.getApellido() != null ? " " + empleado.getApellido() : ""));
         tasa = Double.valueOf(config.getProperty("configuracion.tasa"));    
+        impuesto = Double.valueOf(config.getProperty("configuracion.iva"));    
+        Seccion.removeAll();
+        Seccion.add(new Panel_Facturar(),new java.awt.BorderLayout().CENTER);
+        Seccion.revalidate();
+        Seccion.repaint();
         setLocationRelativeTo(null);
     }
 
@@ -488,6 +503,11 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         btn_salir.setPreferredSize(new java.awt.Dimension(150, 40));
         btn_salir.setRoundTopLeft(10);
         btn_salir.setRoundTopRight(10);
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
@@ -603,6 +623,10 @@ public class SistemaPrincipal extends javax.swing.JFrame {
         Seccion.repaint();
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ayudaActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
